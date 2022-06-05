@@ -7,5 +7,5 @@ Recommends beverages based on age, gender, emotion, weather, and some other para
 git clone https://github.com/Eessh/beverage-recommendation-system.git
 cd beverage-recommendation-system/
 npm install
-npm start
+npm run dev
 ```
