@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import * as faceapi from "face-api.js";
 import VideoComponent from './components/VideoComponent';
-import './App.css'
+import { Button } from './components/Animated';
+// import './App.css'
 
 function App() {
   const [modelsLoaded, setModelsLoaded] = useState<boolean>(false);
@@ -29,6 +30,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <VideoComponent />
+        <Button>Hola</Button>
       </header>
     </div>
   );
