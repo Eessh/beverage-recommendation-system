@@ -17,8 +17,8 @@ const BeveragesView: React.FC<IProps> = ({beverages}) => {
   return(
     <div className="flex flex-row flex-wrap">
       <>
-        {beverages.forEach((beverage) => {
-          <BeverageCard
+        {beverages.map((beverage) => {
+          return <BeverageCard
             title={beverage.title}
             description={beverage.description}
             imgSrc={beverage.imgSrc}

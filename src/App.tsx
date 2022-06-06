@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import * as faceapi from "face-api.js";
 import VideoComponent from './components/VideoComponent';
 import { Button } from './components/Animated';
+import { BeveragesPage } from './components/Beverage';
 // import './App.css'
 
 function App() {
@@ -29,8 +30,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <VideoComponent />
-        <Button>Hola</Button>
+        {/* <VideoComponent /> */}
+        {/* <Button>Hola</Button> */}
+        <BeveragesPage />
       </header>
     </div>
   );

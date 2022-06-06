@@ -23,7 +23,7 @@ const BeverageCard: React.FC<IProps> = ({title, description, imgSrc, imgAlt, pri
       scaleOnTap={0.9}
     >
       <img
-        className="rounded-xl"
+        className="rounded-xl w-16 h-16"
         src={imgSrc}
         alt={imgAlt ? imgAlt : ""}
       />

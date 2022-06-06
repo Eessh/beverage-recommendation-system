@@ -18,8 +18,8 @@ const BeverageTypeHandler: React.FC<IProps> = ({setType, types}) => {
     <div className="flex flex-col">
       <span className=""><Up /></span>
       <>
-        {types.forEach((type) => {
-          <Button
+        {types.map((type) => {
+          return <Button
             onClick={() => {setType(type)}}
             overrideDefaultStyles={true}
             classes="w-20 h-20"
