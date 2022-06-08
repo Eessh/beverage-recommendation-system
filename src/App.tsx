@@ -32,7 +32,7 @@ function App() {
   };
 
   return (
-    <div className="App min-w-screen min-h-screen">
+    <div className="App min-w-screen min-h-screen flex flex-col">
       {/* <VideoComponent /> */}
       <BeveragesPage />
       <AnimatePresence

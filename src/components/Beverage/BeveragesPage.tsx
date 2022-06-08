@@ -6,9 +6,13 @@ const BeveragesPage = () => {
   const [type, setType] = useState<string>("Carbonated Drinks");
 
   return(
-    <div className="flex flex-row relative">
-      <BeverageTypeHandler types={BeverageTypes} setType={setType} />
-      <BeveragesView beverages={getBeveragesOfType(type)} />
+    <div className="BeveragesPage w-full flex-1 flex flex-row relative">
+      <div className="BeverageTypeHandlerWrapper w-fit min-h-full flex flex-col justify-center items-center p-4">
+        <BeverageTypeHandler types={BeverageTypes} setType={setType} />
+      </div>
+      <div className="BeveragesViewWrapper flex-1 h-full p-4">
+        <BeveragesView beverages={getBeveragesOfType(type)} />
+      </div>
     </div>
   );
 };
