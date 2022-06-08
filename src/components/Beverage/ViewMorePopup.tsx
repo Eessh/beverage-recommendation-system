@@ -45,13 +45,13 @@ const ViewMorePopup: React.FC<IProps> = ({title, description, imgSrc, imgAlt, pr
           <span className="text-lg font-normal mb-4">Quantity Available: {quantityAvailable}</span>
           <Button
             overrideDefaultStyles={true}
-            classes="flex-1 bg-slate-200 rounded-xl py-2"
+            classes="flex-1 bg-slate-200 rounded-xl py-2 font-medium text-lg"
           >Add to Cart</Button>
         </div>
         <div className="flex-1 flex flex-col ml-8">
           <span className=" text-2xl font-semibold">{title}</span>
           <br />
-          <span className=" text-lg font-medium">{description}</span>
+          <span className="text-lg font-normal">{description}</span>
         </div>
       </div>
     </div>
