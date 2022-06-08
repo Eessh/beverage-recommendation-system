@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import { ViewMorePopup } from ".";
-import { Button, Modal } from "../Animated";
+import { Button } from "../Animated";
+import { useGlobalContext } from "../../GlobalContext";
 
 interface IProps {
   title: string,
@@ -13,50 +11,33 @@ interface IProps {
 }
 
 const BeverageCard: React.FC<IProps> = ({title, description, imgSrc, imgAlt, price, quantityAvailable}) => {
-  const [moreInfoVisible, setMoreInfoVisible] = useState<boolean>(false);
+  const { setActiveBeverage, setMoreInfoVisible } = useGlobalContext();
+
+  const handleClick = () => {
+    setActiveBeverage({title, description, imgSrc, imgAlt, price, quantityAvailable});
+    setMoreInfoVisible(true);
+  };
 
   return(
-    <Button
-      overrideDefaultStyles={true}
-      classes="flex flex-col p-4 rounded-xl"
-      scaleOnHover={1.025}
-      scaleOnTap={0.9}
+    <div
+      onClick={handleClick}
+      className="relative flex flex-col p-2 rounded-xl bg-gray-50 h-fit shadow-xl ml-4 cursor-pointer hover:scale-105 transition-all"
     >
       <img
-        className="rounded-xl w-16 h-16"
+        className="rounded-xl w-56 h-56 mb-2"
         src={imgSrc}
         alt={imgAlt ? imgAlt : ""}
       />
-      <p className="">{title}</p>
-      <div className="flex flex-row">
-        <span className="">${price}</span>
-        <Button>View more</Button>
+      <p className="text-xl font-semibold text-black mb-1">{title}</p>
+      <div className="flex flex-row justify-between items-center mt-1">
+        <span className="text-xl font-medium text-black">${price}</span>
+        <Button
+          onClick={() => setMoreInfoVisible(true)}
+          // overrideDefaultStyles={true}
+          classes="px-2 py-1 rounded-xl bg-gray-200 flex-end"
+        >View more</Button>
       </div>
-      <AnimatePresence
-        // Disable any initial animations on children that
-        // are present when the component is first rendered
-        initial={false}
-        // Only render one component at a time.
-        // The exiting component will finish its exit
-        // animation before entering component is rendered
-        exitBeforeEnter={true}
-        // Fires when all exiting nodes have completed animating out
-        onExitComplete={() => null}
-      >
-        {
-          moreInfoVisible && <Modal close={() => setMoreInfoVisible(false)}>
-            <ViewMorePopup
-              title={title}
-              description={description}
-              imgSrc={imgSrc}
-              imgAlt={imgAlt}
-              price={price}
-              quantityAvailable={quantityAvailable}
-            />
-          </Modal>
-        }
-      </AnimatePresence>
-    </Button>
+    </div>
   );
 };
 

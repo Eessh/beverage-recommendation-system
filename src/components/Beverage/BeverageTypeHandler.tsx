@@ -1,5 +1,5 @@
 import { Button } from "../Animated";
-import { Up, Down} from "../../assets/icons";
+import { Up, Down } from "../../assets/icons";
 
 // interface IType {
 //   typeName: string,
@@ -15,16 +15,15 @@ interface IProps {
 const BeverageTypeHandler: React.FC<IProps> = ({setType, types}) => {
 
   return(
-    <div className="flex flex-col">
+    <div className="flex flex-col relative">
       <span className=""><Up /></span>
       <>
-        {types.map((type) => {
+        {types.map((type, index) => {
           return <Button
+            key={index}
             onClick={() => {setType(type)}}
             overrideDefaultStyles={true}
             classes="w-20 h-20"
-            scaleOnHover={1.025}
-            scaleOnTap={0.9}
           >
             {/* <img src={type.imgSrc} alt={type.imgAlt ? type.imgAlt : ""}></img> */}
             {type}

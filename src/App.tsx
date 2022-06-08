@@ -1,12 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import * as faceapi from "face-api.js";
+import { AnimatePresence } from 'framer-motion';
+import { Modal } from './components/Animated';
 import VideoComponent from './components/VideoComponent';
-import { Button } from './components/Animated';
 import { BeveragesPage } from './components/Beverage';
-// import './App.css'
+import { useGlobalContext } from './GlobalContext';
+import { ViewMorePopup } from './components/Beverage';
 
 function App() {
-  const [modelsLoaded, setModelsLoaded] = useState<boolean>(false);
+  const {
+    activeBeverage,
+    moreInfoVisible, setMoreInfoVisible
+  } = useGlobalContext();
 
   useEffect(() => {
     loadModels();
@@ -21,21 +26,37 @@ function App() {
       faceapi.loadFaceExpressionModel(modelsURI)
     ])
     .then(() => {
-      setModelsLoaded(true);
       console.log("Log: Models loaded");
     })
     .catch((err) => console.log("Error while loading Models: ", err));
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <VideoComponent /> */}
-        {/* <Button>Hola</Button> */}
-        <BeveragesPage />
-      </header>
+    <div className="App min-w-screen min-h-screen">
+      {/* <VideoComponent /> */}
+      <BeveragesPage />
+      <AnimatePresence
+        initial={false}
+        exitBeforeEnter={true}
+        onExitComplete={() => null}
+      >
+        {
+          moreInfoVisible && <Modal close={() => setMoreInfoVisible(false)}>
+            <ViewMorePopup
+              title={activeBeverage.title}
+              description={activeBeverage.description}
+              imgSrc={activeBeverage.imgSrc}
+              imgAlt={activeBeverage.imgAlt}
+              price={activeBeverage.price}
+              quantityAvailable={activeBeverage.quantityAvailable}
+              setMoreInfoVisible={setMoreInfoVisible}
+            />
+          </Modal>
+        }
+      </AnimatePresence>
+      {/* <header className="App-header"></header> */}
     </div>
   );
 }
 
-export default App
+export default App;

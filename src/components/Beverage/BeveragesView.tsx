@@ -15,10 +15,11 @@ interface IProps {
 
 const BeveragesView: React.FC<IProps> = ({beverages}) => {
   return(
-    <div className="flex flex-row flex-wrap">
+    <div className="flex flex-row flex-wrap relative">
       <>
-        {beverages.map((beverage) => {
+        {beverages.map((beverage, index) => {
           return <BeverageCard
+            key={index}
             title={beverage.title}
             description={beverage.description}
             imgSrc={beverage.imgSrc}

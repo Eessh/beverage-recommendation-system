@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Backdrop from "../Backdrop/Backdrop";
+import "./Modal.css";
 
 interface IProps {
   close: React.MouseEventHandler<HTMLDivElement> | undefined,
@@ -11,8 +12,8 @@ const Modal: React.FC<IProps> = ({close, children}) => {
     <Backdrop onClick={close}>
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        className="Modal flex flex-col"
-        variants={dropIn}
+        className="Modal"
+        variants={flip}
         initial="hidden"
         animate="visible"
         exit="exit"

@@ -6,7 +6,7 @@ const BeveragesPage = () => {
   const [type, setType] = useState<string>("Carbonated Drinks");
 
   return(
-    <div className="flex flex-row">
+    <div className="flex flex-row relative">
       <BeverageTypeHandler types={BeverageTypes} setType={setType} />
       <BeveragesView beverages={getBeveragesOfType(type)} />
     </div>
