@@ -1,5 +1,8 @@
 .video-component {
   height: 20rem;
+  border: #ffd65c;
+  border-width: 0.2rem;
+  border-style: solid;
 }
 
 .analysing-screen-root-div {
@@ -10,4 +13,9 @@
   justify-content: space-around;
   background-color: #333;
   align-items: center;
+}
+.info-text {
+  font-family: Montserrat;
+  color: #ffd65c;
+  font-size: 2.4rem;
 }

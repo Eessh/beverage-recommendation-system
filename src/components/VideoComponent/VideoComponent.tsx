@@ -103,7 +103,7 @@ const VideoComponent = () => {
   };
 
   const infoTexts: string[] = [
-    "Analysing Emotiongs",
+    "Analysing Emotions",
     "Predicting Gender",
     "Estimating Age",
   ];
@@ -117,10 +117,10 @@ const VideoComponent = () => {
         muted
         playsInline
       ></video>
-      <h1>
+      <h1 className="info-text">
         <TextTransition
           text={infoTexts[textIndex % infoTexts.length]}
-          springConfig={presets.wobbly}
+          springConfig={presets.molasses}
         />
       </h1>
     </div>
