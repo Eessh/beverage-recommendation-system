@@ -1,25 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as faceapi from "face-api.js";
-import { AnimatePresence } from 'framer-motion';
-import { Modal } from './components/Animated';
-import VideoComponent from './components/VideoComponent';
-import { BeveragesPage } from './components/Beverage';
-import { useGlobalContext } from './GlobalContext';
-import { ViewMorePopup } from './components/Beverage';
+import { AnimatePresence } from "framer-motion";
+import { Modal } from "./components/Animated";
+import VideoComponent from "./components/VideoComponent";
+import { BeveragesPage } from "./components/Beverage";
+import { useGlobalContext } from "./GlobalContext";
+import { ViewMorePopup } from "./components/Beverage";
 
 function App() {
-  const {
-    activeBeverage,
-    moreInfoVisible, setMoreInfoVisible
-  } = useGlobalContext();
+  const { activeBeverage, moreInfoVisible, setMoreInfoVisible } =
+    useGlobalContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     loadModels();
 
     // redirecting to next page after 7 seconds
-    setTimeout(() => navigate("/analysisResults"), 7000);
+    // setTimeout(() => navigate("/analysisResults"), 7000);
   }, []);
 
   const loadModels = () => {
@@ -28,12 +26,12 @@ function App() {
       faceapi.loadTinyFaceDetectorModel(modelsURI),
       faceapi.loadAgeGenderModel(modelsURI),
       faceapi.loadFaceLandmarkModel(modelsURI),
-      faceapi.loadFaceExpressionModel(modelsURI)
+      faceapi.loadFaceExpressionModel(modelsURI),
     ])
-    .then(() => {
-      console.log("Log: Models loaded");
-    })
-    .catch((err) => console.log("Error while loading Models: ", err));
+      .then(() => {
+        console.log("Log: Models loaded");
+      })
+      .catch((err) => console.log("Error while loading Models: ", err));
   };
 
   return (
