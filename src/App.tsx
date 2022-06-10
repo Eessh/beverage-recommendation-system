@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import * as faceapi from "face-api.js";
 import { AnimatePresence } from 'framer-motion';
 import { Modal } from './components/Animated';
@@ -12,9 +13,13 @@ function App() {
     activeBeverage,
     moreInfoVisible, setMoreInfoVisible
   } = useGlobalContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadModels();
+
+    // redirecting to next page after 7 seconds
+    setTimeout(() => navigate("/analysisResults"), 7000);
   }, []);
 
   const loadModels = () => {
@@ -33,9 +38,9 @@ function App() {
 
   return (
     <div className="App min-w-screen min-h-screen flex flex-col">
-      {/* <VideoComponent /> */}
-      <BeveragesPage />
-      <AnimatePresence
+      <VideoComponent />
+      {/* <BeveragesPage /> */}
+      {/* <AnimatePresence
         initial={false}
         exitBeforeEnter={true}
         onExitComplete={() => null}
@@ -53,7 +58,7 @@ function App() {
             />
           </Modal>
         }
-      </AnimatePresence>
+      </AnimatePresence> */}
       {/* <header className="App-header"></header> */}
     </div>
   );
