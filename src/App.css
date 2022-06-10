@@ -29,3 +29,7 @@ html {
   /* overflow-x: hidden; */
   /* background-color: #e4e4e2; */
 }
+
+.dev-view {
+  border: #ffd65c solid 0.4rem;
+}

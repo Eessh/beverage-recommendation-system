@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import "./VideoComponent.css";
 import * as faceapi from "face-api.js";
 import TextTransition, { presets } from "react-text-transition";
+import ClipLoader from "react-spinners/ClipLoader";
+import { RingLoader } from "react-spinners";
 import {
   IAgeRange,
   IBeveragePercent,
@@ -21,6 +23,7 @@ const VideoComponent = () => {
   const [age, setAge] = useState<number | undefined>(18);
   const [gender, setGender] = useState<string | undefined>("male");
   const [textIndex, setTextIndex] = useState<number>(0);
+  let [spinnerActive, setSpinnerActive] = useState<boolean>(true);
 
   useEffect(() => {
     getVideoStream();
@@ -117,12 +120,15 @@ const VideoComponent = () => {
         muted
         playsInline
       ></video>
-      <h1 className="info-text">
-        <TextTransition
-          text={infoTexts[textIndex % infoTexts.length]}
-          springConfig={presets.molasses}
-        />
-      </h1>
+      <div className=" video-info-container">
+        <RingLoader color="#ffd65c" loading={spinnerActive} size={180} />
+        <h1 className="info-text">
+          <TextTransition
+            text={infoTexts[textIndex % infoTexts.length]}
+            springConfig={presets.molasses}
+          />
+        </h1>
+      </div>
     </div>
   );
 };

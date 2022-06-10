@@ -1,5 +1,5 @@
 .video-component {
-  height: 20rem;
+  height: 24rem;
   border: #ffd65c;
   border-width: 0.2rem;
   border-style: solid;
@@ -8,6 +8,7 @@
 .analysing-screen-root-div {
   display: flex;
   flex-direction: row;
+  /* flex-direction: column; */
   height: 100vh;
   width: 100vw;
   justify-content: space-around;
@@ -17,5 +18,36 @@
 .info-text {
   font-family: Montserrat;
   color: #ffd65c;
-  font-size: 2.4rem;
+  font-size: 2rem;
+}
+
+.video-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5rem;
+  height: 100%;
+  align-items: center;
+  width: 30vw;
+}
+.dev-view {
+  border: #ffd65c solid 0.4rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .analysing-screen-root-div {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .video-component {
+    width: 100vw;
+    border-style: none;
+  }
+  .video-info-container {
+    width: 100vw;
+  }
+
+  .info-text {
+    font-size: 1.2rem;
+  }
 }
