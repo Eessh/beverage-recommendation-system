@@ -1,3 +1,4 @@
+import { useGlobalContext } from "../../GlobalContext";
 import "./Recommendations.css";
 
 // Props returned by AnalysisResults
@@ -5,6 +6,12 @@ import "./Recommendations.css";
 type TProps = {};
 
 const Recommendations: React.FC<TProps> = () => {
+  const {
+    age,
+    gender,
+    emotions
+  } = useGlobalContext();
+  
   return(
     <div className=""></div>
   );

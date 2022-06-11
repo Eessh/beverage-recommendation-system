@@ -16,7 +16,8 @@ type TEmotions = {
   neutral: number,
   angry: number,
   surprised: number,
-  disgust: number
+  fearful: number,
+  disgusted: number
 };
 type TGlobalContext = {
   age: number,
@@ -45,7 +46,8 @@ const defaultContextValue: TGlobalContext = {
     neutral: 0.00,
     angry: 0.00,
     surprised: 0.00,
-    disgust: 0.00
+    fearful: 0.0,
+    disgusted: 0.00
   },
   activeBeverageType: "Carbonated Drinks",
   activeBeverage: {

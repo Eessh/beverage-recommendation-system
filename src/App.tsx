@@ -17,7 +17,7 @@ function App() {
     loadModels();
 
     // redirecting to next page after 7 seconds
-    // setTimeout(() => navigate("/analysisResults"), 7000);
+    setTimeout(() => navigate("/analysisResults"), 7000);
   }, []);
 
   const loadModels = () => {

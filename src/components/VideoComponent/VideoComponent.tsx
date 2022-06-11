@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useGlobalContext } from "../../GlobalContext";
 import "./VideoComponent.css";
 import * as faceapi from "face-api.js";
 import TextTransition, { presets } from "react-text-transition";
@@ -20,24 +21,29 @@ import {
 
 const VideoComponent = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [age, setAge] = useState<number | undefined>(18);
-  const [gender, setGender] = useState<string | undefined>("male");
+  // const [age, setAge] = useState<number | undefined>(18);
+  // const [gender, setGender] = useState<string | undefined>("male");
+  const {
+    setAge,
+    setGender,
+    setEmotions
+  } = useGlobalContext();
   const [textIndex, setTextIndex] = useState<number>(0);
   let [spinnerActive, setSpinnerActive] = useState<boolean>(true);
 
   useEffect(() => {
     getVideoStream();
-    // const interval = setInterval(() => {
-    //   detectParams();
-    //   // console.log("Log: Recommendations: ", getRecommendations(gender, age))
-    // }, 200);
+    const interval = setInterval(() => {
+      detectParams();
+      // console.log("Log: Recommendations: ", getRecommendations(gender, age))
+    }, 200);
     const textInterval = setInterval(
       () => setTextIndex((index) => index + 1),
       3000 // every 3 seconds
     );
     return () => {
       clearInterval(textInterval);
-      // clearInterval(interval);
+      clearInterval(interval);
     };
   }, []);
 
@@ -60,16 +66,24 @@ const VideoComponent = () => {
       .withFaceLandmarks()
       .withFaceExpressions()
       .withAgeAndGender();
-    setAge((prev: number | undefined) => {
-      console.log("Log: Age: ", prev);
-      if (prev !== undefined && params?.age !== undefined)
-        return Math.min(params?.age, prev);
-      else return prev;
-    });
-    setGender((prevGender: string | undefined) => {
-      console.log("Log: Gender: ", prevGender);
-      return params?.gender;
-    });
+    if (params !== undefined) {
+      setAge((prev: number) => {
+        console.log("Log: Age: ", prev);
+        // if (prev !== undefined && params?.age !== undefined)
+          return Math.min(params?.age, prev);
+        // else return prev;
+      });
+      setGender((prevGender: string) => {
+        console.log("Log: Gender: ", prevGender);
+        // if (prevGender!==undefined && params?.gender!==undefined)
+          return params?.gender;
+        // else return prevGender;
+      });
+      setEmotions((prevEmotions) => {
+        console.log("Log: Emotions: ", prevEmotions);
+        return params.expressions;
+      });
+    }
   };
 
   const getAgeIndex = (age: number): number => {
