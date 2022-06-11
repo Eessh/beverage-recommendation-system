@@ -22,8 +22,26 @@ const AnalysisResults: React.FC<TProps> = () => {
     setTimeout(() => navigate("/recommendations"), 5000);
   }, []);
 
+  const getDominantEmotion = (): string => {
+    console.log("Log: Inside getDominantEmotion()");
+    console.log("Log: Emotions: ", emotions);
+    let dominantEmotion: string = "", emotionValue: number = 0;
+    Object.entries(emotions).forEach(pair => {
+      console.log("Log: Pair: ", pair);
+      if (pair[1] > emotionValue) {
+        dominantEmotion = pair[0];
+        emotionValue = pair[1];
+      }
+    });
+    return dominantEmotion;
+  };
+
   return(
-    <div className="AnalysisResults"></div>
+    <div className="AnalysisResults">
+      <span className="age">Estimated Age: {age}</span>
+      <span className="gender">Estimated Gender: {gender}</span>
+      <span className="emotion">Dominant Emotion: {getDominantEmotion()}</span>
+    </div>
   );
 };
 

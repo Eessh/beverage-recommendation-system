@@ -23,12 +23,14 @@ type TGlobalContext = {
   age: number,
   gender: string,
   emotions: TEmotions,
+  recommendations: string[],
   activeBeverageType: string,
   activeBeverage: IBeverage,
   moreInfoVisible: boolean,
   setAge: React.Dispatch<React.SetStateAction<number>>,
   setGender: React.Dispatch<React.SetStateAction<string>>,
   setEmotions: React.Dispatch<React.SetStateAction<TEmotions>>,
+  setRecommendations: React.Dispatch<React.SetStateAction<string[]>>,
   setActiveBeverageType: React.Dispatch<React.SetStateAction<string>>,
   setActiveBeverage: React.Dispatch<React.SetStateAction<IBeverage>>,
   setMoreInfoVisible: React.Dispatch<React.SetStateAction<boolean>>
@@ -41,14 +43,15 @@ const defaultContextValue: TGlobalContext = {
   age: 24,
   gender: "male",
   emotions: {
-    happy: 1.00,
-    sad: 0.00,
-    neutral: 0.00,
-    angry: 0.00,
-    surprised: 0.00,
-    fearful: 0.0,
-    disgusted: 0.00
+    happy: 100,
+    sad: 0,
+    neutral: 0,
+    angry: 0,
+    surprised: 0,
+    fearful: 0,
+    disgusted: 0
   },
+  recommendations: [],
   activeBeverageType: "Carbonated Drinks",
   activeBeverage: {
     title: "Coca Cola",
@@ -62,6 +65,7 @@ const defaultContextValue: TGlobalContext = {
   setAge: () => {},
   setGender: () => {},
   setEmotions: () => {},
+  setRecommendations: () => {},
   setActiveBeverageType: () => {},
   setActiveBeverage: () => {},
   setMoreInfoVisible: () => {}
@@ -73,6 +77,7 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}
   const [age, setAge] = useState<number>(defaultContextValue.age);
   const [gender, setGender] = useState<string>(defaultContextValue.gender);
   const [emotions, setEmotions] = useState<TEmotions>(defaultContextValue.emotions);
+  const [recommendations, setRecommendations] = useState<string[]>(defaultContextValue.recommendations);
   const [activeBeverageType, setActiveBeverageType] = useState<string>(defaultContextValue.activeBeverageType);
   const [activeBeverage, setActiveBeverage] = useState<IBeverage>(defaultContextValue.activeBeverage);
   const [moreInfoVisible, setMoreInfoVisible] = useState<boolean>(defaultContextValue.moreInfoVisible);
@@ -82,6 +87,7 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}
       age, setAge,
       gender, setGender,
       emotions, setEmotions,
+      recommendations, setRecommendations,
       activeBeverageType, setActiveBeverageType,
       activeBeverage, setActiveBeverage,
       moreInfoVisible, setMoreInfoVisible

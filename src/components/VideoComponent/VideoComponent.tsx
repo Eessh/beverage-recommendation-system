@@ -24,8 +24,8 @@ const VideoComponent = () => {
   // const [age, setAge] = useState<number | undefined>(18);
   // const [gender, setGender] = useState<string | undefined>("male");
   const {
-    setAge,
-    setGender,
+    age, setAge,
+    gender, setGender,
     setEmotions
   } = useGlobalContext();
   const [textIndex, setTextIndex] = useState<number>(0);
@@ -35,7 +35,7 @@ const VideoComponent = () => {
     getVideoStream();
     const interval = setInterval(() => {
       detectParams();
-      // console.log("Log: Recommendations: ", getRecommendations(gender, age))
+      console.log("Log: Recommendations: ", getRecommendations(gender, age));
     }, 200);
     const textInterval = setInterval(
       () => setTextIndex((index) => index + 1),
@@ -81,7 +81,18 @@ const VideoComponent = () => {
       });
       setEmotions((prevEmotions) => {
         console.log("Log: Emotions: ", prevEmotions);
-        return params.expressions;
+        // Object.assign(prevEmotions, params.expressions);
+        // Object.values(prevEmotions).map((emotionValue) => Math.round(emotionValue));
+        return {
+          happy: params.expressions.happy*100,
+          sad: params.expressions.sad*100,
+          neutral: params.expressions.neutral*100,
+          angry: params.expressions.angry*100,
+          surprised: params.expressions.surprised*100,
+          fearful: params.expressions.fearful*100,
+          disgusted: params.expressions.disgusted*100
+        }
+        // return params.expressions.map((emotion) => {return emotion*100});
       });
     }
   };

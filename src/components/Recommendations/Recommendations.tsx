@@ -6,14 +6,14 @@ import "./Recommendations.css";
 type TProps = {};
 
 const Recommendations: React.FC<TProps> = () => {
-  const {
-    age,
-    gender,
-    emotions
-  } = useGlobalContext();
+  const { recommendations } = useGlobalContext();
   
   return(
-    <div className=""></div>
+    <div className="">
+      {recommendations.map((x, index) => {
+        return <div key={index}>{x}</div>
+      })}
+    </div>
   );
 };
 
