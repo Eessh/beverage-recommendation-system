@@ -5,10 +5,7 @@ import { IBeveragePercent } from "../VideoComponent";
 import { AgeRanges, BeverageTypes, FemaleBeveragesData, MaleBeveragesData } from "../VideoComponent/data";
 import "./AnalysisResults.css";
 
-// Props returned after VideoStream analysis
-type TProps = {};
-
-const AnalysisResults: React.FC<TProps> = () => {
+const AnalysisResults = () => {
   const navigate = useNavigate();
   const {
     age,
@@ -21,9 +18,10 @@ const AnalysisResults: React.FC<TProps> = () => {
     console.log("Log: Age: ", age);
     console.log("Log: Gender: ", gender);
     console.log("Log: Emotions: ", emotions);
+    setRecommendations(getRecommendations(gender, age));
+
     // navigates to recommendations page in 5 seconds
     setTimeout(() => {
-      setRecommendations(getRecommendations(gender, age));
       navigate("/recommendations");
     }, 5000);
   }, []);

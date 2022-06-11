@@ -19,6 +19,16 @@ type TEmotions = {
   fearful: number,
   disgusted: number
 };
+
+// As recommendations can depend on various parameters
+type TRecommendations = {
+  ageAndGender: string[],
+  emotions: string[],
+  weather: string[],
+  temperature: string[],
+  season: string[]
+};
+
 type TGlobalContext = {
   age: number,
   gender: string,
@@ -35,6 +45,7 @@ type TGlobalContext = {
   setActiveBeverage: React.Dispatch<React.SetStateAction<IBeverage>>,
   setMoreInfoVisible: React.Dispatch<React.SetStateAction<boolean>>
 };
+
 type TGlobalContextProviderProps = {
   children: React.ReactNode | React.ReactNode[]
 };
