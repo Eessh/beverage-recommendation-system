@@ -19,9 +19,11 @@ function App() {
 
     // redirecting to next page after 7 seconds
     setTimeout(() => {
-      setRecommendations(getRecommendations(gender, age));
+      // const recs: string[] = getRecommendations(gender, age);
+      // setRecommendations(recs);
+      // console.log("Log: Recomendations: ", recs);
       navigate("/analysisResults")
-    }, 7000);
+    }, 10000);
   }, []);
 
   const loadModels = () => {
@@ -68,6 +70,7 @@ function App() {
       return a.percent - b.percent;
     });
     data.forEach((value) => recommendations.push(value.type));
+    console.log("Log: Returning: ", data);
     return recommendations;
   };
 

@@ -35,7 +35,7 @@ const VideoComponent = () => {
     getVideoStream();
     const interval = setInterval(() => {
       detectParams();
-      console.log("Log: Recommendations: ", getRecommendations(gender, age));
+      // console.log("Log: Recommendations: ", getRecommendations(gender, age));
     }, 200);
     const textInterval = setInterval(
       () => setTextIndex((index) => index + 1),
@@ -70,7 +70,8 @@ const VideoComponent = () => {
       setAge((prev: number) => {
         console.log("Log: Age: ", prev);
         // if (prev !== undefined && params?.age !== undefined)
-          return Math.min(params?.age, prev);
+          // return Math.min(params?.age, prev);
+          return params.age;
         // else return prev;
       });
       setGender((prevGender: string) => {
@@ -124,7 +125,8 @@ const VideoComponent = () => {
             return { type: BeverageTypes[index], percent: value };
           });
     data.sort((a, b) => {
-      return a.percent - b.percent;
+      // return a.percent - b.percent;
+      return b.percent - a.percent;
     });
     data.forEach((value) => recommendations.push(value.type));
     return recommendations;
