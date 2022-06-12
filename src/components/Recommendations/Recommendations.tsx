@@ -6,8 +6,14 @@ const Recommendations = () => {
   
   return(
     <div className="">
-      {recommendations.map((x, index) => {
+      {/* {recommendations.map((x, index) => {
         return <div key={index}>{x}</div>
+      })} */}
+      {recommendations.ageGender.map((bevarageType, index) => {
+        return <div key={index}>{bevarageType}</div>;
+      })}
+      {recommendations.emotions.map((bevarageType, index) => {
+        return <div key={index}>{bevarageType}</div>;
       })}
     </div>
   );

@@ -29,9 +29,32 @@ const FemaleBeveragesData: Array<Array<number>> = [
   [2.3 ,   0.4 ,   0.4 ,   0   ,   0.2 ,   0.3 ],
 ];
 
+export type TEmotionsData = {
+  happy: string[],
+  sad: string[],
+  neutral: string[],
+  angry: string[],
+  fear: string[],
+  disgusted: string[],
+  surprise: string[],
+};
+const EmotionsData: TEmotionsData = {
+  happy: ["Healthy", "Fruits", "Coffee", "Chocolate"],
+  sad: ["Chocolate", "Tea", "Coffee"],
+  neutral: ["Healthy"],
+  angry: ["Tea", "Coffee"],
+  fear: ["Water"],
+  disgusted: ["Water"],
+  surprise: ["Water"]
+};
+
+const WeatherAndTemperatueData = {};
+
 export {
   BeverageTypes,
   AgeRanges,
   MaleBeveragesData,
-  FemaleBeveragesData
+  FemaleBeveragesData,
+  EmotionsData,
+  WeatherAndTemperatueData
 };

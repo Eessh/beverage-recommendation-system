@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../../GlobalContext";
+import { useGlobalContext, TEmotions } from "../../GlobalContext";
 import { IBeveragePercent } from "../VideoComponent";
-import { AgeRanges, BeverageTypes, FemaleBeveragesData, MaleBeveragesData } from "../VideoComponent/data";
+import { AgeRanges, BeverageTypes, FemaleBeveragesData, MaleBeveragesData, EmotionsData } from "../VideoComponent/data";
 import "./AnalysisResults.css";
 
 const AnalysisResults = () => {
@@ -18,7 +18,13 @@ const AnalysisResults = () => {
     console.log("Log: Age: ", age);
     console.log("Log: Gender: ", gender);
     console.log("Log: Emotions: ", emotions);
-    setRecommendations(getRecommendations(gender, age));
+    setRecommendations({
+        ageGender: ageGenderRecommendations(gender, age),
+        emotions: emotionRecommendations(emotions),
+        weather: [],
+        temperature: [],
+        season: []
+    });
 
     // navigates to recommendations page in 5 seconds
     setTimeout(() => {
@@ -26,7 +32,7 @@ const AnalysisResults = () => {
     }, 5000);
   }, []);
 
-  const getDominantEmotion = (): string => {
+  const getDominantEmotion = (emotions: TEmotions): string => {
     let dominantEmotion: string = "", emotionValue: number = 0;
     Object.entries(emotions).forEach(pair => {
       console.log("Log: Pair: ", pair);
@@ -49,7 +55,7 @@ const AnalysisResults = () => {
     return ans;
   };
 
-  const getRecommendations = (
+  const ageGenderRecommendations = (
     gender: string | undefined,
     age: number | undefined
   ): Array<string> => {
@@ -72,11 +78,31 @@ const AnalysisResults = () => {
     return recommendations;
   };
 
+  const emotionRecommendations = (emotions: TEmotions): string[] => {
+    const dominantEmotion: string = getDominantEmotion(emotions);
+    switch (dominantEmotion) {
+      case "happy":
+        return EmotionsData.happy;
+      case "sad":
+        return EmotionsData.sad;
+      case "neutral":
+        return EmotionsData.neutral;
+      case "angry":
+        return EmotionsData.angry;
+      case "surprise":
+        return EmotionsData.surprise;
+      case "disgusted":
+        return EmotionsData.disgusted;
+      default:
+        throw new Error("Error: Unrecognized dominantEmotion.");
+    }
+  };
+
   return(
     <div className="AnalysisResults">
       <span className="age">Estimated Age: {age}</span>
       <span className="gender">Estimated Gender: {gender}</span>
-      <span className="emotion">Dominant Emotion: {getDominantEmotion()}</span>
+      <span className="emotion">Dominant Emotion: {getDominantEmotion(emotions)}</span>
     </div>
   );
 };

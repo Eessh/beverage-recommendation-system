@@ -10,7 +10,7 @@ export interface IBeverage {
   quantityAvailable: number
 };
 
-type TEmotions = {
+export type TEmotions = {
   happy: number,
   sad: number,
   neutral: number,
@@ -21,8 +21,8 @@ type TEmotions = {
 };
 
 // As recommendations can depend on various parameters
-type TRecommendations = {
-  ageAndGender: string[],
+export type TRecommendations = {
+  ageGender: string[],
   emotions: string[],
   weather: string[],
   temperature: string[],
@@ -33,14 +33,14 @@ type TGlobalContext = {
   age: number,
   gender: string,
   emotions: TEmotions,
-  recommendations: string[],
+  recommendations: TRecommendations,
   activeBeverageType: string,
   activeBeverage: IBeverage,
   moreInfoVisible: boolean,
   setAge: React.Dispatch<React.SetStateAction<number>>,
   setGender: React.Dispatch<React.SetStateAction<string>>,
   setEmotions: React.Dispatch<React.SetStateAction<TEmotions>>,
-  setRecommendations: React.Dispatch<React.SetStateAction<string[]>>,
+  setRecommendations: React.Dispatch<React.SetStateAction<TRecommendations>>,
   setActiveBeverageType: React.Dispatch<React.SetStateAction<string>>,
   setActiveBeverage: React.Dispatch<React.SetStateAction<IBeverage>>,
   setMoreInfoVisible: React.Dispatch<React.SetStateAction<boolean>>
@@ -62,7 +62,13 @@ const defaultContextValue: TGlobalContext = {
     fearful: 0,
     disgusted: 0
   },
-  recommendations: [],
+  recommendations: {
+    ageGender: [],
+    emotions: [],
+    weather: [],
+    temperature: [],
+    season: []
+  },
   activeBeverageType: "Carbonated Drinks",
   activeBeverage: {
     title: "Coca Cola",
@@ -88,7 +94,7 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}
   const [age, setAge] = useState<number>(defaultContextValue.age);
   const [gender, setGender] = useState<string>(defaultContextValue.gender);
   const [emotions, setEmotions] = useState<TEmotions>(defaultContextValue.emotions);
-  const [recommendations, setRecommendations] = useState<string[]>(defaultContextValue.recommendations);
+  const [recommendations, setRecommendations] = useState<TRecommendations>(defaultContextValue.recommendations);
   const [activeBeverageType, setActiveBeverageType] = useState<string>(defaultContextValue.activeBeverageType);
   const [activeBeverage, setActiveBeverage] = useState<IBeverage>(defaultContextValue.activeBeverage);
   const [moreInfoVisible, setMoreInfoVisible] = useState<boolean>(defaultContextValue.moreInfoVisible);
