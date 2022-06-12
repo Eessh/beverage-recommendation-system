@@ -1,16 +1,42 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext, TEmotions } from "../../GlobalContext";
 import { IBeveragePercent } from "../VideoComponent";
+import { IconContext } from "react-icons";
 import {
   AgeRanges,
   BeverageTypes,
   FemaleBeveragesData,
   MaleBeveragesData,
-  EmotionsData, TWeatherAndTemperature, WeatherData, TemperatureData
+  EmotionsData, TWeatherAndTemperature, WeatherData, TemperatureData,
 } from "../VideoComponent/data";
 import "./AnalysisResults.css";
+import { FaMale } from "react-icons/fa";
+import { FaFemale } from "react-icons/fa";
+import { FaChild } from "react-icons/fa";
+// FaRegSmile FaRegAngry FaRegMeh FaRegFrown FaRegFlushed FaRegTired FaRegSurprise
+import { FaRegAngry } from "react-icons/fa";
+import { FaRegMeh } from "react-icons/fa";
+import { FaRegSmile } from "react-icons/fa";
+import { FaQuestion } from "react-icons/fa";
+import { FaRegFrown } from "react-icons/fa";
+import { FaRegSurprise } from "react-icons/fa";
+import { FaRegTired } from "react-icons/fa";
+import { GiFemale } from "react-icons/gi";
+import { GiMale } from "react-icons/gi";
 
+import { Gender } from "face-api.js";
+type ageIconProp = {
+  gender: string;
+  age: number;
+};
+
+type genderIconProp = {
+  gender: string;
+};
+type emotionIconProp = {
+  emotion: string;
+};
 const AnalysisResults = () => {
   const navigate = useNavigate();
   const {
@@ -34,12 +60,16 @@ const AnalysisResults = () => {
       temperature: [],
       season: []
     });
-
     // navigates to recommendations page in 5 seconds
     setTimeout(() => {
       navigate("/recommendations");
     }, 5000);
   }, []);
+  // const { age, gender, emotions, setRecommendations } = useGlobalContext();
+  //emotions is a object of form - {happy: 100, sad: 0, neutral: 0, angry: 0, surprised: 0, …}
+  // const age = 14;
+  // const gender = "male";
+  // const emotions = "Happy";
 
   const weatherRecommendation = (weatherCode: number) => {
     switch (weatherCode) {
@@ -182,8 +212,9 @@ const AnalysisResults = () => {
   };
 
   const getDominantEmotion = (emotions: TEmotions): string => {
-    let dominantEmotion: string = "", emotionValue: number = 0;
-    Object.entries(emotions).forEach(pair => {
+    let dominantEmotion: string = "",
+      emotionValue: number = 0;
+    Object.entries(emotions).forEach((pair) => {
       console.log("Log: Pair: ", pair);
       if (pair[1] > emotionValue) {
         dominantEmotion = pair[0];
@@ -247,11 +278,69 @@ const AnalysisResults = () => {
     }
   };
 
-  return(
-    <div className="AnalysisResults">
-      <span className="age">Estimated Age: {age}</span>
-      <span className="gender">Estimated Gender: {gender}</span>
-      <span className="emotion">Dominant Emotion: {getDominantEmotion(emotions)}</span>
+  const getAgeGroup = (age: number): string => {
+    if (age < 13) {
+      return "Child";
+    } else if (age < 19) {
+      return "Teenager";
+    } else if (age < 30) {
+      return "Young Adult";
+    } else if (age < 50) {
+      return "Adult";
+    } else {
+      return "Senior citizen";
+    }
+  };
+
+  const AgeIcon = (input: ageIconProp) => {
+    let gender = input.gender;
+    let age = input.age;
+    if (age < 15) {
+      return <FaChild size={80} />;
+    }
+
+    if (gender === "male") {
+      return <FaMale size={80} />;
+    } else if (gender === "female") {
+      return <FaFemale size={80} />;
+    } else return <FaQuestion size={80} />;
+  };
+
+  const GenderIcon = (input: genderIconProp) => {
+    let gender = input.gender;
+    if (gender === "male") return <GiMale size={80} />;
+    else if (gender === "female") return <GiFemale size={80} />;
+    else return <FaQuestion size={80} />;
+  };
+
+  const EmotionIcon = (input: emotionIconProp) => {
+    let emotion = input.emotion;
+    if (emotion === "happy") return <FaRegSmile size={80} />;
+    else if (emotion === "sad") return <FaRegFrown size={80} />;
+    else if (emotion === "angry") return <FaRegAngry size={80} />;
+    else if (emotion === "surprised") return <FaRegSurprise size={80} />;
+    else if (emotion === "disgusted") return <FaRegTired size={80} />;
+    else if (emotion === "neutral") return <FaRegMeh size={80} />;
+    else return <FaQuestion />;
+  };
+
+  return (
+    <div className="analysis-result-root">
+      <div className="age-container">
+        <AgeIcon gender={gender} age={age} />
+        <h1 className="age">{getAgeGroup(age)}</h1>
+      </div>
+      <div className="gender-container">
+        <GenderIcon gender={gender} />
+        <h1 className="gender">{gender}</h1>
+      </div>
+      {/* <span className="emotion">
+        Dominant Emotion: {getDominantEmotion(emotions)}
+      </span> */}
+      <div className="gender-container">
+        <EmotionIcon emotion={getDominantEmotion(emotions)} />
+        <h1 className="gender">{getDominantEmotion(emotions)}</h1>
+      </div>
     </div>
   );
 };

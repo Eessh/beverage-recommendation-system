@@ -1,0 +1,32 @@
+.beer-icon {
+  size: 8;
+  color: green;
+}
+
+.analysis-result-root {
+  height: 100vh;
+  width: 100vw;
+  background-color: #333;
+  color: #ffd65c;
+  display: flex;
+  flex-direction: row;
+  font-family: Montserrat;
+}
+
+.age-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.gender-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
