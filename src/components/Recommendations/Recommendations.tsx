@@ -9,11 +9,21 @@ const Recommendations = () => {
       {/* {recommendations.map((x, index) => {
         return <div key={index}>{x}</div>
       })} */}
-      {recommendations.ageGender.map((bevarageType, index) => {
-        return <div key={index}>{bevarageType}</div>;
+      <div className={"text-2xl mt-4"}>Age & Gender based recommendations</div>
+      {recommendations.ageGender.map((beverageType, index) => {
+        return <div key={index}>{beverageType}</div>;
       })}
-      {recommendations.emotions.map((bevarageType, index) => {
-        return <div key={index}>{bevarageType}</div>;
+      <div className={"text-2xl mt-4"}>Emotion based recommendations</div>
+      {recommendations.emotions.map((beverageType, index) => {
+        return <div key={index}>{beverageType}</div>;
+      })}
+      <div className={"text-2xl mt-4"}>Weather based recommendations</div>
+      {recommendations.weather.map((beverageType, index) => {
+        return <div key={index}>{beverageType}</div>;
+      })}
+      <div className={"text-2xl mt-4"}>Temperature based recommendations</div>
+      {recommendations.temperature.map((beverageType, index) => {
+        return <div key={index}>{beverageType}</div>;
       })}
     </div>
   );
