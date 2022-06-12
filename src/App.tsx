@@ -79,8 +79,8 @@ function App() {
 
   return (
     <div className="App min-w-screen min-h-screen flex flex-col">
-      {/* <VideoComponent /> */}
-      <AnalysisResults />
+      <VideoComponent />
+      {/* <AnalysisResults /> */}
       {/* <BeveragesPage /> */}
       {/* <AnimatePresence
         initial={false}
