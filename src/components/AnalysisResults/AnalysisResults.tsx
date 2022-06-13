@@ -29,7 +29,15 @@ import { GiFemale } from "react-icons/gi";
 import { GiMale } from "react-icons/gi";
 
 import { Gender } from "face-api.js";
-import { Angry, Disgusted, Fear, Happy, Neutral, Sad, Surprised } from "../../assets/gifs";
+import {
+  Angry,
+  Disgusted,
+  Fear,
+  Happy,
+  Neutral,
+  Sad,
+  Surprised,
+} from "../../assets/gifs";
 type ageIconProp = {
   gender: string;
   age: number;
@@ -80,6 +88,11 @@ const AnalysisResults = () => {
   // const age = 14;
   // const gender = "male";
   // const emotions = "Happy";
+
+  const retryButtonHandler = () => {
+    clearTimeout(timeoutId);
+    navigate("/");
+  };
 
   const weatherRecommendation = (weatherCode: number) => {
     switch (weatherCode) {
@@ -342,19 +355,19 @@ const AnalysisResults = () => {
   const EmotionGif = (dominantEmotion: string) => {
     switch (dominantEmotion) {
       case "happy":
-        return <img src={Happy} width={300} height={300} />
+        return <img src={Happy} width={300} height={300} />;
       case "sad":
-        return <img src={Sad} width={300} height={300} />
+        return <img src={Sad} width={300} height={300} />;
       case "neutral":
-        return <img src={Neutral} width={300} height={300} />
+        return <img src={Neutral} width={300} height={300} />;
       case "angry":
-        return <img src={Angry} width={300} height={300} />
+        return <img src={Angry} width={300} height={300} />;
       case "fear":
-        return <img src={Fear} width={300} height={300} />
+        return <img src={Fear} width={300} height={300} />;
       case "disgusted":
-        return <img src={Disgusted} width={300} height={300} />
+        return <img src={Disgusted} width={300} height={300} />;
       case "surprised":
-        return <img src={Surprised} width={300} height={300} />
+        return <img src={Surprised} width={300} height={300} />;
       default:
         throw new Error("Error: Unrecognized emotion");
     }
@@ -396,7 +409,9 @@ const AnalysisResults = () => {
               {EmotionGif(getDominantEmotion(emotions))}
               <span className="description">
                 <span className="description-for">Emotion:</span>
-                <span className="gender">{capitalize(getDominantEmotion(emotions))}</span>
+                <span className="gender">
+                  {capitalize(getDominantEmotion(emotions))}
+                </span>
               </span>
             </div>
           </div>
@@ -404,10 +419,7 @@ const AnalysisResults = () => {
       </div>
       <div className="retry-div">
         <span>Think we got it wrong?</span>
-        <div className="retry-button" onClick={() => {
-          clearTimeout(timeoutId);
-          navigate("/");
-        }}>
+        <div className="retry-button" onClick={retryButtonHandler}>
           <span>Retry</span>
         </div>
       </div>
