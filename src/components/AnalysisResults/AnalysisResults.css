@@ -6,6 +6,7 @@
 .analysis-result-root {
   width: 100vw;
   flex: 7;
+  /* background-color: #333; */
   color: #ffd65c;
   display: flex;
   flex-direction: row;
