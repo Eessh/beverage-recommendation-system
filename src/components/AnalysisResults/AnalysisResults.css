@@ -56,13 +56,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.24rem 0.6rem;
+  padding: 0.24rem 1.4rem;
   background-color: #ffd65c;
   border-radius: 0.6rem;
   font-weight: bold;
   font-family: sans-serif;
   color: #333;
   font-size: 0.8rem;
+
+  transition: background-color 400ms;
+
+  background-color: #ffd65c;
+}
+.retry-button:hover {
+  cursor: pointer;
+  background-color: white;
 }
 @media screen and (max-width: 1000px) {
   .analysis-result-root {

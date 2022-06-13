@@ -29,7 +29,15 @@ import { GiFemale } from "react-icons/gi";
 import { GiMale } from "react-icons/gi";
 
 import { Gender } from "face-api.js";
-import { Angry, Disgusted, Fear, Happy, Neutral, Sad, Surprised } from "../../assets/gifs";
+import {
+  Angry,
+  Disgusted,
+  Fear,
+  Happy,
+  Neutral,
+  Sad,
+  Surprised,
+} from "../../assets/gifs";
 type ageIconProp = {
   gender: string;
   age: number;
@@ -65,15 +73,19 @@ const AnalysisResults = () => {
       season: [],
     });
     // navigates to recommendations page in 5 seconds
-    // setTimeout(() => {
-    //   navigate("/recommendations");
-    // }, 5000);
+    setTimeout(() => {
+      navigate("/recommendations");
+    }, 5000);
   }, []);
   // const { age, gender, emotions, setRecommendations } = useGlobalContext();
   //emotions is a object of form - {happy: 100, sad: 0, neutral: 0, angry: 0, surprised: 0, …}
   // const age = 14;
   // const gender = "male";
   // const emotions = "Happy";
+
+  const retryButtonHandler = () => {
+    navigate("/");
+  };
 
   const weatherRecommendation = (weatherCode: number) => {
     switch (weatherCode) {
@@ -336,19 +348,19 @@ const AnalysisResults = () => {
   const EmotionGif = (dominantEmotion: string) => {
     switch (dominantEmotion) {
       case "happy":
-        return <img src={Happy} width={400} height={400} />
+        return <img src={Happy} width={80} height={400} />;
       case "sad":
-        return <img src={Sad} width={400} height={400} />
+        return <img src={Sad} width={80} height={400} />;
       case "neutral":
-        return <img src={Neutral} width={400} height={400} />
+        return <img src={Neutral} width={80} height={400} />;
       case "angry":
-        return <img src={Angry} width={400} height={400} />
+        return <img src={Angry} width={80} height={400} />;
       case "fear":
-        return <img src={Fear} width={400} height={400} />
+        return <img src={Fear} width={80} height={400} />;
       case "disgusted":
-        return <img src={Disgusted} width={400} height={400} />
+        return <img src={Disgusted} width={80} height={400} />;
       case "surprised":
-        return <img src={Surprised} width={400} height={400} />
+        return <img src={Surprised} width={80} height={400} />;
       default:
         throw new Error("Error: Unrecognized emotion");
     }
@@ -376,7 +388,7 @@ const AnalysisResults = () => {
       </div>
       <div className="retry-div">
         <span>Think we got it wrong?</span>
-        <div className="retry-button">
+        <div className="retry-button" onClick={retryButtonHandler}>
           <span>Retry</span>
         </div>
       </div>
