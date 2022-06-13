@@ -4,9 +4,8 @@
 }
 
 .analysis-result-root {
-  height: 100vh;
   width: 100vw;
-  background-color: #333;
+  flex: 7;
   color: #ffd65c;
   display: flex;
   flex-direction: row;
@@ -31,6 +30,39 @@
   gap: 2rem;
 }
 
+.analysis-result-top {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: #333;
+  justify-content: center;
+  align-items: center;
+}
+
+.retry-div {
+  flex: 1;
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  font-family: Montserrat;
+  font-size: 0.7rem;
+
+  color: #ccc;
+}
+.retry-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.24rem 0.6rem;
+  background-color: #ffd65c;
+  border-radius: 0.6rem;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #333;
+  font-size: 0.8rem;
+}
 @media screen and (max-width: 1000px) {
   .analysis-result-root {
     flex-direction: column;

@@ -64,9 +64,9 @@ const AnalysisResults = () => {
       season: [],
     });
     // navigates to recommendations page in 5 seconds
-    setTimeout(() => {
-      navigate("/recommendations");
-    }, 5000);
+    // setTimeout(() => {
+    //   navigate("/recommendations");
+    // }, 5000);
   }, []);
   // const { age, gender, emotions, setRecommendations } = useGlobalContext();
   //emotions is a object of form - {happy: 100, sad: 0, neutral: 0, angry: 0, surprised: 0, …}
@@ -333,7 +333,7 @@ const AnalysisResults = () => {
   };
 
   return (
-    <div>
+    <div className="analysis-result-top">
       <div className="analysis-result-root">
         <div className="age-container">
           <AgeIcon gender={gender} age={age} />
@@ -349,6 +349,12 @@ const AnalysisResults = () => {
         <div className="gender-container">
           <EmotionIcon emotion={getDominantEmotion(emotions)} />
           <h1 className="gender">{getDominantEmotion(emotions)}</h1>
+        </div>
+      </div>
+      <div className="retry-div">
+        <span>Think we got it wrong?</span>
+        <div className="retry-button">
+          <span>Retry</span>
         </div>
       </div>
     </div>
