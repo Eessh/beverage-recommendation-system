@@ -78,7 +78,7 @@ function App() {
   // };
 
   return (
-    <div className="App min-w-screen min-h-screen flex flex-col">
+    <div className="App flex-1 flex flex-col">
       <VideoComponent />
       {/* <AnalysisResults /> */}
       {/* <BeveragesPage /> */}

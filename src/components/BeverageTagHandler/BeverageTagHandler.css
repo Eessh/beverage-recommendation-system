@@ -1,0 +1,8 @@
+.BeverageTagsWrapper::-webkit-scrollbar,
+.BeverageTagsWrapper::-webkit-scrollbar-button,
+.BeverageTagsWrapper::-webkit-scrollbar-corner,
+.BeverageTagsWrapper::-webkit-scrollbar-thumb,
+.BeverageTagsWrapper::-webkit-scrollbar-track,
+.BeverageTagsWrapper::-webkit-scrollbar-track-piece {
+    display: none;
+}

@@ -39,7 +39,7 @@ export type TEmotionsData = {
   surprise: string[],
 };
 const EmotionsData: TEmotionsData = {
-  happy: ["Healthy", "Fruits", "Coffee", "Chocolate"],
+  happy: ["Healthy", "Juices", "Coffee", "Chocolate"],
   sad: ["Chocolate", "Tea", "Coffee"],
   neutral: ["Healthy"],
   angry: ["Tea", "Coffee"],
@@ -48,7 +48,22 @@ const EmotionsData: TEmotionsData = {
   surprise: ["Water"]
 };
 
-const WeatherAndTemperatueData = {};
+export type TWeatherAndTemperature = {
+  weatherCode: number,
+  temperature: number
+};
+const WeatherData = {
+  clearSky: ["Healthy", "Cool Drinks", "Juices"],
+  rain: ["Tea", "Coffee", "Chocolate"],
+  snow: ["Tea", "Coffee", "Water", "Chocolate"],
+  thunderstorm: ["Water"]
+};
+
+const TemperatureData = {
+  cold: ["Tea", "Coffee", "Water", "Chocolate"],
+  warm: ["Cool Drinks", "Juices"],
+  hot: ["Water", "Cool Drinks"]
+};
 
 export {
   BeverageTypes,
@@ -56,5 +71,6 @@ export {
   MaleBeveragesData,
   FemaleBeveragesData,
   EmotionsData,
-  WeatherAndTemperatueData
+  WeatherData,
+  TemperatureData
 };

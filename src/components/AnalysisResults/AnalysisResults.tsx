@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalContext, TEmotions } from "../../GlobalContext";
 import { IBeveragePercent } from "../VideoComponent";
 import { IconContext } from "react-icons";
-
 import {
   AgeRanges,
   BeverageTypes,
   FemaleBeveragesData,
   MaleBeveragesData,
   EmotionsData,
+  TWeatherAndTemperature,
+  WeatherData,
+  TemperatureData,
 } from "../VideoComponent/data";
 import "./AnalysisResults.css";
 import { FaMale } from "react-icons/fa";
@@ -40,38 +42,182 @@ type emotionIconProp = {
 };
 const AnalysisResults = () => {
   const navigate = useNavigate();
-  const { age, gender, emotions, setRecommendations } = useGlobalContext();
+  const {
+    age,
+    gender,
+    emotions,
+    setWeatherCode,
+    setTemperature,
+    setRecommendations,
+  } = useGlobalContext();
+
+  useEffect(() => {
+    fetchWeather();
+    console.log("Log: Age: ", age);
+    console.log("Log: Gender: ", gender);
+    console.log("Log: Emotions: ", emotions);
+    setRecommendations({
+      ageGender: ageGenderRecommendations(gender, age),
+      emotions: emotionRecommendations(emotions),
+      weather: [],
+      temperature: [],
+      season: [],
+    });
+    // navigates to recommendations page in 5 seconds
+    setTimeout(() => {
+      navigate("/recommendations");
+    }, 5000);
+  }, []);
+  // const { age, gender, emotions, setRecommendations } = useGlobalContext();
   //emotions is a object of form - {happy: 100, sad: 0, neutral: 0, angry: 0, surprised: 0, …}
   // const age = 14;
   // const gender = "male";
   // const emotions = "Happy";
 
-  useEffect(() => {
-    console.log("Analysis Result Log: Age - ", age);
-    console.log("Analysis Result Log: Gender - ", gender);
-    console.log("Analysis Result Log: Emotions - ", emotions);
+  const weatherRecommendation = (weatherCode: number) => {
+    switch (weatherCode) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+        // Clear sky
+        setRecommendations((prev) => {
+          return {
+            ageGender: prev.ageGender,
+            emotions: prev.emotions,
+            weather: WeatherData.clearSky,
+            temperature: prev.temperature,
+            season: prev.season,
+          };
+        });
+        break;
 
+      case 51:
+      case 53:
+      case 55:
+      case 56:
+      case 57:
+      case 61:
+      case 63:
+      case 65:
+      case 66:
+      case 67:
+      case 80:
+      case 81:
+      case 82:
+        // Rain
+        setRecommendations((prev) => {
+          return {
+            ageGender: prev.ageGender,
+            emotions: prev.emotions,
+            weather: WeatherData.rain,
+            temperature: prev.temperature,
+            season: prev.season,
+          };
+        });
+        break;
+
+      case 71:
+      case 73:
+      case 75:
+      case 77:
+      case 85:
+      case 86:
+        // Snow
+        setRecommendations((prev) => {
+          return {
+            ageGender: prev.ageGender,
+            emotions: prev.emotions,
+            weather: WeatherData.snow,
+            temperature: prev.temperature,
+            season: prev.season,
+          };
+        });
+        break;
+
+      case 95:
+      case 96:
+      case 97:
+        // Thunderstorm
+        setRecommendations((prev) => {
+          return {
+            ageGender: prev.ageGender,
+            emotions: prev.emotions,
+            weather: WeatherData.thunderstorm,
+            temperature: prev.temperature,
+            season: prev.season,
+          };
+        });
+        break;
+
+      default:
+        // Ignore other codes
+        break;
+    }
+  };
+  const temperatureRecommendation = (temperature: number) => {
+    if (temperature <= 20) {
+      setRecommendations((prev) => {
+        return {
+          ageGender: prev.ageGender,
+          emotions: prev.emotions,
+          weather: prev.weather,
+          temperature: TemperatureData.cold,
+          season: prev.season,
+        };
+      });
+    } else if (21 <= temperature && temperature <= 30) {
+      setRecommendations((prev) => {
+        return {
+          ageGender: prev.ageGender,
+          emotions: prev.emotions,
+          weather: prev.weather,
+          temperature: TemperatureData.warm,
+          season: prev.season,
+        };
+      });
+    } else {
+      setRecommendations((prev) => {
+        return {
+          ageGender: prev.ageGender,
+          emotions: prev.emotions,
+          weather: prev.weather,
+          temperature: TemperatureData.hot,
+          season: prev.season,
+        };
+      });
+    }
+  };
+
+  const fetchWeather = async () => {
     navigator.geolocation.getCurrentPosition(
-      (position) => {
-        console.log("geolocation position - ", position);
+      (pos) => {
+        fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}&current_weather=true`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            const weatherCode = data.current_weather.weathercode;
+            const temperature = data.current_weather.temperature;
+            console.log("Log: Temperature: ", temperature);
+            console.log("Log: WeatherCode: ", weatherCode);
+            weatherRecommendation(weatherCode);
+            temperatureRecommendation(temperature);
+            setWeatherCode(data.current_weather.weathercode);
+            setTemperature(data.current_weather.temperature);
+          })
+          .catch((err) =>
+            console.log(
+              "Error: while fetching weather, temperature data: ",
+              err
+            )
+          );
       },
       (err) => {
-        console.log("error from geolocation - ", err);
+        console.log("Error: Unable to get Geolocation: ", err);
       }
     );
-    // setRecommendations({
-    //   ageGender: ageGenderRecommendations(gender, age),
-    //   emotions: emotionRecommendations(emotions),
-    //   weather: [],
-    //   temperature: [],
-    //   season: [],
-    // });
-
-    // navigates to recommendations page in 5 seconds
-    // setTimeout(() => {
-    //   navigate("/recommendations");
-    // }, 5000);
-  }, []);
+  };
 
   const getDominantEmotion = (emotions: TEmotions): string => {
     let dominantEmotion: string = "",
@@ -131,7 +277,7 @@ const AnalysisResults = () => {
         return EmotionsData.neutral;
       case "angry":
         return EmotionsData.angry;
-      case "surprise":
+      case "surprised":
         return EmotionsData.surprise;
       case "disgusted":
         return EmotionsData.disgusted;

@@ -9,6 +9,7 @@ import MatchaMilkTea from "./Milk/MatchaMilkTea.jpg";
 import CoffeeShot from "./Coffee/CoffeeShot.jpg";
 import GoldenOolong from "./Tea/GoldenOolong.jpg";
 import JasmineGreen from "./Tea/JasmineGreen.jpg";
+import Water from "./Water/Water.jpg";
 
 export {
   CocaCola,
@@ -21,5 +22,6 @@ export {
   MatchaMilkTea,
   CoffeeShot,
   GoldenOolong,
-  JasmineGreen
+  JasmineGreen,
+  Water
 };
