@@ -26,6 +26,7 @@ import { GiFemale } from "react-icons/gi";
 import { GiMale } from "react-icons/gi";
 
 import { Gender } from "face-api.js";
+import { Angry, Disgusted, Fear, Happy, Neutral, Sad, Surprised } from "../../assets/gifs";
 type ageIconProp = {
   gender: string;
   age: number;
@@ -324,6 +325,27 @@ const AnalysisResults = () => {
     else return <FaQuestion />;
   };
 
+  const EmotionGif = (dominantEmotion: string) => {
+    switch (dominantEmotion) {
+      case "happy":
+        return <img src={Happy} width={400} height={400} />
+      case "sad":
+        return <img src={Sad} width={400} height={400} />
+      case "neutral":
+        return <img src={Neutral} width={400} height={400} />
+      case "angry":
+        return <img src={Angry} width={400} height={400} />
+      case "fear":
+        return <img src={Fear} width={400} height={400} />
+      case "disgusted":
+        return <img src={Disgusted} width={400} height={400} />
+      case "surprised":
+        return <img src={Surprised} width={400} height={400} />
+      default:
+        throw new Error("Error: Unrecognized emotion");
+    }
+  };
+
   return (
     <div className="analysis-result-root">
       <div className="age-container">
@@ -338,7 +360,8 @@ const AnalysisResults = () => {
         Dominant Emotion: {getDominantEmotion(emotions)}
       </span> */}
       <div className="gender-container">
-        <EmotionIcon emotion={getDominantEmotion(emotions)} />
+        {/* <EmotionIcon emotion={getDominantEmotion(emotions)} /> */}
+        {EmotionGif(getDominantEmotion(emotions))}
         <h1 className="gender">{getDominantEmotion(emotions)}</h1>
       </div>
     </div>
