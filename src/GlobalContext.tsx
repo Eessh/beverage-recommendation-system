@@ -41,6 +41,7 @@ type TGlobalContext = {
   // activeBeverage: IBeverage,
   activeBeverage: TBeverage,
   moreInfoVisible: boolean,
+  timeoutId: number,
   setAge: React.Dispatch<React.SetStateAction<number>>,
   setGender: React.Dispatch<React.SetStateAction<string>>,
   setEmotions: React.Dispatch<React.SetStateAction<TEmotions>>,
@@ -50,7 +51,8 @@ type TGlobalContext = {
   setActiveBeverageTag: React.Dispatch<React.SetStateAction<string>>,
   // setActiveBeverage: React.Dispatch<React.SetStateAction<IBeverage>>,
   setActiveBeverage: React.Dispatch<React.SetStateAction<TBeverage>>,
-  setMoreInfoVisible: React.Dispatch<React.SetStateAction<boolean>>
+  setMoreInfoVisible: React.Dispatch<React.SetStateAction<boolean>>,
+  setTimeoutId: React.Dispatch<React.SetStateAction<number>>
 };
 
 type TGlobalContextProviderProps = {
@@ -89,6 +91,7 @@ const defaultContextValue: TGlobalContext = {
     imgAlt: "",
   },
   moreInfoVisible: false,
+  timeoutId: 0,
   setAge: () => {},
   setGender: () => {},
   setEmotions: () => {},
@@ -97,7 +100,8 @@ const defaultContextValue: TGlobalContext = {
   setRecommendations: () => {},
   setActiveBeverageTag: () => {},
   setActiveBeverage: () => {},
-  setMoreInfoVisible: () => {}
+  setMoreInfoVisible: () => {},
+  setTimeoutId: () => {}
 }
 
 const GlobalContext = createContext<TGlobalContext>(defaultContextValue);
@@ -113,6 +117,7 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}
   // const [activeBeverage, setActiveBeverage] = useState<IBeverage>(defaultContextValue.activeBeverage);
   const [activeBeverage, setActiveBeverage] = useState<TBeverage>(defaultContextValue.activeBeverage);
   const [moreInfoVisible, setMoreInfoVisible] = useState<boolean>(defaultContextValue.moreInfoVisible);
+  const [timeoutId, setTimeoutId] = useState<number>(defaultContextValue.timeoutId);
   
   return(
     <GlobalContext.Provider value={{
@@ -124,7 +129,8 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}
       recommendations, setRecommendations,
       activeBeverageTag: activeBeverageType, setActiveBeverageTag: setActiveBeverageType,
       activeBeverage, setActiveBeverage,
-      moreInfoVisible, setMoreInfoVisible
+      moreInfoVisible, setMoreInfoVisible,
+      timeoutId, setTimeoutId
     }}>
       {children}
     </GlobalContext.Provider>

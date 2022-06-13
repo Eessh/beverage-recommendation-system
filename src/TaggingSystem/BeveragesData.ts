@@ -15,8 +15,8 @@ const Beverages: TBeverages = [
 	{
 		name: "Coca Cola",
 		description: "Such a good drink, should try it :)",
-		price: 0,
-		quantityAvailable: 0,
+		price: 1.35,
+		quantityAvailable: 21,
 		tags: ["Carbonated Drinks", "Cool Drinks"],
 		imgSrc: CocaCola,
 		imgAlt: ""
@@ -24,8 +24,8 @@ const Beverages: TBeverages = [
 	{
 		name: "Sprite",
 		description: "Meh kinda drink, replacement when coke is available",
-		price: 0,
-		quantityAvailable: 0,
+		price: 1.05,
+		quantityAvailable: 17,
 		tags: ["Carbonated Drinks", "Cool Drinks"],
 		imgSrc: Sprite,
 		imgAlt: ""

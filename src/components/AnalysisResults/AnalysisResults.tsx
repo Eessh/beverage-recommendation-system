@@ -47,9 +47,11 @@ const AnalysisResults = () => {
     age,
     gender,
     emotions,
+    timeoutId,
     setWeatherCode,
     setTemperature,
     setRecommendations,
+    setTimeoutId
   } = useGlobalContext();
 
   useEffect(() => {
@@ -65,9 +67,13 @@ const AnalysisResults = () => {
       season: [],
     });
     // navigates to recommendations page in 5 seconds
-    // setTimeout(() => {
-    //   navigate("/recommendations");
-    // }, 5000);
+    setTimeoutId(
+      setTimeout(() => {
+        navigate("/recommendations");
+      }, 5000)
+    );
+
+    return() => {clearInterval(timeoutId)};
   }, []);
   // const { age, gender, emotions, setRecommendations } = useGlobalContext();
   //emotions is a object of form - {happy: 100, sad: 0, neutral: 0, angry: 0, surprised: 0, …}
@@ -398,7 +404,10 @@ const AnalysisResults = () => {
       </div>
       <div className="retry-div">
         <span>Think we got it wrong?</span>
-        <div className="retry-button">
+        <div className="retry-button" onClick={() => {
+          clearTimeout(timeoutId);
+          navigate("/");
+        }}>
           <span>Retry</span>
         </div>
       </div>

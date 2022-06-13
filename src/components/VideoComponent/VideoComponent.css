@@ -1,8 +1,10 @@
 .video-component {
-  height: 24rem;
+  /* height: 24rem; */
+  height: 90vh;
   border: #ffd65c;
   border-width: 0.2rem;
   border-style: solid;
+  border-radius: 1rem;
 }
 
 .analysing-screen-root-div {
@@ -16,7 +18,8 @@
   align-items: center;
 }
 .info-text {
-  font-family: Montserrat;
+  /* font-family: Montserrat; */
+  font-family: Arial, Helvetica, sans-serif;
   color: #ffd65c;
   font-size: 2rem;
 }
