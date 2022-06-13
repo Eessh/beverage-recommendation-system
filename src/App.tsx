@@ -26,7 +26,7 @@ function App() {
     setTimeout(() => {
       // setRecommendations(getRecommendations(gender, age));
       navigate("/analysisResults");
-    }, 7000);
+    }, 10000);
   }, []);
 
   const loadModels = () => {

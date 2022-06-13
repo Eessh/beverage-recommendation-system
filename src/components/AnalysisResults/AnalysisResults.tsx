@@ -47,9 +47,18 @@ const AnalysisResults = () => {
   // const emotions = "Happy";
 
   useEffect(() => {
-    console.log("Analysis Result Log: Age: ", age);
-    console.log("Analysis Result Log: Gender: ", gender);
-    console.log("Analysis Result Log: Emotions: ", emotions);
+    console.log("Analysis Result Log: Age - ", age);
+    console.log("Analysis Result Log: Gender - ", gender);
+    console.log("Analysis Result Log: Emotions - ", emotions);
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log("geolocation position - ", position);
+      },
+      (err) => {
+        console.log("error from geolocation - ", err);
+      }
+    );
     // setRecommendations({
     //   ageGender: ageGenderRecommendations(gender, age),
     //   emotions: emotionRecommendations(emotions),
@@ -178,24 +187,27 @@ const AnalysisResults = () => {
   };
 
   return (
-    <div className="analysis-result-root">
-      <div className="age-container">
-        <AgeIcon gender={gender} age={age} />
-        <h1 className="age">{getAgeGroup(age)}</h1>
-      </div>
-      <div className="gender-container">
-        <GenderIcon gender={gender} />
-        <h1 className="gender">{gender}</h1>
-      </div>
-      {/* <span className="emotion">
+    <div>
+      <div className="analysis-result-root">
+        <div className="age-container">
+          <AgeIcon gender={gender} age={age} />
+          <h1 className="age">{getAgeGroup(age)}</h1>
+        </div>
+        <div className="gender-container">
+          <GenderIcon gender={gender} />
+          <h1 className="gender">{gender}</h1>
+        </div>
+        {/* <span className="emotion">
         Dominant Emotion: {getDominantEmotion(emotions)}
       </span> */}
-      <div className="gender-container">
-        <EmotionIcon emotion={getDominantEmotion(emotions)} />
-        <h1 className="gender">{getDominantEmotion(emotions)}</h1>
+        <div className="gender-container">
+          <EmotionIcon emotion={getDominantEmotion(emotions)} />
+          <h1 className="gender">{getDominantEmotion(emotions)}</h1>
+        </div>
       </div>
     </div>
   );
 };
 
 export default AnalysisResults;
+//TODO: Add retry button in the analysisresult screen that should take the user back to the start of the flow
