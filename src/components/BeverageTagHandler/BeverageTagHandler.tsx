@@ -2,7 +2,7 @@ import { useGlobalContext } from "../../GlobalContext";
 import { TTag } from "../../Types";
 import { Button } from "../Animated";
 import "./BeverageTagHandler.css";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 export type TTagHandlerProps = {
 	tags: TTag[]
@@ -16,7 +16,7 @@ const BeverageTagHandler: React.FC<TTagHandlerProps> = ({ tags }) => {
 	}, []);
 
 	return (
-		<div className="BeverageTagHandler h-3/4 flex flex-col relative px-2 py-1 items-center bg-slate-100 rounded-xl">
+		<div className={`BeverageTagHandler h-[920px] flex flex-col relative px-2 py-1 items-center bg-slate-100 rounded-xl`}>
 			{/* <span className="h-fit flex flex-row justify-center items-center mb-2"><Up /></span> */}
 			<div className="flex-1 flex min-h-0">
 				<div className="BeverageTagsWrapper flex-1 overflow-auto">

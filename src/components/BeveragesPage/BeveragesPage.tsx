@@ -11,7 +11,7 @@ type TBeveragesPageProps = {
 const BeveragesPage: React.FC<TBeveragesPageProps> = ({useRecommendedTags=false, recommendedTags=[]}) => {
 	return (
 		<div className="BeveragesPage w-full flex-1 flex flex-row relative">
-			<div className="BeverageTypeHandlerWrapper w-fit min-h-full flex flex-col justify-center items-center p-4">
+			<div className="BeverageTypeHandlerWrapper w-fit max-h-full flex flex-col justify-center items-center p-4">
 				<BeverageTagHandler
 					tags={recommendedTags}
 				/>

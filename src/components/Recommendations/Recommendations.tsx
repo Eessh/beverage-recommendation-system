@@ -3,9 +3,12 @@ import "./Recommendations.css";
 import {useEffect, useState} from "react";
 import {TTags} from "../../Types";
 import BeveragesPage from "../BeveragesPage";
+import { AnimatePresence } from "framer-motion";
+import { Modal } from "../Animated";
+import ViewMorePopup from "../ViewMorePopup/ViewMorePopup";
 
 const Recommendations = () => {
-  const { recommendations } = useGlobalContext();
+  const { recommendations, moreInfoVisible, setMoreInfoVisible, setActiveBeverageTag } = useGlobalContext();
   // let tagsToShow: TTag[] = [];
   const [tagsToShow, setTagsToShow] = useState<TTags>([]);
 
@@ -19,13 +22,28 @@ const Recommendations = () => {
       });
     });
     setTagsToShow((tags) => {
-      return [... new Set(tags)];
-    })
+      const noDupsTags = [... new Set(tags)];
+      setActiveBeverageTag(noDupsTags[0]);
+      return noDupsTags;
+    });
     console.log("Log: Tags to show: ", tagsToShow);
   }, []);
   
   return(
-    <BeveragesPage useRecommendedTags={true} recommendedTags={tagsToShow} />
+    <div className={"Recommendations"}>
+      <BeveragesPage useRecommendedTags={true} recommendedTags={tagsToShow} />
+      <AnimatePresence
+        initial={false}
+        exitBeforeEnter={true}
+        onExitComplete={() => null}
+      >
+        {
+          moreInfoVisible && <Modal close={() => setMoreInfoVisible(false)}>
+            <ViewMorePopup />
+          </Modal>
+        }
+      </AnimatePresence>
+    </div>
   );
 };
 
