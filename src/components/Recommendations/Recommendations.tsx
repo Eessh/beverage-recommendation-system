@@ -1,8 +1,18 @@
 import { useGlobalContext } from "../../GlobalContext";
 import "./Recommendations.css";
+import {useEffect} from "react";
+import {getBeveragesForTag} from "../../TaggingSystem";
 
 const Recommendations = () => {
   const { recommendations } = useGlobalContext();
+  let tags: Map<string, number> = new Map<string, number>();
+
+  useEffect(() => {
+    recommendations.ageGender.forEach((tag) => console.log(getBeveragesForTag(tag)));
+    recommendations.emotions.forEach((tag) => console.log(getBeveragesForTag(tag)));
+    recommendations.weather.forEach((tag) => console.log(getBeveragesForTag(tag)));
+    recommendations.temperature.forEach((tag) => console.log(getBeveragesForTag(tag)));
+  }, []);
   
   return(
     <div className="">

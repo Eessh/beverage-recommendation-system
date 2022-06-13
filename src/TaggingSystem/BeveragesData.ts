@@ -1,0 +1,125 @@
+import { TBeverages } from "../Types";
+import {
+	Apple,
+	BlackMilkTea,
+	CocaCola,
+	CoffeeShot,
+	Focus, GoldenOolong,
+	Immunity, JasmineGreen,
+	Mango,
+	MatchaMilkTea,
+	Sprite, Water
+} from "../assets/images";
+
+const Beverages: TBeverages = [
+	{
+		name: "Coca Cola",
+		description: "Such a good drink, should try it :)",
+		price: 0,
+		quantityAvailable: 0,
+		tags: ["Carbonated Drinks", "Cool Drinks"],
+		imgSrc: CocaCola,
+		imgAlt: ""
+	},
+	{
+		name: "Sprite",
+		description: "Meh kinda drink, replacement when coke is available",
+		price: 0,
+		quantityAvailable: 0,
+		tags: ["Carbonated Drinks", "Cool Drinks"],
+		imgSrc: Sprite,
+		imgAlt: ""
+	},
+	{
+		name: "Energy + Focus",
+		description: "Matcha and L-theanine partner with ginseng for an empowering, focused blend.",
+		price: 35.99,
+		quantityAvailable: 3,
+		tags: ["Energy Drinks", "Healthy"],
+		imgSrc: Focus,
+		imgAlt: "",
+	},
+	{
+		name: "Energy + Immunity",
+		description: "Matcha and L-theanine partner with ginseng for an empowering, focused blend.",
+		price: 35.99,
+		quantityAvailable: 3,
+		tags: ["Energy Drinks", "Healthy"],
+		imgSrc: Immunity,
+		imgAlt: "",
+	},
+	{
+		name: "Apple Juice",
+		description: "Noice, so much noice.",
+		price: 12.5,
+		quantityAvailable: 3,
+		tags: ["Juices", "Healthy", "Cool Drinks"],
+		imgSrc: Apple,
+		imgAlt: "",
+	},
+	{
+		name: "Mango Juice",
+		description: "Oh man, that tastes so good, mind blown.",
+		price: 100000,
+		quantityAvailable: 1000,
+		tags: ["Juices", "Healthy", "Cool Drinks"],
+		imgSrc: Mango,
+		imgAlt: "",
+	},
+	{
+		name: "Black Milk Tea",
+		description: "The perfect café experience in a bottle! We put our tea expertise to work by balancing the robust flavor black tea with a sweet creamy taste. Enjoy it any time of the day without the fuss of being a barista or brewing your own tea. ",
+		price: 23.50,
+		quantityAvailable: 3,
+		tags: ["Milk", "Tea"],
+		imgSrc: BlackMilkTea,
+		imgAlt: "",
+	},
+	{
+		name: "Matcha Milk Tea",
+		description: "A true Japanese favorite! We put our tea expertise to work by balancing the flavors of matcha and green tea with a sweet creamy taste. Enjoy it any time of the day without the fuss of being a barista or brewing your own tea.",
+		price: 35.99,
+		quantityAvailable: 5,
+		tags: ["Milk", "Tea"],
+		imgSrc: MatchaMilkTea,
+		imgAlt: "",
+	},
+	{
+		name: "Coffee Shot",
+		description: "The Jay Street Coffee Shot is inspired by the cobblestone streets of our Brooklyn home office. This bold-tasting coffee shot will get you up and going anytime you need a natural energy boost. Unsweetened with 150mg of caffeine per bottle.",
+		price: 35,
+		quantityAvailable: 4,
+		tags: ["Coffee"],
+		imgSrc: CoffeeShot,
+		imgAlt: "",
+	},
+	{
+		name: "Golden Oolong",
+		description: "ITO EN's Golden Oolong Tea is one of Japan's best selling Oolong Teas. The tea leaves used for this Golden Oolong are flowery, fragrant \"Golden Cinnamon\" and hearty and ripe \"Iron Goddess\". Oolong tea is semi oxidized, making it unique from green and black teas.",
+		price: 23.50,
+		quantityAvailable: 6,
+		tags: ["Tea"],
+		imgSrc: GoldenOolong,
+		imgAlt: "",
+	},
+	{
+		name: "Jasmine Green",
+		description: "We use jasmine flowers that have been picked when the blossoms are at the peak of their fragrance.",
+		price: 23.50,
+		quantityAvailable: 2,
+		tags: ["Tea"],
+		imgSrc: JasmineGreen,
+		imgAlt: "",
+	},
+	{
+		name: "Water",
+		description: "Just drink it.",
+		price: 20.00,
+		quantityAvailable: 10,
+		tags: ["Water"],
+		imgSrc: Water,
+		imgAlt: "",
+	}
+];
+
+export default Beverages;
