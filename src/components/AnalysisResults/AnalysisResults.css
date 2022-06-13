@@ -4,8 +4,8 @@
 }
 
 .analysis-result-root {
-  height: 100vh;
   width: 100vw;
+  flex: 7;
   /* background-color: #333; */
   /* color: #ffd65c; */
   display: flex;
@@ -104,6 +104,40 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.analysis-result-top {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  /* background-color: #333; */
+  justify-content: center;
+  align-items: center;
+}
+
+.retry-div {
+  flex: 1;
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  font-family: Montserrat;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ccc;
+}
+.retry-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.24rem 0.6rem;
+  background-color: #ffd65c;
+  border-radius: 0.6rem;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+}
 @media screen and (max-width: 1000px) {
   .analysis-result-root {
     flex-direction: column;
