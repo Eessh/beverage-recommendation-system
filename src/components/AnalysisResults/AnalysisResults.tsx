@@ -317,73 +317,97 @@ const AnalysisResults = () => {
     let gender = input.gender;
     let age = input.age;
     if (age < 15) {
-      return <FaChild size={80} />;
+      return <FaChild size={300} />;
     }
 
     if (gender === "male") {
-      return <FaMale size={80} />;
+      return <FaMale size={300} />;
     } else if (gender === "female") {
-      return <FaFemale size={80} />;
-    } else return <FaQuestion size={80} />;
+      return <FaFemale size={300} />;
+    } else return <FaQuestion size={300} />;
   };
 
   const GenderIcon = (input: genderIconProp) => {
     let gender = input.gender;
-    if (gender === "male") return <GiMale size={80} />;
-    else if (gender === "female") return <GiFemale size={80} />;
-    else return <FaQuestion size={80} />;
+    if (gender === "male") return <GiMale size={300} />;
+    else if (gender === "female") return <GiFemale size={300} />;
+    else return <FaQuestion size={300} />;
   };
 
   const EmotionIcon = (input: emotionIconProp) => {
     let emotion = input.emotion;
-    if (emotion === "happy") return <FaRegSmile size={80} />;
-    else if (emotion === "sad") return <FaRegFrown size={80} />;
-    else if (emotion === "angry") return <FaRegAngry size={80} />;
-    else if (emotion === "surprised") return <FaRegSurprise size={80} />;
-    else if (emotion === "disgusted") return <FaRegTired size={80} />;
-    else if (emotion === "neutral") return <FaRegMeh size={80} />;
+    if (emotion === "happy") return <FaRegSmile size={300} />;
+    else if (emotion === "sad") return <FaRegFrown size={300} />;
+    else if (emotion === "angry") return <FaRegAngry size={300} />;
+    else if (emotion === "surprised") return <FaRegSurprise size={300} />;
+    else if (emotion === "disgusted") return <FaRegTired size={300} />;
+    else if (emotion === "neutral") return <FaRegMeh size={300} />;
     else return <FaQuestion />;
   };
 
   const EmotionGif = (dominantEmotion: string) => {
     switch (dominantEmotion) {
       case "happy":
-        return <img src={Happy} width={80} height={400} />;
+        return <img src={Happy} width={300} height={300} />;
       case "sad":
-        return <img src={Sad} width={80} height={400} />;
+        return <img src={Sad} width={300} height={300} />;
       case "neutral":
-        return <img src={Neutral} width={80} height={400} />;
+        return <img src={Neutral} width={300} height={300} />;
       case "angry":
-        return <img src={Angry} width={80} height={400} />;
+        return <img src={Angry} width={300} height={300} />;
       case "fear":
-        return <img src={Fear} width={80} height={400} />;
+        return <img src={Fear} width={300} height={300} />;
       case "disgusted":
-        return <img src={Disgusted} width={80} height={400} />;
+        return <img src={Disgusted} width={300} height={300} />;
       case "surprised":
-        return <img src={Surprised} width={80} height={400} />;
+        return <img src={Surprised} width={300} height={300} />;
       default:
         throw new Error("Error: Unrecognized emotion");
     }
   };
 
+  const capitalize = (input: string) => {
+    return input[0].toUpperCase() + input.slice(1);
+  };
+
   return (
     <div className="analysis-result-top">
       <div className="analysis-result-root">
-        <div className="age-container">
-          <AgeIcon gender={gender} age={age} />
-          <h1 className="age">{getAgeGroup(age)}</h1>
-        </div>
-        <div className="gender-container">
-          <GenderIcon gender={gender} />
-          <h1 className="gender">{gender}</h1>
-        </div>
-        {/* <span className="emotion">
-        Dominant Emotion: {getDominantEmotion(emotions)}
-      </span> */}
-        <div className="gender-container">
-          {/* <EmotionIcon emotion={getDominantEmotion(emotions)} /> */}
-          {EmotionGif(getDominantEmotion(emotions))}
-          <h1 className="gender">{getDominantEmotion(emotions)}</h1>
+        <span className="predictions-title">Predictions</span>
+        <div className="predictions">
+          <div className="age-container">
+            <div className="age-float shadow-xl">
+              <AgeIcon gender={gender} age={age} />
+              <span className="description">
+                <span className="description-for">Age:</span>
+                <span className="age">{getAgeGroup(age)}</span>
+              </span>
+            </div>
+          </div>
+          <div className="gender-container">
+            <div className="gender-float shadow-xl">
+              <GenderIcon gender={gender} />
+              <span className="description">
+                <span className="description-for">Gender:</span>
+                <span className="gender">{capitalize(gender)}</span>
+              </span>
+            </div>
+          </div>
+          {/* <span className="emotion">
+          Dominant Emotion: {getDominantEmotion(emotions)}
+        </span> */}
+          <div className="emotion-container">
+            {/* <EmotionIcon emotion={getDominantEmotion(emotions)} /> */}
+            <div className="emotion-float">
+              {EmotionGif(getDominantEmotion(emotions))}
+              <span className="description">
+                <span className="description-for">Emotion:</span>
+                <span className="gender">
+                  {capitalize(getDominantEmotion(emotions))}
+                </span>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
       <div className="retry-div">

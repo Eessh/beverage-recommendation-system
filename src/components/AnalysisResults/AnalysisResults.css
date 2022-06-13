@@ -7,13 +7,33 @@
   width: 100vw;
   flex: 7;
   /* background-color: #333; */
-  color: #ffd65c;
+  /* color: #ffd65c; */
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   font-family: Montserrat;
 }
 
+.predictions-title {
+  width: fit-content;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  background-color: rgba(255, 105, 180, 0.39);
+  color: #ff1493;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.predictions {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
 .age-container {
+  color: deepskyblue;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -23,6 +43,7 @@
 }
 
 .gender-container {
+  color: coral;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -31,12 +52,64 @@
   gap: 2rem;
 }
 
+.emotion-container {
+  color: deeppink;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.age-float,
+.gender-float,
+.emotion-float {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.age-float {
+  background-color: rgba(0, 191, 255, 0.205);
+}
+.gender-float {
+  background-color: rgba(255, 127, 80, 0.219);
+}
+.emotion-float {
+  -webkit-box-shadow: 0px 0px 20px 1px rgba(255, 20, 147, 1);
+  -moz-box-shadow: 0px 0px 20px 1px rgba(255, 20, 147, 1);
+  box-shadow: 0px 0px 60px 1px rgba(255, 20, 147, 1);
+}
+
+.age,
+.gender {
+  font-size: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 0.5rem;
+}
+
+.description {
+  margin-top: 2rem;
+}
+
+.description-for {
+  font-size: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .analysis-result-top {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background-color: #333;
+  /* background-color: #333; */
   justify-content: center;
   align-items: center;
 }
@@ -48,8 +121,8 @@
   gap: 1rem;
   flex-direction: column;
   font-family: Montserrat;
-  font-size: 0.7rem;
-
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
   color: #ccc;
 }
 .retry-button {
