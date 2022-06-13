@@ -14,7 +14,8 @@ const BeverageCard: React.FC<IProps> = ({title, description, imgSrc, imgAlt, pri
   const { setActiveBeverage, setMoreInfoVisible } = useGlobalContext();
 
   const handleClick = () => {
-    setActiveBeverage({title, description, imgSrc, imgAlt, price, quantityAvailable});
+    // setActiveBeverage({title, description, imgSrc, imgAlt, price, quantityAvailable});
+    setActiveBeverage({name: "", description: "", imgSrc: "", imgAlt: "", price: 0, quantityAvailable: 0, tags: []});
     setMoreInfoVisible(true);
   };
 

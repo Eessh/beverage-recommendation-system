@@ -1,4 +1,4 @@
-import {TBeverages, TTags} from "../Types";
+import { TBeverages, TTags } from "../Types";
 import Beverages from "./BeveragesData";
 
 const Tags: TTags = [

@@ -1,41 +1,31 @@
 import { useGlobalContext } from "../../GlobalContext";
 import "./Recommendations.css";
-import {useEffect} from "react";
-import {getBeveragesForTag} from "../../TaggingSystem";
+import {useEffect, useState} from "react";
+import {TTags} from "../../Types";
+import BeveragesPage from "../BeveragesPage";
 
 const Recommendations = () => {
   const { recommendations } = useGlobalContext();
-  let tags: Map<string, number> = new Map<string, number>();
+  // let tagsToShow: TTag[] = [];
+  const [tagsToShow, setTagsToShow] = useState<TTags>([]);
 
   useEffect(() => {
-    recommendations.ageGender.forEach((tag) => console.log(getBeveragesForTag(tag)));
-    recommendations.emotions.forEach((tag) => console.log(getBeveragesForTag(tag)));
-    recommendations.weather.forEach((tag) => console.log(getBeveragesForTag(tag)));
-    recommendations.temperature.forEach((tag) => console.log(getBeveragesForTag(tag)));
+    Object.values(recommendations).forEach((parameter) => {
+      parameter.forEach((tag) => {
+        if (tagsToShow.find(beverageTag => beverageTag===tag)===undefined) {
+          // tagsToShow.push(tag);
+          setTagsToShow((prevTags) => [...prevTags, tag]);
+        }
+      });
+    });
+    setTagsToShow((tags) => {
+      return [... new Set(tags)];
+    })
+    console.log("Log: Tags to show: ", tagsToShow);
   }, []);
   
   return(
-    <div className="">
-      {/* {recommendations.map((x, index) => {
-        return <div key={index}>{x}</div>
-      })} */}
-      <div className={"text-2xl mt-4"}>Age & Gender based recommendations</div>
-      {recommendations.ageGender.map((beverageType, index) => {
-        return <div key={index}>{beverageType}</div>;
-      })}
-      <div className={"text-2xl mt-4"}>Emotion based recommendations</div>
-      {recommendations.emotions.map((beverageType, index) => {
-        return <div key={index}>{beverageType}</div>;
-      })}
-      <div className={"text-2xl mt-4"}>Weather based recommendations</div>
-      {recommendations.weather.map((beverageType, index) => {
-        return <div key={index}>{beverageType}</div>;
-      })}
-      <div className={"text-2xl mt-4"}>Temperature based recommendations</div>
-      {recommendations.temperature.map((beverageType, index) => {
-        return <div key={index}>{beverageType}</div>;
-      })}
-    </div>
+    <BeveragesPage useRecommendedTags={true} recommendedTags={tagsToShow} />
   );
 };
 

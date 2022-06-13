@@ -269,7 +269,7 @@ const AnalysisResults = () => {
         return EmotionsData.neutral;
       case "angry":
         return EmotionsData.angry;
-      case "surprise":
+      case "surprised":
         return EmotionsData.surprise;
       case "disgusted":
         return EmotionsData.disgusted;
