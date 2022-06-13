@@ -8,7 +8,10 @@ import {
   BeverageTypes,
   FemaleBeveragesData,
   MaleBeveragesData,
-  EmotionsData, TWeatherAndTemperature, WeatherData, TemperatureData,
+  EmotionsData,
+  TWeatherAndTemperature,
+  WeatherData,
+  TemperatureData,
 } from "../VideoComponent/data";
 import "./AnalysisResults.css";
 import { FaMale } from "react-icons/fa";
@@ -46,7 +49,7 @@ const AnalysisResults = () => {
     emotions,
     setWeatherCode,
     setTemperature,
-    setRecommendations
+    setRecommendations,
   } = useGlobalContext();
 
   useEffect(() => {
@@ -59,7 +62,7 @@ const AnalysisResults = () => {
       emotions: emotionRecommendations(emotions),
       weather: [],
       temperature: [],
-      season: []
+      season: [],
     });
     // navigates to recommendations page in 5 seconds
     setTimeout(() => {
@@ -85,7 +88,7 @@ const AnalysisResults = () => {
             emotions: prev.emotions,
             weather: WeatherData.clearSky,
             temperature: prev.temperature,
-            season: prev.season
+            season: prev.season,
           };
         });
         break;
@@ -110,7 +113,7 @@ const AnalysisResults = () => {
             emotions: prev.emotions,
             weather: WeatherData.rain,
             temperature: prev.temperature,
-            season: prev.season
+            season: prev.season,
           };
         });
         break;
@@ -128,7 +131,7 @@ const AnalysisResults = () => {
             emotions: prev.emotions,
             weather: WeatherData.snow,
             temperature: prev.temperature,
-            season: prev.season
+            season: prev.season,
           };
         });
         break;
@@ -143,7 +146,7 @@ const AnalysisResults = () => {
             emotions: prev.emotions,
             weather: WeatherData.thunderstorm,
             temperature: prev.temperature,
-            season: prev.season
+            season: prev.season,
           };
         });
         break;
@@ -161,29 +164,27 @@ const AnalysisResults = () => {
           emotions: prev.emotions,
           weather: prev.weather,
           temperature: TemperatureData.cold,
-          season: prev.season
+          season: prev.season,
         };
       });
-    }
-    else if (21<=temperature && temperature<=30) {
+    } else if (21 <= temperature && temperature <= 30) {
       setRecommendations((prev) => {
         return {
           ageGender: prev.ageGender,
           emotions: prev.emotions,
           weather: prev.weather,
           temperature: TemperatureData.warm,
-          season: prev.season
+          season: prev.season,
         };
       });
-    }
-    else {
+    } else {
       setRecommendations((prev) => {
         return {
           ageGender: prev.ageGender,
           emotions: prev.emotions,
           weather: prev.weather,
           temperature: TemperatureData.hot,
-          season: prev.season
+          season: prev.season,
         };
       });
     }
@@ -192,9 +193,11 @@ const AnalysisResults = () => {
   const fetchWeather = async () => {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}&current_weather=true`)
-          .then(res => res.json())
-          .then(data => {
+        fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}&current_weather=true`
+        )
+          .then((res) => res.json())
+          .then((data) => {
             const weatherCode = data.current_weather.weathercode;
             const temperature = data.current_weather.temperature;
             console.log("Log: Temperature: ", temperature);
@@ -204,7 +207,12 @@ const AnalysisResults = () => {
             setWeatherCode(data.current_weather.weathercode);
             setTemperature(data.current_weather.temperature);
           })
-          .catch(err => console.log("Error: while fetching weather, temperature data: ", err));
+          .catch((err) =>
+            console.log(
+              "Error: while fetching weather, temperature data: ",
+              err
+            )
+          );
       },
       (err) => {
         console.log("Error: Unable to get Geolocation: ", err);
@@ -347,25 +355,28 @@ const AnalysisResults = () => {
   };
 
   return (
-    <div className="analysis-result-root">
-      <div className="age-container">
-        <AgeIcon gender={gender} age={age} />
-        <h1 className="age">{getAgeGroup(age)}</h1>
-      </div>
-      <div className="gender-container">
-        <GenderIcon gender={gender} />
-        <h1 className="gender">{gender}</h1>
-      </div>
-      {/* <span className="emotion">
+    <div>
+      <div className="analysis-result-root">
+        <div className="age-container">
+          <AgeIcon gender={gender} age={age} />
+          <h1 className="age">{getAgeGroup(age)}</h1>
+        </div>
+        <div className="gender-container">
+          <GenderIcon gender={gender} />
+          <h1 className="gender">{gender}</h1>
+        </div>
+        {/* <span className="emotion">
         Dominant Emotion: {getDominantEmotion(emotions)}
       </span> */}
-      <div className="gender-container">
-        {/* <EmotionIcon emotion={getDominantEmotion(emotions)} /> */}
-        {EmotionGif(getDominantEmotion(emotions))}
-        <h1 className="gender">{getDominantEmotion(emotions)}</h1>
+        <div className="gender-container">
+          {/* <EmotionIcon emotion={getDominantEmotion(emotions)} /> */}
+          {EmotionGif(getDominantEmotion(emotions))}
+          <h1 className="gender">{getDominantEmotion(emotions)}</h1>
+        </div>
       </div>
     </div>
   );
 };
 
 export default AnalysisResults;
+//TODO: Add retry button in the analysisresult screen that should take the user back to the start of the flow
