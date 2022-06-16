@@ -70,12 +70,11 @@ const AnalysisResults = () => {
       season: []
     });
     // navigates to recommendations page in 5 seconds
-    setTimeoutId(
-      setTimeout(() => {
-        navigate("/recommendations");
-      }, 5000)
-    );
-    return() => {clearInterval(timeoutId)};
+    const timeoutId = setTimeout(() => navigate("/recommendations"), 5000);
+    setTimeoutId(timeoutId);
+    return() => {
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const retryButtonHandler = () => {

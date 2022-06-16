@@ -3,29 +3,6 @@ export type TAgeRange = {
 	upper: number
 };
 
-export type TEmotionsData = {
-	happy: string[],
-	sad: string[],
-	neutral: string[],
-	angry: string[],
-	fear: string[],
-	disgusted: string[],
-	surprise: string[],
-};
-
-export type TWeatherData = {
-	clearSky: string[],
-	rain: string[],
-	snow: string[],
-	thunderstorm: string[]
-};
-
-export type TTemperatureData = {
-	cold: string[],
-	warm: string[],
-	hot: string[]
-};
-
 export type TTag = string;
 export type TTags = string[];
 
@@ -38,13 +15,11 @@ export type TBeverage = {
 	imgSrc: string,
 	imgAlt?: string
 };
-
+export type TBeverages = TBeverage[];
 export type TBeveragePercent = {
-	tag: string,
+	tag: TTag,
 	percent: number
 };
-
-export type TBeverages = TBeverage[];
 
 export type TEmotions = {
 	happy: number,
@@ -56,11 +31,33 @@ export type TEmotions = {
 	disgusted: number
 };
 export type TEmotionsWeights = TEmotions;
+export type TEmotionsData = {
+	happy: TTags,
+	sad: TTags,
+	neutral: TTags,
+	angry: TTags,
+	fear: TTags,
+	disgusted: TTags,
+	surprise: TTags
+};
+
+export type TWeatherData = {
+	clearSky: TTags,
+	rain: TTags,
+	snow: TTags,
+	thunderstorm: TTags
+};
+
+export type TTemperatureData = {
+	cold: TTags,
+	warm: TTags,
+	hot: TTags
+};
 
 export type TRecommendations = {
-	ageGender: string[],
-	emotions: string[],
-	weather: string[],
-	temperature: string[],
-	season: string[]
+	ageGender: TTags,
+	emotions: TTags,
+	weather: TTags,
+	temperature: TTags,
+	season: TTags
 };
