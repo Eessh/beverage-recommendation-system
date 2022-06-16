@@ -1,34 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { CocaCola } from "./assets/images";
-import {TBeverage} from "./Types";
-
-export interface IBeverage {
-  title: string,
-  description: string,
-  imgSrc: string,
-  imgAlt?: string,
-  price: number,
-  quantityAvailable: number
-};
-
-export type TEmotions = {
-  happy: number,
-  sad: number,
-  neutral: number,
-  angry: number,
-  surprised: number,
-  fearful: number,
-  disgusted: number
-};
-
-// As recommendations can depend on various parameters
-export type TRecommendations = {
-  ageGender: string[],
-  emotions: string[],
-  weather: string[],
-  temperature: string[],
-  season: string[]
-};
+import { TBeverage, TRecommendations, TEmotions, TTag } from "./Types";
 
 type TGlobalContext = {
   age: number,
@@ -38,7 +10,6 @@ type TGlobalContext = {
   temperature: number,
   recommendations: TRecommendations,
   activeBeverageTag: string,
-  // activeBeverage: IBeverage,
   activeBeverage: TBeverage,
   moreInfoVisible: boolean,
   timeoutId: number,
@@ -49,7 +20,6 @@ type TGlobalContext = {
   setTemperature: React.Dispatch<React.SetStateAction<number>>
   setRecommendations: React.Dispatch<React.SetStateAction<TRecommendations>>,
   setActiveBeverageTag: React.Dispatch<React.SetStateAction<string>>,
-  // setActiveBeverage: React.Dispatch<React.SetStateAction<IBeverage>>,
   setActiveBeverage: React.Dispatch<React.SetStateAction<TBeverage>>,
   setMoreInfoVisible: React.Dispatch<React.SetStateAction<boolean>>,
   setTimeoutId: React.Dispatch<React.SetStateAction<number>>
@@ -113,8 +83,7 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}
   const [weatherCode, setWeatherCode] = useState<number>(defaultContextValue.weatherCode);
   const [temperature, setTemperature] = useState<number>(defaultContextValue.temperature);
   const [recommendations, setRecommendations] = useState<TRecommendations>(defaultContextValue.recommendations);
-  const [activeBeverageType, setActiveBeverageType] = useState<string>(defaultContextValue.activeBeverageTag);
-  // const [activeBeverage, setActiveBeverage] = useState<IBeverage>(defaultContextValue.activeBeverage);
+  const [activeBeverageTag, setActiveBeverageTag] = useState<TTag>(defaultContextValue.activeBeverageTag);
   const [activeBeverage, setActiveBeverage] = useState<TBeverage>(defaultContextValue.activeBeverage);
   const [moreInfoVisible, setMoreInfoVisible] = useState<boolean>(defaultContextValue.moreInfoVisible);
   const [timeoutId, setTimeoutId] = useState<number>(defaultContextValue.timeoutId);
@@ -127,7 +96,7 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}
       weatherCode, setWeatherCode,
       temperature, setTemperature,
       recommendations, setRecommendations,
-      activeBeverageTag: activeBeverageType, setActiveBeverageTag: setActiveBeverageType,
+      activeBeverageTag, setActiveBeverageTag,
       activeBeverage, setActiveBeverage,
       moreInfoVisible, setMoreInfoVisible,
       timeoutId, setTimeoutId

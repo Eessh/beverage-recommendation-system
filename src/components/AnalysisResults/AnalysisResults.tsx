@@ -1,33 +1,22 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGlobalContext, TEmotions } from "../../GlobalContext";
-import { IBeveragePercent } from "../VideoComponent";
+import { useGlobalContext } from "../../GlobalContext";
+import { TEmotions } from "../../Types";
 import { IconContext } from "react-icons";
-import {
-  AgeRanges,
-  BeverageTypes,
-  FemaleBeveragesData,
-  MaleBeveragesData,
-  EmotionsData,
-  TWeatherAndTemperature,
-  WeatherData,
-  TemperatureData,
-} from "../VideoComponent/data";
 import "./AnalysisResults.css";
-import { FaMale } from "react-icons/fa";
-import { FaFemale } from "react-icons/fa";
-import { FaChild } from "react-icons/fa";
-// FaRegSmile FaRegAngry FaRegMeh FaRegFrown FaRegFlushed FaRegTired FaRegSurprise
-import { FaRegAngry } from "react-icons/fa";
-import { FaRegMeh } from "react-icons/fa";
-import { FaRegSmile } from "react-icons/fa";
-import { FaQuestion } from "react-icons/fa";
-import { FaRegFrown } from "react-icons/fa";
-import { FaRegSurprise } from "react-icons/fa";
-import { FaRegTired } from "react-icons/fa";
-import { GiFemale } from "react-icons/gi";
-import { GiMale } from "react-icons/gi";
-
+import {
+  FaMale,
+  FaFemale,
+  FaChild,
+  FaRegAngry,
+  FaRegMeh,
+  FaRegSmile,
+  FaQuestion,
+  FaRegFrown,
+  FaRegSurprise,
+  FaRegTired
+} from "react-icons/fa";
+import { GiMale, GiFemale } from "react-icons/gi";
 import { Gender } from "face-api.js";
 import {
   Angry,
@@ -38,6 +27,13 @@ import {
   Sad,
   Surprised,
 } from "../../assets/gifs";
+import {
+  ageGenderRecommendations,
+  emotionRecommendations,
+  temperatureRecommendations,
+  weatherRecommendations
+} from "../../RecommendationSystem";
+
 type ageIconProp = {
   gender: string;
   age: number;
@@ -55,6 +51,8 @@ const AnalysisResults = () => {
     age,
     gender,
     emotions,
+    weatherCode,
+    temperature,
     timeoutId,
     setWeatherCode,
     setTemperature,
@@ -64,15 +62,12 @@ const AnalysisResults = () => {
 
   useEffect(() => {
     fetchWeather();
-    console.log("Log: Age: ", age);
-    console.log("Log: Gender: ", gender);
-    console.log("Log: Emotions: ", emotions);
     setRecommendations({
       ageGender: ageGenderRecommendations(gender, age),
       emotions: emotionRecommendations(emotions),
-      weather: [],
-      temperature: [],
-      season: [],
+      weather: weatherRecommendations(weatherCode),
+      temperature: temperatureRecommendations(temperature),
+      season: []
     });
     // navigates to recommendations page in 5 seconds
     setTimeoutId(
@@ -80,133 +75,12 @@ const AnalysisResults = () => {
         navigate("/recommendations");
       }, 5000)
     );
-
     return() => {clearInterval(timeoutId)};
   }, []);
-  // const { age, gender, emotions, setRecommendations } = useGlobalContext();
-  //emotions is a object of form - {happy: 100, sad: 0, neutral: 0, angry: 0, surprised: 0, …}
-  // const age = 14;
-  // const gender = "male";
-  // const emotions = "Happy";
 
   const retryButtonHandler = () => {
     clearTimeout(timeoutId);
     navigate("/");
-  };
-
-  const weatherRecommendation = (weatherCode: number) => {
-    switch (weatherCode) {
-      case 0:
-      case 1:
-      case 2:
-      case 3:
-        // Clear sky
-        setRecommendations((prev) => {
-          return {
-            ageGender: prev.ageGender,
-            emotions: prev.emotions,
-            weather: WeatherData.clearSky,
-            temperature: prev.temperature,
-            season: prev.season,
-          };
-        });
-        break;
-
-      case 51:
-      case 53:
-      case 55:
-      case 56:
-      case 57:
-      case 61:
-      case 63:
-      case 65:
-      case 66:
-      case 67:
-      case 80:
-      case 81:
-      case 82:
-        // Rain
-        setRecommendations((prev) => {
-          return {
-            ageGender: prev.ageGender,
-            emotions: prev.emotions,
-            weather: WeatherData.rain,
-            temperature: prev.temperature,
-            season: prev.season,
-          };
-        });
-        break;
-
-      case 71:
-      case 73:
-      case 75:
-      case 77:
-      case 85:
-      case 86:
-        // Snow
-        setRecommendations((prev) => {
-          return {
-            ageGender: prev.ageGender,
-            emotions: prev.emotions,
-            weather: WeatherData.snow,
-            temperature: prev.temperature,
-            season: prev.season,
-          };
-        });
-        break;
-
-      case 95:
-      case 96:
-      case 97:
-        // Thunderstorm
-        setRecommendations((prev) => {
-          return {
-            ageGender: prev.ageGender,
-            emotions: prev.emotions,
-            weather: WeatherData.thunderstorm,
-            temperature: prev.temperature,
-            season: prev.season,
-          };
-        });
-        break;
-
-      default:
-        // Ignore other codes
-        break;
-    }
-  };
-  const temperatureRecommendation = (temperature: number) => {
-    if (temperature <= 20) {
-      setRecommendations((prev) => {
-        return {
-          ageGender: prev.ageGender,
-          emotions: prev.emotions,
-          weather: prev.weather,
-          temperature: TemperatureData.cold,
-          season: prev.season,
-        };
-      });
-    } else if (21 <= temperature && temperature <= 30) {
-      setRecommendations((prev) => {
-        return {
-          ageGender: prev.ageGender,
-          emotions: prev.emotions,
-          weather: prev.weather,
-          temperature: TemperatureData.warm,
-          season: prev.season,
-        };
-      });
-    } else {
-      setRecommendations((prev) => {
-        return {
-          ageGender: prev.ageGender,
-          emotions: prev.emotions,
-          weather: prev.weather,
-          temperature: TemperatureData.hot,
-          season: prev.season,
-        };
-      });
-    }
   };
 
   const fetchWeather = async () => {
@@ -221,10 +95,8 @@ const AnalysisResults = () => {
             const temperature = data.current_weather.temperature;
             console.log("Log: Temperature: ", temperature);
             console.log("Log: WeatherCode: ", weatherCode);
-            weatherRecommendation(weatherCode);
-            temperatureRecommendation(temperature);
-            setWeatherCode(data.current_weather.weathercode);
-            setTemperature(data.current_weather.temperature);
+            setWeatherCode(weatherCode);
+            setTemperature(temperature);
           })
           .catch((err) =>
             console.log(
@@ -250,60 +122,6 @@ const AnalysisResults = () => {
       }
     });
     return dominantEmotion;
-  };
-
-  const getAgeIndex = (age: number): number => {
-    let ans = 0;
-    for (let i = 0; i < AgeRanges.length; i++) {
-      if (AgeRanges[i].lower <= age && age <= AgeRanges[i].upper) {
-        ans = i;
-        break;
-      }
-    }
-    return ans;
-  };
-
-  const ageGenderRecommendations = (
-    gender: string | undefined,
-    age: number | undefined
-  ): Array<string> => {
-    if (gender === undefined || age === undefined) return [];
-    const recommendations = new Array<string>();
-    const dataIndex = getAgeIndex(age);
-    const data: IBeveragePercent[] =
-      gender === "male"
-        ? MaleBeveragesData[dataIndex].map((value, index) => {
-            return { type: BeverageTypes[index], percent: value };
-          })
-        : FemaleBeveragesData[dataIndex].map((value, index) => {
-            return { type: BeverageTypes[index], percent: value };
-          });
-    data.sort((a, b) => {
-      // return a.percent - b.percent;
-      return b.percent - a.percent;
-    });
-    data.forEach((value) => recommendations.push(value.type));
-    return recommendations;
-  };
-
-  const emotionRecommendations = (emotions: TEmotions): string[] => {
-    const dominantEmotion: string = getDominantEmotion(emotions);
-    switch (dominantEmotion) {
-      case "happy":
-        return EmotionsData.happy;
-      case "sad":
-        return EmotionsData.sad;
-      case "neutral":
-        return EmotionsData.neutral;
-      case "angry":
-        return EmotionsData.angry;
-      case "surprised":
-        return EmotionsData.surprise;
-      case "disgusted":
-        return EmotionsData.disgusted;
-      default:
-        throw new Error("Error: Unrecognized dominantEmotion.");
-    }
   };
 
   const getAgeGroup = (age: number): string => {
