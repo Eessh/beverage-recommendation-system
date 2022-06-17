@@ -1,5 +1,6 @@
 import {
 	ageGenderRecommendations,
+	getDominantEmotion,
 	emotionRecommendations,
 	weatherRecommendations,
 	temperatureRecommendations
@@ -19,6 +20,7 @@ import TemperatureData from "./TemperatureData";
 
 export {
 	ageGenderRecommendations,
+	getDominantEmotion,
 	emotionRecommendations,
 	weatherRecommendations,
 	temperatureRecommendations,

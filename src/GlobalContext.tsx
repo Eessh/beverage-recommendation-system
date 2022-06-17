@@ -33,7 +33,7 @@ const defaultContextValue: TGlobalContext = {
   age: 24,
   gender: "male",
   emotions: {
-    happy: 100,
+    happy: 0,
     sad: 0,
     neutral: 0,
     angry: 0,

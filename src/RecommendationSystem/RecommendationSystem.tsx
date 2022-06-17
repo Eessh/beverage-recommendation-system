@@ -4,14 +4,29 @@ import {
 	MaleBeveragesData,
 	FemaleBeveragesData
 } from "./AgeGenderData";
-import { EmotionsData } from "./EmotionsData";
+import { EmotionsData, EmotionsWeights } from "./EmotionsData";
 import WeatherData from "./WeatherData";
 import TemperatureData from "./TemperatureData";
 import { TEmotions, TBeveragePercent, TTags } from "../Types";
 
+const applyWeights = (emotions: TEmotions): TEmotions => {
+	return {
+		happy: emotions.happy*EmotionsWeights.happy,
+		sad: emotions.sad*EmotionsWeights.sad,
+		neutral: emotions.neutral*EmotionsWeights.neutral,
+		angry: emotions.angry*EmotionsWeights.angry,
+		fearful: emotions.fearful*EmotionsWeights.fearful,
+		surprised: emotions.surprised*EmotionsWeights.surprised,
+		disgusted: emotions.disgusted*EmotionsWeights.disgusted
+	};
+};
+
 const getDominantEmotion = (emotions: TEmotions): string => {
 	let dominantEmotion: string = "", emotionValue: number = 0;
-	Object.entries(emotions).forEach((pair) => {
+	const resultantEmotions = applyWeights(emotions);
+	console.log("Log: Emotions before applying weights: ", emotions);
+	console.log("Log: Emotions after applying weights: ", resultantEmotions);
+	Object.entries(resultantEmotions).forEach((pair) => {
 		if (pair[1] > emotionValue) {
 			dominantEmotion = pair[0];
 			emotionValue = pair[1];
@@ -130,6 +145,7 @@ const temperatureRecommendations = (temperature: number): TTags => {
 
 export {
 	ageGenderRecommendations,
+	getDominantEmotion,
 	emotionRecommendations,
 	weatherRecommendations,
 	temperatureRecommendations

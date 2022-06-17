@@ -18,6 +18,7 @@ import {
   MaleBeveragesData,
   FemaleBeveragesData,
 } from "./data";
+import { TEmotions } from "../../Types";
 
 const VideoComponent = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -53,6 +54,18 @@ const VideoComponent = () => {
       .catch((err) => console.log("Error while accessing VideoStream: ", err));
   };
 
+  const avgEmotions = (prevEmotions: TEmotions, currentEmotions: TEmotions): TEmotions => {
+    return {
+      happy: (prevEmotions.happy + currentEmotions.happy),
+      sad: (prevEmotions.sad + currentEmotions.sad),
+      neutral: (prevEmotions.neutral + currentEmotions.neutral),
+      angry: (prevEmotions.angry + currentEmotions.angry),
+      fearful: (prevEmotions.fearful + currentEmotions.fearful),
+      disgusted: (prevEmotions.disgusted + currentEmotions.disgusted),
+      surprised: (prevEmotions.surprised + currentEmotions.surprised),
+    };
+  };
+
   const detectParams = async () => {
     const params = await faceapi
       .detectSingleFace(
@@ -64,32 +77,16 @@ const VideoComponent = () => {
       .withAgeAndGender();
     if (params !== undefined) {
       setAge((prev: number) => {
-        console.log("Log: Age: ", prev);
-        // if (prev !== undefined && params?.age !== undefined)
-        // return Math.min(params?.age, prev);
+        // console.log("Log: Age: ", prev);
         return params.age;
-        // else return prev;
       });
       setGender((prevGender: string) => {
-        console.log("Log: Gender: ", prevGender);
-        // if (prevGender!==undefined && params?.gender!==undefined)
+        // console.log("Log: Gender: ", prevGender);
         return params?.gender;
-        // else return prevGender;
       });
       setEmotions((prevEmotions) => {
-        console.log("Log: Emotions: ", prevEmotions);
-        // Object.assign(prevEmotions, params.expressions);
-        // Object.values(prevEmotions).map((emotionValue) => Math.round(emotionValue));
-        return {
-          happy: params.expressions.happy * 100,
-          sad: params.expressions.sad * 100,
-          neutral: params.expressions.neutral * 100,
-          angry: params.expressions.angry * 100,
-          surprised: params.expressions.surprised * 100,
-          fearful: params.expressions.fearful * 100,
-          disgusted: params.expressions.disgusted * 100,
-        };
-        // return params.expressions.map((emotion) => {return emotion*100});
+        // console.log("Log: Emotions: ", prevEmotions);
+        return avgEmotions(prevEmotions, params.expressions);
       });
     }
   };

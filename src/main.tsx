@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <GlobalContextProvider>
         <Routes>
-          <Route path="/" element={<App />}/>
+          {<Route path="/" element={<App />}/>}
           <Route path="/analysisResults" element={<AnalysisResults />}/>
           <Route path="/recommendations" element={<Recommendations />}/>
         </Routes>

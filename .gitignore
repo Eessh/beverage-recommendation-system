@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+CONFIDENTIAL_FbiOpenup
 
 # Editor directories and files
 .vscode/*

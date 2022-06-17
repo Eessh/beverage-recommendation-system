@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../GlobalContext";
-import { TEmotions } from "../../Types";
+import { getDominantEmotion } from "../../RecommendationSystem";
 import { IconContext } from "react-icons";
 import "./AnalysisResults.css";
 import {
@@ -108,19 +108,6 @@ const AnalysisResults = () => {
         console.log("Error: Unable to get Geolocation: ", err);
       }
     );
-  };
-
-  const getDominantEmotion = (emotions: TEmotions): string => {
-    let dominantEmotion: string = "",
-      emotionValue: number = 0;
-    Object.entries(emotions).forEach((pair) => {
-      console.log("Log: Pair: ", pair);
-      if (pair[1] > emotionValue) {
-        dominantEmotion = pair[0];
-        emotionValue = pair[1];
-      }
-    });
-    return dominantEmotion;
   };
 
   const getAgeGroup = (age: number): string => {
