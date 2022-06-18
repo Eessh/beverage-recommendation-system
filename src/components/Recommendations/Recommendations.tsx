@@ -9,7 +9,6 @@ import ViewMorePopup from "../ViewMorePopup/ViewMorePopup";
 
 const Recommendations = () => {
   const { recommendations, moreInfoVisible, setMoreInfoVisible, setActiveBeverageTag } = useGlobalContext();
-  // let tagsToShow: TTag[] = [];
   const [tagsToShow, setTagsToShow] = useState<TTags>([]);
 
   useEffect(() => {
@@ -26,7 +25,6 @@ const Recommendations = () => {
       setActiveBeverageTag(noDupsTags[0]);
       return noDupsTags;
     });
-    console.log("Log: Tags to show: ", tagsToShow);
   }, []);
   
   return(

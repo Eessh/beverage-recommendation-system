@@ -8,15 +8,9 @@ import AnalysisResults from "./components/AnalysisResults";
 import { BeveragesPage } from "./components/Beverage";
 import { useGlobalContext } from "./GlobalContext";
 import { ViewMorePopup } from "./components/Beverage";
-import {
-  AgeRanges,
-  BeverageTypes,
-  FemaleBeveragesData,
-  MaleBeveragesData,
-} from "./components/VideoComponent/data";
 
 function App() {
-  const { age, gender, setRecommendations } = useGlobalContext();
+  const { age, gender, setModelsLoaded, setRecommendations } = useGlobalContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,43 +33,10 @@ function App() {
     ])
       .then(() => {
         console.log("Log: Models loaded");
+        setModelsLoaded(true);
       })
       .catch((err) => console.log("Error while loading Models: ", err));
   };
-
-  // const getAgeIndex = (age: number): number => {
-  // let ans = 0;
-  // for (let i = 0; i < AgeRanges.length; i++) {
-  // if (AgeRanges[i].lower <= age && age <= AgeRanges[i].upper) {
-  // ans = i;
-  // break;
-  // }
-  // }
-  // return ans;
-  // };
-
-  // const getRecommendations = (
-  // gender: string | undefined,
-  // age: number | undefined
-  // ): Array<string> => {
-  // if (gender === undefined || age === undefined) return [];
-  // const recommendations = new Array<string>();
-  // const dataIndex = getAgeIndex(age);
-  // const data: IBeveragePercent[] =
-  // gender === "male"
-  // ? MaleBeveragesData[dataIndex].map((value, index) => {
-  // return { type: BeverageTypes[index], percent: value };
-  // })
-  // : FemaleBeveragesData[dataIndex].map((value, index) => {
-  // return { type: BeverageTypes[index], percent: value };
-  // });
-  // data.sort((a, b) => {
-  // return a.percent - b.percent;
-  // });
-  // data.forEach((value) => recommendations.push(value.type));
-  // console.log("Log: Returning: ", data);
-  // return recommendations;
-  // };
 
   return (
     <div className="App flex-1 flex flex-col">

@@ -24,15 +24,14 @@ const VideoComponent = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   // const [age, setAge] = useState<number | undefined>(18);
   // const [gender, setGender] = useState<string | undefined>("male");
-  const { age, setAge, gender, setGender, setEmotions } = useGlobalContext();
+  const { modelsLoaded, age, setAge, gender, setGender, setEmotions } = useGlobalContext();
   const [textIndex, setTextIndex] = useState<number>(0);
   let [spinnerActive, setSpinnerActive] = useState<boolean>(true);
 
   useEffect(() => {
     getVideoStream();
     const interval = setInterval(() => {
-      detectParams();
-      // console.log("Log: Recommendations: ", getRecommendations(gender, age));
+      modelsLoaded && detectParams();
     }, 200);
     const textInterval = setInterval(
       () => setTextIndex((index) => index + 1),
@@ -54,7 +53,7 @@ const VideoComponent = () => {
       .catch((err) => console.log("Error while accessing VideoStream: ", err));
   };
 
-  const avgEmotions = (prevEmotions: TEmotions, currentEmotions: TEmotions): TEmotions => {
+  const addEmotions = (prevEmotions: TEmotions, currentEmotions: TEmotions): TEmotions => {
     return {
       happy: (prevEmotions.happy + currentEmotions.happy),
       sad: (prevEmotions.sad + currentEmotions.sad),
@@ -86,7 +85,7 @@ const VideoComponent = () => {
       });
       setEmotions((prevEmotions) => {
         // console.log("Log: Emotions: ", prevEmotions);
-        return avgEmotions(prevEmotions, params.expressions);
+        return addEmotions(prevEmotions, params.expressions);
       });
     }
   };

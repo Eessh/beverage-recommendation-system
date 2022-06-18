@@ -32,7 +32,7 @@ const getDominantEmotion = (emotions: TEmotions): string => {
 			emotionValue = pair[1];
 		}
 	});
-	return dominantEmotion;
+	return dominantEmotion=="" ? "neutral" : dominantEmotion;
 };
 
 const getAgeIndex = (age: number): number => {

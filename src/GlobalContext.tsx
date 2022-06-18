@@ -3,6 +3,7 @@ import { CocaCola } from "./assets/images";
 import { TBeverage, TRecommendations, TEmotions, TTag } from "./Types";
 
 type TGlobalContext = {
+  modelsLoaded: boolean,
   age: number,
   gender: string,
   emotions: TEmotions,
@@ -13,6 +14,7 @@ type TGlobalContext = {
   activeBeverage: TBeverage,
   moreInfoVisible: boolean,
   timeoutId: number,
+  setModelsLoaded: React.Dispatch<React.SetStateAction<boolean>>,
   setAge: React.Dispatch<React.SetStateAction<number>>,
   setGender: React.Dispatch<React.SetStateAction<string>>,
   setEmotions: React.Dispatch<React.SetStateAction<TEmotions>>,
@@ -30,6 +32,7 @@ type TGlobalContextProviderProps = {
 };
 
 const defaultContextValue: TGlobalContext = {
+  modelsLoaded: false,
   age: 24,
   gender: "male",
   emotions: {
@@ -62,6 +65,7 @@ const defaultContextValue: TGlobalContext = {
   },
   moreInfoVisible: false,
   timeoutId: 0,
+  setModelsLoaded: () => {},
   setAge: () => {},
   setGender: () => {},
   setEmotions: () => {},
@@ -77,6 +81,7 @@ const defaultContextValue: TGlobalContext = {
 const GlobalContext = createContext<TGlobalContext>(defaultContextValue);
 
 const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}) => {
+  const [modelsLoaded, setModelsLoaded] = useState<boolean>(defaultContextValue.modelsLoaded);
   const [age, setAge] = useState<number>(defaultContextValue.age);
   const [gender, setGender] = useState<string>(defaultContextValue.gender);
   const [emotions, setEmotions] = useState<TEmotions>(defaultContextValue.emotions);
@@ -90,6 +95,7 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}
   
   return(
     <GlobalContext.Provider value={{
+      modelsLoaded, setModelsLoaded,
       age, setAge,
       gender, setGender,
       emotions, setEmotions,
