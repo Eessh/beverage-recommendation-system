@@ -12,18 +12,20 @@ const Recommendations = () => {
   const [tagsToShow, setTagsToShow] = useState<TTags>([]);
 
   useEffect(() => {
-    Object.values(recommendations).forEach((parameter) => {
-      parameter.forEach((tag) => {
-        if (tagsToShow.find(beverageTag => beverageTag===tag)===undefined) {
-          // tagsToShow.push(tag);
-          setTagsToShow((prevTags) => [...prevTags, tag]);
-        }
-      });
-    });
+    // Object.values(recommendations).forEach((parameter) => {
+    //   parameter.forEach((tag) => {
+    //     if (tagsToShow.find(beverageTag => beverageTag===tag)===undefined) {
+    //       // tagsToShow.push(tag);
+    //       setTagsToShow((prevTags) => [...prevTags, tag]);
+    //     }
+    //   });
+    // });
     setTagsToShow((tags) => {
-      const noDupsTags = [... new Set(tags)];
-      setActiveBeverageTag(noDupsTags[0]);
-      return noDupsTags;
+      // const noDupsTags = [... new Set(tags)];
+      // setActiveBeverageTag(noDupsTags[0]);
+      // return noDupsTags;
+      setActiveBeverageTag(recommendations.emotions[0]);
+      return recommendations.emotions;
     });
   }, []);
   
