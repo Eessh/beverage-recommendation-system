@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   font-family: Montserrat;
+  color: #ffd65c;
 }
 
 .predictions-title {
@@ -20,8 +21,8 @@
   font-size: 2rem;
   margin-left: 2rem;
   margin-top: 2rem;
-  background-color: rgba(255, 105, 180, 0.39);
-  color: #ff1493;
+  /* background-color: rgba(255, 105, 180, 0.39);
+  color: #ff1493; */
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
@@ -53,7 +54,7 @@
 }
 
 .emotion-container {
-  color: deeppink;
+  /* color: deeppink; */
   flex: 1;
   display: flex;
   flex-direction: column;
