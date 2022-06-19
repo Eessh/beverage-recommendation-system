@@ -24,11 +24,13 @@ const VideoComponent = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   // const [age, setAge] = useState<number | undefined>(18);
   // const [gender, setGender] = useState<string | undefined>("male");
-  const { modelsLoaded, age, setAge, gender, setGender, setEmotions } = useGlobalContext();
+  const { modelsLoaded, age, setAge, gender, setGender, setEmotions } =
+    useGlobalContext();
   const [textIndex, setTextIndex] = useState<number>(0);
   let [spinnerActive, setSpinnerActive] = useState<boolean>(true);
 
   useEffect(() => {
+    console.log("modelsLoaded value - ", modelsLoaded);
     getVideoStream();
     const interval = setInterval(() => {
       modelsLoaded && detectParams();
@@ -41,7 +43,7 @@ const VideoComponent = () => {
       clearInterval(textInterval);
       clearInterval(interval);
     };
-  }, []);
+  }, [modelsLoaded]);
 
   const getVideoStream = () => {
     navigator.mediaDevices
@@ -53,19 +55,23 @@ const VideoComponent = () => {
       .catch((err) => console.log("Error while accessing VideoStream: ", err));
   };
 
-  const addEmotions = (prevEmotions: TEmotions, currentEmotions: TEmotions): TEmotions => {
+  const addEmotions = (
+    prevEmotions: TEmotions,
+    currentEmotions: TEmotions
+  ): TEmotions => {
     return {
-      happy: (prevEmotions.happy + currentEmotions.happy),
-      sad: (prevEmotions.sad + currentEmotions.sad),
-      neutral: (prevEmotions.neutral + currentEmotions.neutral),
-      angry: (prevEmotions.angry + currentEmotions.angry),
-      fearful: (prevEmotions.fearful + currentEmotions.fearful),
-      disgusted: (prevEmotions.disgusted + currentEmotions.disgusted),
-      surprised: (prevEmotions.surprised + currentEmotions.surprised),
+      happy: prevEmotions.happy + currentEmotions.happy,
+      sad: prevEmotions.sad + currentEmotions.sad,
+      neutral: prevEmotions.neutral + currentEmotions.neutral,
+      angry: prevEmotions.angry + currentEmotions.angry,
+      fearful: prevEmotions.fearful + currentEmotions.fearful,
+      disgusted: prevEmotions.disgusted + currentEmotions.disgusted,
+      surprised: prevEmotions.surprised + currentEmotions.surprised,
     };
   };
 
   const detectParams = async () => {
+    console.log("came into detect params");
     const params = await faceapi
       .detectSingleFace(
         videoRef.current!,
@@ -74,17 +80,22 @@ const VideoComponent = () => {
       .withFaceLandmarks()
       .withFaceExpressions()
       .withAgeAndGender();
+    console.log("params in detectParams - ", params);
     if (params !== undefined) {
-      setAge((prev: number) => {
-        // console.log("Log: Age: ", prev);
-        return params.age;
-      });
-      setGender((prevGender: string) => {
-        // console.log("Log: Gender: ", prevGender);
-        return params?.gender;
-      });
+      // setAge((prev: number) => {
+      //   // console.log("Log: Age: ", prev);
+      //   return params.age;
+      // });
+      // setGender((prevGender: string) => {
+      //   // console.log("Log: Gender: ", prevGender);
+      //   return params?.gender;
+      // });
+      console.log("Emotion in detectParams - ", params.expressions);
       setEmotions((prevEmotions) => {
-        // console.log("Log: Emotions: ", prevEmotions);
+        console.log(
+          " prevEmotions in setEmotions detectParams: ",
+          prevEmotions
+        );
         return addEmotions(prevEmotions, params.expressions);
       });
     }
