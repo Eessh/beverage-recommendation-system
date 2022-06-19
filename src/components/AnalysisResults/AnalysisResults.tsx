@@ -14,7 +14,7 @@ import {
   FaQuestion,
   FaRegFrown,
   FaRegSurprise,
-  FaRegTired
+  FaRegTired,
 } from "react-icons/fa";
 import { GiMale, GiFemale } from "react-icons/gi";
 import { Gender } from "face-api.js";
@@ -31,7 +31,7 @@ import {
   ageGenderRecommendations,
   emotionRecommendations,
   temperatureRecommendations,
-  weatherRecommendations
+  weatherRecommendations,
 } from "../../RecommendationSystem";
 
 type ageIconProp = {
@@ -57,22 +57,28 @@ const AnalysisResults = () => {
     setWeatherCode,
     setTemperature,
     setRecommendations,
-    setTimeoutId
+    setTimeoutId,
+    setEmotionsRecommendation,
   } = useGlobalContext();
 
   useEffect(() => {
-    fetchWeather();
+    // fetchWeather();
+    //CONSIDERING ALL THE PARAMETERS -
     setRecommendations({
       ageGender: ageGenderRecommendations(gender, age),
       emotions: emotionRecommendations(emotions),
       weather: weatherRecommendations(weatherCode),
       temperature: temperatureRecommendations(temperature),
-      season: []
+      season: [],
     });
+    //CONSIDERING ONLY EMOTIONS -
+    // setEmotionsRecommendation({
+    //   emotions: emotionRecommendations(emotions),
+    // });
     // navigates to recommendations page in 5 seconds
     const timeoutId = setTimeout(() => navigate("/recommendations"), 5000);
     setTimeoutId(timeoutId);
-    return() => {
+    return () => {
       clearTimeout(timeoutId);
     };
   }, []);

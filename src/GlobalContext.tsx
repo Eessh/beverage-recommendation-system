@@ -1,34 +1,44 @@
 import React, { createContext, useContext, useState } from "react";
 import { CocaCola } from "./assets/images";
-import { TBeverage, TRecommendations, TEmotions, TTag } from "./Types";
+import {
+  TBeverage,
+  TRecommendations,
+  TEmotions,
+  TTag,
+  TEmotionRecommendation,
+} from "./Types";
 
 type TGlobalContext = {
-  modelsLoaded: boolean,
-  age: number,
-  gender: string,
-  emotions: TEmotions,
-  weatherCode: number,
-  temperature: number,
-  recommendations: TRecommendations,
-  activeBeverageTag: string,
-  activeBeverage: TBeverage,
-  moreInfoVisible: boolean,
-  timeoutId: number,
-  setModelsLoaded: React.Dispatch<React.SetStateAction<boolean>>,
-  setAge: React.Dispatch<React.SetStateAction<number>>,
-  setGender: React.Dispatch<React.SetStateAction<string>>,
-  setEmotions: React.Dispatch<React.SetStateAction<TEmotions>>,
-  setWeatherCode: React.Dispatch<React.SetStateAction<number>>
-  setTemperature: React.Dispatch<React.SetStateAction<number>>
-  setRecommendations: React.Dispatch<React.SetStateAction<TRecommendations>>,
-  setActiveBeverageTag: React.Dispatch<React.SetStateAction<string>>,
-  setActiveBeverage: React.Dispatch<React.SetStateAction<TBeverage>>,
-  setMoreInfoVisible: React.Dispatch<React.SetStateAction<boolean>>,
-  setTimeoutId: React.Dispatch<React.SetStateAction<number>>
+  modelsLoaded: boolean;
+  age: number;
+  gender: string;
+  emotions: TEmotions;
+  weatherCode: number;
+  temperature: number;
+  recommendations: TRecommendations;
+  emotionsRecommendation: TEmotionRecommendation;
+  activeBeverageTag: string;
+  activeBeverage: TBeverage;
+  moreInfoVisible: boolean;
+  timeoutId: number;
+  setModelsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+  setAge: React.Dispatch<React.SetStateAction<number>>;
+  setGender: React.Dispatch<React.SetStateAction<string>>;
+  setEmotions: React.Dispatch<React.SetStateAction<TEmotions>>;
+  setWeatherCode: React.Dispatch<React.SetStateAction<number>>;
+  setTemperature: React.Dispatch<React.SetStateAction<number>>;
+  setRecommendations: React.Dispatch<React.SetStateAction<TRecommendations>>;
+  setEmotionsRecommendation: React.Dispatch<
+    React.SetStateAction<TEmotionRecommendation>
+  >;
+  setActiveBeverageTag: React.Dispatch<React.SetStateAction<string>>;
+  setActiveBeverage: React.Dispatch<React.SetStateAction<TBeverage>>;
+  setMoreInfoVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setTimeoutId: React.Dispatch<React.SetStateAction<number>>;
 };
 
 type TGlobalContextProviderProps = {
-  children: React.ReactNode | React.ReactNode[]
+  children: React.ReactNode | React.ReactNode[];
 };
 
 const defaultContextValue: TGlobalContext = {
@@ -42,7 +52,7 @@ const defaultContextValue: TGlobalContext = {
     angry: 0,
     surprised: 0,
     fearful: 0,
-    disgusted: 0
+    disgusted: 0,
   },
   weatherCode: 0,
   temperature: 25,
@@ -51,7 +61,10 @@ const defaultContextValue: TGlobalContext = {
     emotions: [],
     weather: [],
     temperature: [],
-    season: []
+    season: [],
+  },
+  emotionsRecommendation: {
+    emotions: [],
   },
   activeBeverageTag: "Carbonated Drinks",
   activeBeverage: {
@@ -72,41 +85,83 @@ const defaultContextValue: TGlobalContext = {
   setWeatherCode: () => {},
   setTemperature: () => {},
   setRecommendations: () => {},
+  setEmotionsRecommendation: () => {},
   setActiveBeverageTag: () => {},
   setActiveBeverage: () => {},
   setMoreInfoVisible: () => {},
-  setTimeoutId: () => {}
-}
+  setTimeoutId: () => {},
+};
 
 const GlobalContext = createContext<TGlobalContext>(defaultContextValue);
 
-const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}) => {
-  const [modelsLoaded, setModelsLoaded] = useState<boolean>(defaultContextValue.modelsLoaded);
+const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({
+  children,
+}) => {
+  const [modelsLoaded, setModelsLoaded] = useState<boolean>(
+    defaultContextValue.modelsLoaded
+  );
   const [age, setAge] = useState<number>(defaultContextValue.age);
   const [gender, setGender] = useState<string>(defaultContextValue.gender);
-  const [emotions, setEmotions] = useState<TEmotions>(defaultContextValue.emotions);
-  const [weatherCode, setWeatherCode] = useState<number>(defaultContextValue.weatherCode);
-  const [temperature, setTemperature] = useState<number>(defaultContextValue.temperature);
-  const [recommendations, setRecommendations] = useState<TRecommendations>(defaultContextValue.recommendations);
-  const [activeBeverageTag, setActiveBeverageTag] = useState<TTag>(defaultContextValue.activeBeverageTag);
-  const [activeBeverage, setActiveBeverage] = useState<TBeverage>(defaultContextValue.activeBeverage);
-  const [moreInfoVisible, setMoreInfoVisible] = useState<boolean>(defaultContextValue.moreInfoVisible);
-  const [timeoutId, setTimeoutId] = useState<number>(defaultContextValue.timeoutId);
-  
-  return(
-    <GlobalContext.Provider value={{
-      modelsLoaded, setModelsLoaded,
-      age, setAge,
-      gender, setGender,
-      emotions, setEmotions,
-      weatherCode, setWeatherCode,
-      temperature, setTemperature,
-      recommendations, setRecommendations,
-      activeBeverageTag, setActiveBeverageTag,
-      activeBeverage, setActiveBeverage,
-      moreInfoVisible, setMoreInfoVisible,
-      timeoutId, setTimeoutId
-    }}>
+  const [emotions, setEmotions] = useState<TEmotions>(
+    defaultContextValue.emotions
+  );
+  const [weatherCode, setWeatherCode] = useState<number>(
+    defaultContextValue.weatherCode
+  );
+  const [temperature, setTemperature] = useState<number>(
+    defaultContextValue.temperature
+  );
+  const [recommendations, setRecommendations] = useState<TRecommendations>(
+    defaultContextValue.recommendations
+  );
+
+  const [emotionsRecommendation, setEmotionsRecommendation] =
+    useState<TEmotionRecommendation>(
+      defaultContextValue.emotionsRecommendation
+    );
+
+  const [activeBeverageTag, setActiveBeverageTag] = useState<TTag>(
+    defaultContextValue.activeBeverageTag
+  );
+  const [activeBeverage, setActiveBeverage] = useState<TBeverage>(
+    defaultContextValue.activeBeverage
+  );
+  const [moreInfoVisible, setMoreInfoVisible] = useState<boolean>(
+    defaultContextValue.moreInfoVisible
+  );
+  const [timeoutId, setTimeoutId] = useState<number>(
+    defaultContextValue.timeoutId
+  );
+
+  return (
+    <GlobalContext.Provider
+      value={{
+        modelsLoaded,
+        setModelsLoaded,
+        age,
+        setAge,
+        gender,
+        setGender,
+        emotions,
+        setEmotions,
+        weatherCode,
+        setWeatherCode,
+        temperature,
+        setTemperature,
+        recommendations,
+        setRecommendations,
+        emotionsRecommendation,
+        setEmotionsRecommendation,
+        activeBeverageTag,
+        setActiveBeverageTag,
+        activeBeverage,
+        setActiveBeverage,
+        moreInfoVisible,
+        setMoreInfoVisible,
+        timeoutId,
+        setTimeoutId,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );
@@ -114,13 +169,12 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}
 
 const useGlobalContext = (): TGlobalContext => {
   const context = useContext(GlobalContext);
-  if (context===null || context===undefined) {
-    throw new Error("Error: useGlobalContext() can only be used inside of GlobalContextProvider.")
+  if (context === null || context === undefined) {
+    throw new Error(
+      "Error: useGlobalContext() can only be used inside of GlobalContextProvider."
+    );
   }
   return context;
 };
 
-export {
-  GlobalContextProvider,
-  useGlobalContext
-};
+export { GlobalContextProvider, useGlobalContext };

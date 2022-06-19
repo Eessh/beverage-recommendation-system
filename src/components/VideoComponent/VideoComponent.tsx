@@ -34,7 +34,7 @@ const VideoComponent = () => {
     getVideoStream();
     const interval = setInterval(() => {
       modelsLoaded && detectParams();
-    }, 200);
+    }, 800);
     const textInterval = setInterval(
       () => setTextIndex((index) => index + 1),
       3000 // every 3 seconds
@@ -71,16 +71,13 @@ const VideoComponent = () => {
   };
 
   const detectParams = async () => {
-    console.log("came into detect params");
     const params = await faceapi
       .detectSingleFace(
         videoRef.current!,
         new faceapi.TinyFaceDetectorOptions({ inputSize: 320 })
       )
       .withFaceLandmarks()
-      .withFaceExpressions()
-      .withAgeAndGender();
-    console.log("params in detectParams - ", params);
+      .withFaceExpressions();
     if (params !== undefined) {
       // setAge((prev: number) => {
       //   // console.log("Log: Age: ", prev);
@@ -90,12 +87,7 @@ const VideoComponent = () => {
       //   // console.log("Log: Gender: ", prevGender);
       //   return params?.gender;
       // });
-      console.log("Emotion in detectParams - ", params.expressions);
       setEmotions((prevEmotions) => {
-        console.log(
-          " prevEmotions in setEmotions detectParams: ",
-          prevEmotions
-        );
         return addEmotions(prevEmotions, params.expressions);
       });
     }
