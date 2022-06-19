@@ -19,6 +19,7 @@ import {
   FemaleBeveragesData,
 } from "./data";
 import { TEmotions } from "../../Types";
+import { number } from "prop-types";
 
 const VideoComponent = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -28,17 +29,20 @@ const VideoComponent = () => {
     useGlobalContext();
   const [textIndex, setTextIndex] = useState<number>(0);
   let [spinnerActive, setSpinnerActive] = useState<boolean>(true);
+  const [numberOfDetection, setNumberOfDetections] = useState<number>(0);
 
   useEffect(() => {
     console.log("modelsLoaded value - ", modelsLoaded);
     getVideoStream();
     const interval = setInterval(() => {
       modelsLoaded && detectParams();
+      setNumberOfDetections((prev) => prev + 1);
     }, 800);
     const textInterval = setInterval(
       () => setTextIndex((index) => index + 1),
       3000 // every 3 seconds
     );
+
     return () => {
       clearInterval(textInterval);
       clearInterval(interval);
@@ -145,10 +149,15 @@ const VideoComponent = () => {
       <div className=" video-info-container">
         <RingLoader color="#ffd65c" loading={spinnerActive} size={180} />
         <h1 className="info-text">
-          <TextTransition
+          {/* <TextTransition
             text={infoTexts[textIndex % infoTexts.length]}
             springConfig={presets.molasses}
-          />
+          /> */}
+          {numberOfDetection < 2
+            ? "Initializing ..."
+            : numberOfDetection < 5
+            ? "Detecting Emotions"
+            : "Improving Accuracy"}
         </h1>
       </div>
     </div>
