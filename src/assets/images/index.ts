@@ -10,7 +10,9 @@ import CoffeeShot from "./Coffee/CoffeeShot.jpg";
 import GoldenOolong from "./Tea/GoldenOolong.jpg";
 import JasmineGreen from "./Tea/JasmineGreen.jpg";
 import Water from "./Water/Water.jpg";
-
+import IBYLogo from "./Misc/IBYlogo.png";
+import BeverageLogo from "./Misc/BeverageLogo.png";
+import DrinkLogo from "./Misc/DrinkLogo.png";
 export {
   CocaCola,
   Sprite,
@@ -23,5 +25,8 @@ export {
   CoffeeShot,
   GoldenOolong,
   JasmineGreen,
-  Water
+  Water,
+  BeverageLogo,
+  IBYLogo,
+  DrinkLogo,
 };
