@@ -6,6 +6,7 @@ import { IBYLogo, BeverageLogo, DrinkLogo } from "../../assets/images";
 
 import { GiSettingsKnobs } from "react-icons/gi";
 import { AiFillSetting, AiOutlineSetting } from "react-icons/ai";
+import SettingsScreen from "../SettingsScreen";
 
 const LaunchScreen = () => {
   const navigate = useNavigate();
@@ -13,7 +14,12 @@ const LaunchScreen = () => {
     <div className="launch-screen-root">
       <div className="top-toolbar">
         <img src={IBYLogo} className="iby-logo-image" />
-        <div className="settings-div">
+        <div
+          className="settings-div"
+          onClick={() => {
+            navigate("/settings");
+          }}
+        >
           <GiSettingsKnobs size={36} />
         </div>
       </div>

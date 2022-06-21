@@ -9,6 +9,7 @@ import { BeveragesPage } from "./components/Beverage";
 import { useGlobalContext } from "./GlobalContext";
 import { ViewMorePopup } from "./components/Beverage";
 import LaunchScreen from "./components/LaunchScreen";
+import SettingsScreen from "./components/SettingsScreen";
 
 function App() {
   const { age, gender, setModelsLoaded, setRecommendations } =
@@ -38,6 +39,7 @@ function App() {
     <div className="App flex-1 flex flex-col">
       {/* <VideoComponent /> */}
       <LaunchScreen />
+      {/* <SettingsScreen /> */}
       {/* <AnalysisResults /> */}
       {/* <BeveragesPage /> */}
       {/* <AnimatePresence
