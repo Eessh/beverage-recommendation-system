@@ -8,19 +8,15 @@ import AnalysisResults from "./components/AnalysisResults";
 import { BeveragesPage } from "./components/Beverage";
 import { useGlobalContext } from "./GlobalContext";
 import { ViewMorePopup } from "./components/Beverage";
+import LaunchScreen from "./components/LaunchScreen";
 
 function App() {
-  const { age, gender, setModelsLoaded, setRecommendations } = useGlobalContext();
+  const { age, gender, setModelsLoaded, setRecommendations } =
+    useGlobalContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     loadModels();
-
-    // redirecting to next page after 7 seconds
-    setTimeout(() => {
-      // setRecommendations(getRecommendations(gender, age));
-      navigate("/analysisResults");
-    }, 10000);
   }, []);
 
   const loadModels = () => {
@@ -40,7 +36,8 @@ function App() {
 
   return (
     <div className="App flex-1 flex flex-col">
-      <VideoComponent />
+      {/* <VideoComponent /> */}
+      <LaunchScreen />
       {/* <AnalysisResults /> */}
       {/* <BeveragesPage /> */}
       {/* <AnimatePresence

@@ -10,9 +10,11 @@ const LaunchScreen = () => {
       <h1>This is launch screen</h1>
       <div
         onClick={() => {
-          navigate("/");
+          navigate("/detectionScreen");
         }}
-      ></div>
+      >
+        click here
+      </div>
     </div>
   );
 };

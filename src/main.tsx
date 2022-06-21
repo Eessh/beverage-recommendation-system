@@ -6,6 +6,7 @@ import AnalysisResults from "./components/AnalysisResults";
 import Recommendations from "./components/Recommendations";
 import "./index.css";
 import { GlobalContextProvider } from "./GlobalContext";
+import VideoComponent from "./components/VideoComponent";
 
 /**
  * React Router v6, passing props: https://ui.dev/react-router-pass-props-to-components
@@ -21,7 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <GlobalContextProvider>
         <Routes>
           {<Route path="/" element={<App />} />}
-
+          <Route path="/detectionScreen" element={<VideoComponent />} />
           <Route path="/analysisResults" element={<AnalysisResults />} />
           <Route path="/recommendations" element={<Recommendations />} />
         </Routes>

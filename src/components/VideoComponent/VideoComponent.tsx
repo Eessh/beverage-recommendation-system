@@ -5,6 +5,7 @@ import * as faceapi from "face-api.js";
 import TextTransition, { presets } from "react-text-transition";
 import ClipLoader from "react-spinners/ClipLoader";
 import { RingLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 import {
   IAgeRange,
   IBeveragePercent,
@@ -30,10 +31,15 @@ const VideoComponent = () => {
   const [textIndex, setTextIndex] = useState<number>(0);
   let [spinnerActive, setSpinnerActive] = useState<boolean>(true);
   const [numberOfDetection, setNumberOfDetections] = useState<number>(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("modelsLoaded value - ", modelsLoaded);
     getVideoStream();
+    setTimeout(() => {
+      // setRecommendations(getRecommendations(gender, age));
+      navigate("/analysisResults");
+    }, 10000);
     const interval = setInterval(() => {
       modelsLoaded && detectParams();
       setNumberOfDetections((prev) => prev + 1);
