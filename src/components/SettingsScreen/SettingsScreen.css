@@ -1,0 +1,34 @@
+.settings-screen-root {
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+  height: 100vh;
+  width: 100vw;
+  font-family: Montserrat;
+  font-size: 1.8rem;
+  align-items: center;
+  color: white;
+  /* color: #ffd65c; */
+  padding-bottom: 4rem;
+  justify-content: space-between;
+}
+
+.settings-top-toolbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  align-items: center;
+  color: #ccc;
+}
+
+.settings-close-icon {
+  color: white;
+}
+.settings-close-icon:hover {
+  cursor: pointer;
+  color: #ffd65c;
+}

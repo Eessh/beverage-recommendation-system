@@ -22,8 +22,11 @@
 
 .drink-logo-image {
   width: 15rem;
+  transition: transform 800ms ease-in-out;
 }
-
+.drink-logo-image:hover {
+  transform: rotateZ(10deg);
+}
 .start-button {
   background-color: #ffd65c;
   padding: 0.6rem 2rem;
