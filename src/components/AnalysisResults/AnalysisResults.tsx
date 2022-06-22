@@ -59,6 +59,7 @@ const AnalysisResults = () => {
     setRecommendations,
     setTimeoutId,
     setEmotionsRecommendation,
+    emotionsData,
   } = useGlobalContext();
 
   useEffect(() => {
@@ -66,7 +67,7 @@ const AnalysisResults = () => {
     //CONSIDERING ALL THE PARAMETERS -
     setRecommendations({
       ageGender: ageGenderRecommendations(gender, age),
-      emotions: emotionRecommendations(emotions),
+      emotions: emotionRecommendations(emotions, emotionsData),
       weather: weatherRecommendations(weatherCode),
       temperature: temperatureRecommendations(temperature),
       season: [],

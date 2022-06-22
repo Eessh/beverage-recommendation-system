@@ -7,7 +7,7 @@ import {
 import { EmotionsData, EmotionsWeights } from "./EmotionsData";
 import WeatherData from "./WeatherData";
 import TemperatureData from "./TemperatureData";
-import { TEmotions, TBeveragePercent, TTags } from "../Types";
+import { TEmotions, TBeveragePercent, TTags, TEmotionsData } from "../Types";
 import { useGlobalContext } from "../GlobalContext";
 
 const applyWeights = (emotions: TEmotions): TEmotions => {
@@ -71,22 +71,25 @@ const ageGenderRecommendations = (
   return recommendations;
 };
 
-const emotionRecommendations = (emotions: TEmotions): TTags => {
+const emotionRecommendations = (
+  emotions: TEmotions,
+  currentEmotionsData: TEmotionsData
+): TTags => {
   // const { emotionsData } = useGlobalContext();
   const dominantEmotion: string = getDominantEmotion(emotions);
   switch (dominantEmotion) {
     case "happy":
-      return EmotionsData.happy;
+      return currentEmotionsData.happy;
     case "sad":
-      return EmotionsData.sad;
+      return currentEmotionsData.sad;
     case "neutral":
-      return EmotionsData.neutral;
+      return currentEmotionsData.neutral;
     case "angry":
-      return EmotionsData.angry;
+      return currentEmotionsData.angry;
     case "surprised":
-      return EmotionsData.surprise;
+      return currentEmotionsData.surprise;
     case "disgusted":
-      return EmotionsData.disgusted;
+      return currentEmotionsData.disgusted;
     default:
       throw new Error("Error: Unrecognized dominantEmotion.");
   }
