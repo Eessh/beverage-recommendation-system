@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useState } from "react";
 import { CocaCola } from "./assets/images";
+import { EmotionsData } from "./RecommendationSystem";
 import {
   TBeverage,
   TRecommendations,
   TEmotions,
   TTag,
   TEmotionRecommendation,
+  TEmotionsData,
 } from "./Types";
 
 type TGlobalContext = {
@@ -21,6 +23,7 @@ type TGlobalContext = {
   activeBeverage: TBeverage;
   moreInfoVisible: boolean;
   timeoutId: number;
+  emotionsData: TEmotionsData;
   setModelsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
   setAge: React.Dispatch<React.SetStateAction<number>>;
   setGender: React.Dispatch<React.SetStateAction<string>>;
@@ -35,6 +38,7 @@ type TGlobalContext = {
   setActiveBeverage: React.Dispatch<React.SetStateAction<TBeverage>>;
   setMoreInfoVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setTimeoutId: React.Dispatch<React.SetStateAction<number>>;
+  setEmotionsData: React.Dispatch<React.SetStateAction<TEmotionsData>>;
 };
 
 type TGlobalContextProviderProps = {
@@ -78,6 +82,7 @@ const defaultContextValue: TGlobalContext = {
   },
   moreInfoVisible: false,
   timeoutId: 0,
+  emotionsData: EmotionsData,
   setModelsLoaded: () => {},
   setAge: () => {},
   setGender: () => {},
@@ -90,6 +95,7 @@ const defaultContextValue: TGlobalContext = {
   setActiveBeverage: () => {},
   setMoreInfoVisible: () => {},
   setTimeoutId: () => {},
+  setEmotionsData: () => {},
 };
 
 const GlobalContext = createContext<TGlobalContext>(defaultContextValue);
@@ -132,6 +138,9 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({
   const [timeoutId, setTimeoutId] = useState<number>(
     defaultContextValue.timeoutId
   );
+  const [emotionsData, setEmotionsData] = useState<TEmotionsData>(
+    defaultContextValue.emotionsData
+  );
 
   return (
     <GlobalContext.Provider
@@ -160,6 +169,8 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({
         setMoreInfoVisible,
         timeoutId,
         setTimeoutId,
+        emotionsData,
+        setEmotionsData,
       }}
     >
       {children}
