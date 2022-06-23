@@ -48,6 +48,8 @@
   align-items: center;
   font-size: 1rem;
   height: 3rem;
+  border-radius: 1.2rem;
+  background-color: #444;
 }
 
 .emotions-tab-button {
@@ -65,10 +67,21 @@
   flex-direction: column;
   color: #ccc;
   font-size: 1rem;
-  gap: 1rem;
+  gap: 1.2rem;
+  /* width: 100%; */
 }
+/* .emotions-option-container .emotions-option-item:nth-child(2n + 1) {
+  background-color: #444;
+} */
 
 .emotions-option-item {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  gap: 20rem;
+  align-items: center;
+}
+
+.emotion-option-itemName {
+  width: 6rem;
 }
