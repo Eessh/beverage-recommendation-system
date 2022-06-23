@@ -40,6 +40,14 @@ export type TEmotionsData = {
   disgusted: TTags;
   surprise: TTags;
 };
+export type TValidEmotions =
+  | "happy"
+  | "sad"
+  | "disgusted"
+  | "angry"
+  | "surprise"
+  | "neutral"
+  | "fear";
 
 export type TWeatherData = {
   clearSky: TTags;

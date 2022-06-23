@@ -56,7 +56,17 @@
   padding: 1.4rem 4rem;
   color: white;
   border-radius: 0.6rem;
+  cursor: pointer;
 }
+.emotions-tab-button-selected {
+  padding: 1.4rem 4rem;
+  color: #333;
+  border-radius: 0.6rem;
+  font-weight: bold;
+  background-color: #ffd65c;
+  cursor: pointer;
+}
+
 .emotions-tab-button:hover {
   background-color: #ffd65c;
   color: #333;
