@@ -10,7 +10,7 @@
   color: white;
   /* color: #ffd65c; */
   padding-bottom: 4rem;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .settings-top-toolbar {
@@ -19,10 +19,11 @@
   flex-direction: row;
   justify-content: space-between;
   padding-right: 2rem;
-  padding-top: 1rem;
+  padding-top: 0.2rem;
   padding-left: 1rem;
   align-items: center;
   color: #ccc;
+  flex: 1;
 }
 
 .settings-close-icon {
@@ -31,4 +32,28 @@
 .settings-close-icon:hover {
   cursor: pointer;
   color: #ffd65c;
+}
+
+.settings-body {
+  display: flex;
+  flex: 7;
+  flex-direction: column;
+  justify-content: center;
+}
+.emotions-tab-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1rem;
+  height: 3rem;
+}
+
+.emotions-tab-button {
+  padding: 1.4rem 4rem;
+  color: white;
+  border-radius: 0.6rem;
+}
+.emotions-tab-button:hover {
+  background-color: #ffd65c;
+  color: #333;
 }
