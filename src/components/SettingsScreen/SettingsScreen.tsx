@@ -47,6 +47,13 @@ const SettingsScreen = () => {
           <div className="emotions-tab-button">Repulsive</div>
           <div className="emotions-tab-button">Fear</div>
         </div>
+        <div className="emotions-option-container">
+          <div className="emotions-option-item">Healthy</div>
+          <div className="emotions-option-item">Coffee</div>
+          <div className="emotions-option-item">Chocolate</div>
+          <div className="emotions-option-item">Juice</div>
+          <div className="emotions-option-item">Tea</div>
+        </div>
       </div>
     </div>
   );

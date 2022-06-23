@@ -39,6 +39,8 @@
   flex: 7;
   flex-direction: column;
   justify-content: center;
+  gap: 4rem;
+  align-items: center;
 }
 .emotions-tab-bar {
   display: flex;
@@ -56,4 +58,17 @@
 .emotions-tab-button:hover {
   background-color: #ffd65c;
   color: #333;
+}
+
+.emotions-option-container {
+  display: flex;
+  flex-direction: column;
+  color: #ccc;
+  font-size: 1rem;
+  gap: 1rem;
+}
+
+.emotions-option-item {
+  display: flex;
+  flex-direction: row;
 }
