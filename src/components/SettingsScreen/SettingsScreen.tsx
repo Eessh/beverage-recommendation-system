@@ -125,7 +125,22 @@ const SettingsScreen = () => {
                 <h1>{tag}</h1>
               </div>
               <Switch
-                onChange={() => {}}
+                onChange={(value) => {
+                  console.log("onChange value of switch - ", value);
+                  setEmotionsData((prev: TEmotionsData): TEmotionsData => {
+                    const index = prev[selectedEmotion].indexOf(tag);
+                    let res: Array<string> = [];
+                    if (index < 0) {
+                      // res = prev[selectedEmotion].push(tag);
+                      prev[selectedEmotion].push(tag);
+                    } else {
+                      // res = prev[selectedEmotion].splice(index);
+                      prev[selectedEmotion].splice(index, 1);
+                    }
+                    console.log("new prev = ", prev);
+                    return { ...prev };
+                  });
+                }}
                 checked={getSwitchStatus(tag)}
                 onColor="#ffd65c"
                 offColor="#555"
