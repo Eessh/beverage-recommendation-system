@@ -22,7 +22,7 @@ const Beverages: TBeverages = [
 		imgAlt: ""
 	},
 	{
-		name: "Sprite",
+		name: "Pepsi",
 		description: "Meh kinda drink, replacement when coke is available",
 		price: 1.05,
 		quantityAvailable: 17,

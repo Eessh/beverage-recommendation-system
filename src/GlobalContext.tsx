@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, SetStateAction, useContext, useState } from "react";
 import { CocaCola } from "./assets/images";
-import { TBeverage, TRecommendations, TEmotions, TTag } from "./Types";
+import { TBeverage, TRecommendations, TEmotions, TTag, TBeverages } from "./Types";
 
 type TGlobalContext = {
   modelsLoaded: boolean,
@@ -10,6 +10,9 @@ type TGlobalContext = {
   weatherCode: number,
   temperature: number,
   recommendations: TRecommendations,
+  cart: TBeverages,
+  recommendationsPromptVisible: boolean,
+  visitedRecommendationsPage: boolean,
   activeBeverageTag: string,
   activeBeverage: TBeverage,
   moreInfoVisible: boolean,
@@ -21,6 +24,9 @@ type TGlobalContext = {
   setWeatherCode: React.Dispatch<React.SetStateAction<number>>
   setTemperature: React.Dispatch<React.SetStateAction<number>>
   setRecommendations: React.Dispatch<React.SetStateAction<TRecommendations>>,
+  setCart: React.Dispatch<React.SetStateAction<TBeverages>>,
+  setRecommendationsPromptVisible: React.Dispatch<SetStateAction<boolean>>,
+  setVisitedRecommendationsPage: React.Dispatch<React.SetStateAction<boolean>>,
   setActiveBeverageTag: React.Dispatch<React.SetStateAction<string>>,
   setActiveBeverage: React.Dispatch<React.SetStateAction<TBeverage>>,
   setMoreInfoVisible: React.Dispatch<React.SetStateAction<boolean>>,
@@ -53,6 +59,9 @@ const defaultContextValue: TGlobalContext = {
     temperature: [],
     season: []
   },
+  cart: [],
+  recommendationsPromptVisible: false,
+  visitedRecommendationsPage: false,
   activeBeverageTag: "Carbonated Drinks",
   activeBeverage: {
     name: "Coca Cola",
@@ -72,6 +81,9 @@ const defaultContextValue: TGlobalContext = {
   setWeatherCode: () => {},
   setTemperature: () => {},
   setRecommendations: () => {},
+  setCart: () => {},
+  setRecommendationsPromptVisible: () => {},
+  setVisitedRecommendationsPage: () => {},
   setActiveBeverageTag: () => {},
   setActiveBeverage: () => {},
   setMoreInfoVisible: () => {},
@@ -88,6 +100,9 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}
   const [weatherCode, setWeatherCode] = useState<number>(defaultContextValue.weatherCode);
   const [temperature, setTemperature] = useState<number>(defaultContextValue.temperature);
   const [recommendations, setRecommendations] = useState<TRecommendations>(defaultContextValue.recommendations);
+  const [cart, setCart] = useState<TBeverages>(defaultContextValue.cart);
+  const [recommendationsPromptVisible, setRecommendationsPromptVisible] = useState<boolean>(defaultContextValue.recommendationsPromptVisible);
+  const [visitedRecommendationsPage, setVisitedRecommendationsPage] = useState<boolean>(defaultContextValue.visitedRecommendationsPage);
   const [activeBeverageTag, setActiveBeverageTag] = useState<TTag>(defaultContextValue.activeBeverageTag);
   const [activeBeverage, setActiveBeverage] = useState<TBeverage>(defaultContextValue.activeBeverage);
   const [moreInfoVisible, setMoreInfoVisible] = useState<boolean>(defaultContextValue.moreInfoVisible);
@@ -102,6 +117,9 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({children}
       weatherCode, setWeatherCode,
       temperature, setTemperature,
       recommendations, setRecommendations,
+      cart, setCart,
+      recommendationsPromptVisible, setRecommendationsPromptVisible,
+      visitedRecommendationsPage, setVisitedRecommendationsPage,
       activeBeverageTag, setActiveBeverageTag,
       activeBeverage, setActiveBeverage,
       moreInfoVisible, setMoreInfoVisible,

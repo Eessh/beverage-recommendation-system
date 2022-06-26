@@ -1,6 +1,7 @@
 import { TBeverage } from "../../Types";
 import { Button } from "../Animated";
 import { useGlobalContext } from "../../GlobalContext";
+import "./BeverageCard.css";
 
 type TBeverageCardProps = {
 	beverage: TBeverage
@@ -17,7 +18,7 @@ const BeverageCard: React.FC<TBeverageCardProps> = ({ beverage }) => {
 	return (
 		<div
 			onClick={handleClick}
-			className="relative flex flex-col p-2 rounded-xl bg-gray-50 h-fit shadow-xl ml-4 cursor-pointer hover:scale-105 transition-all"
+			className="BeverageCard relative flex flex-col p-2 rounded-xl h-fit w-fit shadow-xl ml-4 cursor-pointer hover:scale-105 transition-all"
 		>
 			<img
 				className="rounded-xl w-56 h-56 mb-2"
@@ -29,8 +30,8 @@ const BeverageCard: React.FC<TBeverageCardProps> = ({ beverage }) => {
 				<span className="text-xl font-medium text-black">${beverage.price}</span>
 				<Button
 					onClick={() => setMoreInfoVisible(true)}
-					// overrideDefaultStyles={true}
-					classes="px-2 py-1 rounded-xl bg-gray-200 flex-end"
+					overrideDefaultStyles={true}
+					classes="viewmore px-4 py-2 rounded-xl flex-end"
 				>View more</Button>
 			</div>
 		</div>
