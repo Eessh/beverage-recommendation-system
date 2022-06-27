@@ -1,0 +1,97 @@
+.settings-screen-root {
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+  height: 100vh;
+  width: 100vw;
+  font-family: Montserrat;
+  font-size: 1.8rem;
+  align-items: center;
+  color: white;
+  /* color: #ffd65c; */
+  padding-bottom: 4rem;
+  justify-content: flex-start;
+}
+
+.settings-top-toolbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 2rem;
+  padding-top: 0.2rem;
+  padding-left: 1rem;
+  align-items: center;
+  color: #ccc;
+  flex: 1;
+}
+
+.settings-close-icon {
+  color: white;
+}
+.settings-close-icon:hover {
+  cursor: pointer;
+  color: #ffd65c;
+}
+
+.settings-body {
+  display: flex;
+  flex: 7;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
+  align-items: center;
+}
+.emotions-tab-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1rem;
+  height: 3rem;
+  border-radius: 1.2rem;
+  background-color: #444;
+}
+
+.emotions-tab-button {
+  padding: 1.4rem 4rem;
+  color: white;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+.emotions-tab-button-selected {
+  padding: 1.4rem 4rem;
+  color: #333;
+  border-radius: 0.6rem;
+  font-weight: bold;
+  background-color: #ffd65c;
+  cursor: pointer;
+}
+
+.emotions-tab-button:hover {
+  background-color: #ffd65c;
+  color: #333;
+}
+
+.emotions-option-container {
+  display: flex;
+  flex-direction: column;
+  color: #ccc;
+  font-size: 1rem;
+  gap: 1.2rem;
+  /* width: 100%; */
+}
+/* .emotions-option-container .emotions-option-item:nth-child(2n + 1) {
+  background-color: #444;
+} */
+
+.emotions-option-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20rem;
+  align-items: center;
+}
+
+.emotion-option-itemName {
+  width: 6rem;
+}

@@ -5,6 +5,7 @@ import * as faceapi from "face-api.js";
 import TextTransition, { presets } from "react-text-transition";
 import ClipLoader from "react-spinners/ClipLoader";
 import { RingLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 import {
   IAgeRange,
   IBeveragePercent,
@@ -19,29 +20,40 @@ import {
   FemaleBeveragesData,
 } from "./data";
 import { TEmotions } from "../../Types";
+import { number } from "prop-types";
 
 const VideoComponent = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   // const [age, setAge] = useState<number | undefined>(18);
   // const [gender, setGender] = useState<string | undefined>("male");
-  const { modelsLoaded, age, setAge, gender, setGender, setEmotions } = useGlobalContext();
+  const { modelsLoaded, age, setAge, gender, setGender, setEmotions } =
+    useGlobalContext();
   const [textIndex, setTextIndex] = useState<number>(0);
   let [spinnerActive, setSpinnerActive] = useState<boolean>(true);
+  const [numberOfDetection, setNumberOfDetections] = useState<number>(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("modelsLoaded value - ", modelsLoaded);
     getVideoStream();
+    setTimeout(() => {
+      // setRecommendations(getRecommendations(gender, age));
+      navigate("/analysisResults");
+    }, 10000);
     const interval = setInterval(() => {
       modelsLoaded && detectParams();
-    }, 200);
+      setNumberOfDetections((prev) => prev + 1);
+    }, 800);
     const textInterval = setInterval(
       () => setTextIndex((index) => index + 1),
       3000 // every 3 seconds
     );
+
     return () => {
       clearInterval(textInterval);
       clearInterval(interval);
     };
-  }, []);
+  }, [modelsLoaded]);
 
   const getVideoStream = () => {
     navigator.mediaDevices
@@ -53,15 +65,18 @@ const VideoComponent = () => {
       .catch((err) => console.log("Error while accessing VideoStream: ", err));
   };
 
-  const addEmotions = (prevEmotions: TEmotions, currentEmotions: TEmotions): TEmotions => {
+  const addEmotions = (
+    prevEmotions: TEmotions,
+    currentEmotions: TEmotions
+  ): TEmotions => {
     return {
-      happy: (prevEmotions.happy + currentEmotions.happy),
-      sad: (prevEmotions.sad + currentEmotions.sad),
-      neutral: (prevEmotions.neutral + currentEmotions.neutral),
-      angry: (prevEmotions.angry + currentEmotions.angry),
-      fearful: (prevEmotions.fearful + currentEmotions.fearful),
-      disgusted: (prevEmotions.disgusted + currentEmotions.disgusted),
-      surprised: (prevEmotions.surprised + currentEmotions.surprised),
+      happy: prevEmotions.happy + currentEmotions.happy,
+      sad: prevEmotions.sad + currentEmotions.sad,
+      neutral: prevEmotions.neutral + currentEmotions.neutral,
+      angry: prevEmotions.angry + currentEmotions.angry,
+      fearful: prevEmotions.fearful + currentEmotions.fearful,
+      disgusted: prevEmotions.disgusted + currentEmotions.disgusted,
+      surprised: prevEmotions.surprised + currentEmotions.surprised,
     };
   };
 
@@ -72,19 +87,17 @@ const VideoComponent = () => {
         new faceapi.TinyFaceDetectorOptions({ inputSize: 320 })
       )
       .withFaceLandmarks()
-      .withFaceExpressions()
-      .withAgeAndGender();
+      .withFaceExpressions();
     if (params !== undefined) {
-      setAge((prev: number) => {
-        // console.log("Log: Age: ", prev);
-        return params.age;
-      });
-      setGender((prevGender: string) => {
-        // console.log("Log: Gender: ", prevGender);
-        return params?.gender;
-      });
-      setEmotions((prevEmotions) => {
-        // console.log("Log: Emotions: ", prevEmotions);
+      // setAge((prev: number) => {
+      //   // console.log("Log: Age: ", prev);
+      //   return params.age;
+      // });
+      // setGender((prevGender: string) => {
+      //   // console.log("Log: Gender: ", prevGender);
+      //   return params?.gender;
+      // });
+      setEmotions((prevEmotions: TEmotions) => {
         return addEmotions(prevEmotions, params.expressions);
       });
     }
@@ -142,10 +155,15 @@ const VideoComponent = () => {
       <div className=" video-info-container">
         <RingLoader color="#fec5bb" loading={spinnerActive} size={180} />
         <h1 className="info-text">
-          <TextTransition
+          {/* <TextTransition
             text={infoTexts[textIndex % infoTexts.length]}
             springConfig={presets.molasses}
-          />
+          /> */}
+          {numberOfDetection < 2
+            ? "Initializing ..."
+            : numberOfDetection < 5
+            ? "Detecting Emotions"
+            : "Improving Accuracy"}
         </h1>
       </div>
     </div>

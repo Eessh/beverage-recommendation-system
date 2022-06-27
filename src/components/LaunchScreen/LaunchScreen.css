@@ -1,0 +1,69 @@
+.launch-screen-root {
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+  height: 100vh;
+  width: 100vw;
+  font-family: Montserrat;
+  font-size: 1.8rem;
+  align-items: center;
+  color: white;
+  /* color: #ffd65c; */
+  padding-bottom: 4rem;
+  justify-content: space-between;
+}
+
+.iby-logo-image {
+  width: 20rem;
+  background-color: #333;
+  color: #333;
+  align-self: flex-start;
+}
+
+.drink-logo-image {
+  width: 15rem;
+  transition: transform 800ms ease-in-out;
+}
+.drink-logo-image:hover {
+  transform: rotateZ(10deg);
+}
+.start-button {
+  background-color: #ffd65c;
+  padding: 0.6rem 2rem;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.4rem;
+  border-radius: 1rem;
+  transition: background-color 200ms;
+}
+.start-button:hover {
+  cursor: pointer;
+  background-color: #fee8a6;
+}
+.settings-div {
+  color: #ccc;
+}
+.settings-div:hover {
+  color: #ffd65c;
+  cursor: pointer;
+}
+.top-toolbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  align-items: center;
+}
+
+@media screen and (max-width: 650px) {
+  .launch-screen-root,
+  .start-button {
+    font-size: 110%;
+  }
+  .iby-logo-image {
+    width: 14rem;
+  }
+}

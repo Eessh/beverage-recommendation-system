@@ -14,7 +14,7 @@ import {
   FaQuestion,
   FaRegFrown,
   FaRegSurprise,
-  FaRegTired
+  FaRegTired,
 } from "react-icons/fa";
 import { GiMale, GiFemale } from "react-icons/gi";
 import { Gender } from "face-api.js";
@@ -31,7 +31,7 @@ import {
   ageGenderRecommendations,
   emotionRecommendations,
   temperatureRecommendations,
-  weatherRecommendations
+  weatherRecommendations,
 } from "../../RecommendationSystem";
 
 type ageIconProp = {
@@ -57,22 +57,29 @@ const AnalysisResults = () => {
     setWeatherCode,
     setTemperature,
     setRecommendations,
-    setTimeoutId
+    setTimeoutId,
+    setEmotionsRecommendation,
+    emotionsData,
   } = useGlobalContext();
 
   useEffect(() => {
-    fetchWeather();
+    // fetchWeather();
+    //CONSIDERING ALL THE PARAMETERS -
     setRecommendations({
       ageGender: ageGenderRecommendations(gender, age),
-      emotions: emotionRecommendations(emotions),
+      emotions: emotionRecommendations(emotions, emotionsData),
       weather: weatherRecommendations(weatherCode),
       temperature: temperatureRecommendations(temperature),
-      season: []
+      season: [],
     });
+    //CONSIDERING ONLY EMOTIONS -
+    // setEmotionsRecommendation({
+    //   emotions: emotionRecommendations(emotions),
+    // });
     // navigates to recommendations page in 5 seconds
     const timeoutId = setTimeout(() => navigate("/recommendations"), 5000);
     setTimeoutId(timeoutId);
-    return() => {
+    return () => {
       clearTimeout(timeoutId);
     };
   }, []);
@@ -186,38 +193,38 @@ const AnalysisResults = () => {
       <div className="analysis-result-root">
         <span className="predictions-title">Predictions</span>
         <div className="predictions">
-          <div className="age-container">
-            <div className="age-float shadow-xl">
-              <AgeIcon gender={gender} age={age} />
+          {/* <div className="age-container"> */}
+          {/* <div className="age-float shadow-xl"> */}
+          {/* <AgeIcon gender={gender} age={age} />
               <span className="description">
                 <span className="description-for">Age:</span>
                 <span className="age">{getAgeGroup(age)}</span>
-              </span>
-            </div>
-          </div>
-          <div className="gender-container">
-            <div className="gender-float shadow-xl">
-              <GenderIcon gender={gender} />
+              </span> */}
+          {/* </div> */}
+          {/* </div> */}
+          {/* <div className="gender-container"> */}
+          {/* <div className="gender-float shadow-xl"> */}
+          {/* <GenderIcon gender={gender} />
               <span className="description">
                 <span className="description-for">Gender:</span>
                 <span className="gender">{capitalize(gender)}</span>
-              </span>
-            </div>
-          </div>
+              </span> */}
+          {/* </div> */}
+          {/* </div> */}
           {/* <span className="emotion">
           Dominant Emotion: {getDominantEmotion(emotions)}
         </span> */}
           <div className="emotion-container">
             {/* <EmotionIcon emotion={getDominantEmotion(emotions)} /> */}
-            <div className="emotion-float">
-              {EmotionGif(getDominantEmotion(emotions))}
-              <span className="description">
-                <span className="description-for">Emotion:</span>
-                <span className="gender">
-                  {capitalize(getDominantEmotion(emotions))}
-                </span>
+            {/* <div className="emotion-float"> */}
+            {EmotionGif(getDominantEmotion(emotions))}
+            <span className="description">
+              <span className="description-for">Emotion:</span>
+              <span className="gender">
+                {capitalize(getDominantEmotion(emotions))}
               </span>
-            </div>
+            </span>
+            {/* </div> */}
           </div>
         </div>
       </div>
