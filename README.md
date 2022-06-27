@@ -3,6 +3,8 @@
 Recommends beverages based on age, gender, emotion, weather, and some other parameters.
 ![Home Page](./screenshots/home.jpeg)
 
+![Settings Page](./screenshots/settings.jpeg)
+
 > Figma Design: https://www.figma.com/file/J3MSybngOPmFk5FLCzxUYO/Vending-Machine-UI
 
 > Data Collector: https://github.com/Eessh/beverage-recommendation-system-data-collector
