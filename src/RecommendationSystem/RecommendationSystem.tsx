@@ -95,6 +95,52 @@ const emotionRecommendations = (
   }
 };
 
+const getWeatherFromCode = (code: number): string => {
+	switch (code) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			// Clear sky
+			return "Clear Sky";
+
+		case 51:
+		case 53:
+		case 55:
+		case 56:
+		case 57:
+		case 61:
+		case 63:
+		case 65:
+		case 66:
+		case 67:
+		case 80:
+		case 81:
+		case 82:
+			// Rain
+			return "Rain";
+
+		case 71:
+		case 73:
+		case 75:
+		case 77:
+		case 85:
+		case 86:
+			// Snow
+			return "Snow";
+
+		case 95:
+		case 96:
+		case 97:
+			// Thunderstorm
+			return "Thunderstorm";
+
+		default:
+			// Ignore other codes
+			return "";
+	}
+};
+
 const weatherRecommendations = (weatherCode: number): TTags => {
   switch (weatherCode) {
     case 0:
@@ -147,6 +193,7 @@ const temperatureRecommendations = (temperature: number): TTags => {
 };
 
 export {
+	getWeatherFromCode,
   ageGenderRecommendations,
   getDominantEmotion,
   emotionRecommendations,

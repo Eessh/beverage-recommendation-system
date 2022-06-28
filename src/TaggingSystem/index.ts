@@ -1,4 +1,4 @@
-import { TBeverages, TTags } from "../Types";
+import { TBeverage, TBeverages, TTags } from "../Types";
 import Beverages from "./BeveragesData";
 
 const Tags: TTags = [
@@ -27,7 +27,17 @@ const getBeveragesForTag = (tag: string): TBeverages => {
 	return beverages;
 };
 
+const getBeverageByName = (name: string): TBeverage => {
+	Beverages.forEach((beverage) => {
+		if (beverage.name == name) {
+			return beverage;
+		}
+	});
+	throw new Error(`Error: cannot find beverage with name: ${name}`);
+};
+
 export {
 	Tags,
-	getBeveragesForTag
+	getBeveragesForTag,
+	getBeverageByName
 };

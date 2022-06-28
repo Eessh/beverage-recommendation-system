@@ -8,10 +8,17 @@ import { Modal } from "../Animated";
 import ViewMorePopup from "../ViewMorePopup/ViewMorePopup";
 
 const Recommendations = () => {
-  const { recommendations, moreInfoVisible, setMoreInfoVisible, setActiveBeverageTag } = useGlobalContext();
+  const {
+    recommendations,
+    moreInfoVisible,
+    setMoreInfoVisible,
+    setActiveBeverageTag,
+    setVisitedRecommendationsPage
+  } = useGlobalContext();
   const [tagsToShow, setTagsToShow] = useState<TTags>([]);
 
   useEffect(() => {
+    setVisitedRecommendationsPage(true);
     // Object.values(recommendations).forEach((parameter) => {
     //   parameter.forEach((tag) => {
     //     if (tagsToShow.find(beverageTag => beverageTag===tag)===undefined) {

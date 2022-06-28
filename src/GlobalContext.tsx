@@ -1,13 +1,14 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, SetStateAction, useContext, useState } from "react";
 import { CocaCola } from "./assets/images";
 import { EmotionsData } from "./RecommendationSystem";
 import {
   TBeverage,
   TRecommendations,
   TEmotions,
-  TTag,
-  TEmotionRecommendation,
   TEmotionsData,
+  TEmotionRecommendation,
+  TTag,
+  TBeverages
 } from "./Types";
 
 type TGlobalContext = {
@@ -18,6 +19,9 @@ type TGlobalContext = {
   weatherCode: number;
   temperature: number;
   recommendations: TRecommendations;
+  cart: TBeverages,
+  recommendationsPromptVisible: boolean,
+  visitedRecommendationsPage: boolean,
   emotionsRecommendation: TEmotionRecommendation;
   activeBeverageTag: string;
   activeBeverage: TBeverage;
@@ -31,9 +35,10 @@ type TGlobalContext = {
   setWeatherCode: React.Dispatch<React.SetStateAction<number>>;
   setTemperature: React.Dispatch<React.SetStateAction<number>>;
   setRecommendations: React.Dispatch<React.SetStateAction<TRecommendations>>;
-  setEmotionsRecommendation: React.Dispatch<
-    React.SetStateAction<TEmotionRecommendation>
-  >;
+  setCart: React.Dispatch<React.SetStateAction<TBeverages>>,
+  setRecommendationsPromptVisible: React.Dispatch<SetStateAction<boolean>>,
+  setVisitedRecommendationsPage: React.Dispatch<React.SetStateAction<boolean>>,
+  setEmotionsRecommendation: React.Dispatch<React.SetStateAction<TEmotionRecommendation>>;
   setActiveBeverageTag: React.Dispatch<React.SetStateAction<string>>;
   setActiveBeverage: React.Dispatch<React.SetStateAction<TBeverage>>;
   setMoreInfoVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -70,6 +75,9 @@ const defaultContextValue: TGlobalContext = {
   emotionsRecommendation: {
     emotions: [],
   },
+  cart: [],
+  recommendationsPromptVisible: false,
+  visitedRecommendationsPage: false,
   activeBeverageTag: "Carbonated Drinks",
   activeBeverage: {
     name: "Coca Cola",
@@ -90,6 +98,9 @@ const defaultContextValue: TGlobalContext = {
   setWeatherCode: () => {},
   setTemperature: () => {},
   setRecommendations: () => {},
+  setCart: () => {},
+  setRecommendationsPromptVisible: () => {},
+  setVisitedRecommendationsPage: () => {},
   setEmotionsRecommendation: () => {},
   setActiveBeverageTag: () => {},
   setActiveBeverage: () => {},
@@ -108,69 +119,42 @@ const GlobalContextProvider: React.FC<TGlobalContextProviderProps> = ({
   );
   const [age, setAge] = useState<number>(defaultContextValue.age);
   const [gender, setGender] = useState<string>(defaultContextValue.gender);
-  const [emotions, setEmotions] = useState<TEmotions>(
-    defaultContextValue.emotions
-  );
-  const [weatherCode, setWeatherCode] = useState<number>(
-    defaultContextValue.weatherCode
-  );
-  const [temperature, setTemperature] = useState<number>(
-    defaultContextValue.temperature
-  );
-  const [recommendations, setRecommendations] = useState<TRecommendations>(
-    defaultContextValue.recommendations
-  );
-
+  const [emotions, setEmotions] = useState<TEmotions>(defaultContextValue.emotions);
+  const [weatherCode, setWeatherCode] = useState<number>(defaultContextValue.weatherCode);
+  const [temperature, setTemperature] = useState<number>(defaultContextValue.temperature);
+  const [recommendations, setRecommendations] = useState<TRecommendations>(defaultContextValue.recommendations);
+  const [cart, setCart] = useState<TBeverages>(defaultContextValue.cart);
+  const [recommendationsPromptVisible, setRecommendationsPromptVisible] = useState<boolean>(defaultContextValue.recommendationsPromptVisible);
+  const [visitedRecommendationsPage, setVisitedRecommendationsPage] = useState<boolean>(defaultContextValue.visitedRecommendationsPage);
+  const [activeBeverageTag, setActiveBeverageTag] = useState<TTag>(defaultContextValue.activeBeverageTag);
+  const [activeBeverage, setActiveBeverage] = useState<TBeverage>(defaultContextValue.activeBeverage);
+  const [moreInfoVisible, setMoreInfoVisible] = useState<boolean>(defaultContextValue.moreInfoVisible);
+  const [timeoutId, setTimeoutId] = useState<number>(defaultContextValue.timeoutId);
+  const [emotionsData, setEmotionsData] = useState<TEmotionsData>(defaultContextValue.emotionsData);
   const [emotionsRecommendation, setEmotionsRecommendation] =
     useState<TEmotionRecommendation>(
       defaultContextValue.emotionsRecommendation
     );
 
-  const [activeBeverageTag, setActiveBeverageTag] = useState<TTag>(
-    defaultContextValue.activeBeverageTag
-  );
-  const [activeBeverage, setActiveBeverage] = useState<TBeverage>(
-    defaultContextValue.activeBeverage
-  );
-  const [moreInfoVisible, setMoreInfoVisible] = useState<boolean>(
-    defaultContextValue.moreInfoVisible
-  );
-  const [timeoutId, setTimeoutId] = useState<number>(
-    defaultContextValue.timeoutId
-  );
-  const [emotionsData, setEmotionsData] = useState<TEmotionsData>(
-    defaultContextValue.emotionsData
-  );
-
   return (
     <GlobalContext.Provider
       value={{
-        modelsLoaded,
-        setModelsLoaded,
-        age,
-        setAge,
-        gender,
-        setGender,
-        emotions,
-        setEmotions,
-        weatherCode,
-        setWeatherCode,
-        temperature,
-        setTemperature,
-        recommendations,
-        setRecommendations,
-        emotionsRecommendation,
-        setEmotionsRecommendation,
-        activeBeverageTag,
-        setActiveBeverageTag,
-        activeBeverage,
-        setActiveBeverage,
-        moreInfoVisible,
-        setMoreInfoVisible,
-        timeoutId,
-        setTimeoutId,
-        emotionsData,
-        setEmotionsData,
+        modelsLoaded, setModelsLoaded,
+        age, setAge,
+        gender, setGender,
+        emotions, setEmotions,
+        weatherCode, setWeatherCode,
+        temperature, setTemperature,
+        recommendations, setRecommendations,
+        cart, setCart,
+        recommendationsPromptVisible, setRecommendationsPromptVisible,
+        visitedRecommendationsPage, setVisitedRecommendationsPage,
+        emotionsRecommendation, setEmotionsRecommendation,
+        activeBeverageTag, setActiveBeverageTag,
+        activeBeverage, setActiveBeverage,
+        moreInfoVisible, setMoreInfoVisible,
+        timeoutId, setTimeoutId,
+        emotionsData, setEmotionsData,
       }}
     >
       {children}

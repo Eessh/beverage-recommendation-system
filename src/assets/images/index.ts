@@ -1,3 +1,4 @@
+import Logo from "./Logo/I'mBesideYou.png";
 import CocaCola from "./CarbonatedDrinks/CocaCola.jpg";
 import Sprite from "./CarbonatedDrinks/Sprite.jpg";
 import Focus from "./EnergyDrinks/Focus.jpg";
@@ -14,6 +15,7 @@ import IBYLogo from "./Misc/IBYlogo.png";
 import BeverageLogo from "./Misc/BeverageLogo.png";
 import DrinkLogo from "./Misc/DrinkLogo.png";
 export {
+  Logo,
   CocaCola,
   Sprite,
   Focus,

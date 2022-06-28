@@ -1,0 +1,10 @@
+.Cart {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: rgb(102, 101, 101);
+  background-color: #f8edeb;
+  padding: 2rem;
+}

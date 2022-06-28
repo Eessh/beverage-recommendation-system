@@ -97,7 +97,7 @@ const VideoComponent = () => {
       //   // console.log("Log: Gender: ", prevGender);
       //   return params?.gender;
       // });
-      setEmotions((prevEmotions) => {
+      setEmotions((prevEmotions: TEmotions) => {
         return addEmotions(prevEmotions, params.expressions);
       });
     }
@@ -153,7 +153,7 @@ const VideoComponent = () => {
         playsInline
       ></video>
       <div className=" video-info-container">
-        <RingLoader color="#ffd65c" loading={spinnerActive} size={180} />
+        <RingLoader color="#fec5bb" loading={spinnerActive} size={180} />
         <h1 className="info-text">
           {/* <TextTransition
             text={infoTexts[textIndex % infoTexts.length]}

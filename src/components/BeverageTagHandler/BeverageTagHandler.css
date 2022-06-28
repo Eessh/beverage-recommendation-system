@@ -6,3 +6,16 @@
 .BeverageTagsWrapper::-webkit-scrollbar-track-piece {
     display: none;
 }
+
+.BeverageTagHandler {
+    height: 100%;
+    background-color: #fae1dd;
+}
+
+.tagbox {
+    background-color: #fec5bb;
+}
+
+.tagbox-active {
+    background-color: #d8e2dc;
+}

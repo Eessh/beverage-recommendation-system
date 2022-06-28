@@ -3,21 +3,29 @@ import { Close } from "../../assets/icons";
 import { useGlobalContext } from "../../GlobalContext";
 import { Button } from "../Animated";
 import { QuantityHandler } from "../Beverage";
+import "./ViewMorePopup.css";
 
 const ViewMorePopup = () => {
   const {
     activeBeverage,
-    setMoreInfoVisible
+    setMoreInfoVisible,
+    setCart
   } = useGlobalContext();
   const [quantity, setQuantity] = useState<number>(1);
+  
+  const handleAddToCart = () => {
+    setCart((prevCart) => {
+      return [...prevCart, activeBeverage];
+    });
+  };
 
   return(
-    <div className="ViewMorePopup bg-slate-50 p-4 rounded-xl">
+    <div className="ViewMorePopup p-4 rounded-xl">
       <span className="flex flex-row justify-end">
         <Button
           onClick={() => setMoreInfoVisible(false)}
           overrideDefaultStyles={true}
-          classes="p-2 bg-slate-200 rounded-xl"
+          classes="bg-pink p-2 rounded-xl"
         >
           <Close />
         </Button>
@@ -40,7 +48,8 @@ const ViewMorePopup = () => {
           <span className="text-lg font-normal mb-4">Quantity Available: {activeBeverage.quantityAvailable}</span>
           <Button
             overrideDefaultStyles={true}
-            classes="flex-1 bg-slate-200 rounded-xl py-2 font-medium text-lg"
+            classes="bg-green flex-1 rounded-xl py-2 font-medium text-lg"
+            onClick={handleAddToCart}
           >Add to Cart</Button>
         </div>
         <div className="flex-1 flex flex-col ml-8">

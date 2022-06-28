@@ -3,6 +3,7 @@ import {
 	getDominantEmotion,
 	emotionRecommendations,
 	weatherRecommendations,
+	getWeatherFromCode,
 	temperatureRecommendations
 } from "./RecommendationSystem";
 import {
@@ -22,6 +23,7 @@ export {
 	ageGenderRecommendations,
 	getDominantEmotion,
 	emotionRecommendations,
+	getWeatherFromCode,
 	weatherRecommendations,
 	temperatureRecommendations,
 	AgeGenderBeverageTags,
