@@ -15,23 +15,29 @@ const SettingsScreen = () => {
 
   const SettingsScreenDisabled = (props: settingsScreenDisabledPropType) => {
     const [passcode, setPasscode] = useState<string>("");
+    const [displayError, setDisplayError] = useState<boolean>(false);
 
     return (
       <div className="settings-disabled-root">
-        <div className="dialog-box">
+        <div className="passcode-dialog-box">
           <h1>Enter Pin</h1>
           <input
             className="pin-input"
             type="text"
             value={passcode}
             onChange={(event) => {
+              displayError && setDisplayError(false);
               let passcode = event.target.value;
               console.log("passcode - ", passcode);
               setPasscode(passcode);
               if (passcode === "0000") props.enableFunc(true);
-              // else if(passcode.length === 4){}
+              else if (passcode.length === 5) {
+                setDisplayError(true);
+                setPasscode("");
+              }
             }}
           ></input>
+          {displayError && <h1 className="passcode-error-text">incorrect</h1>}
         </div>
       </div>
     );
