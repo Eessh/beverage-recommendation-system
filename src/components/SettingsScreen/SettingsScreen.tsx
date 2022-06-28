@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import "./SettingsScreen.css";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiFillPropertySafety, AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../GlobalContext";
 import { TEmotionsData, TValidEmotions } from "../../Types";
 import Switch from "react-switch";
 
+type settingsScreenDisabledPropType = {
+  enableFunc: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
 const SettingsScreen = () => {
   const [enabled, setEnabled] = useState<boolean>(false);
 
-  const SettingsScreenDisabled = (props) => {
+  const SettingsScreenDisabled = (props: settingsScreenDisabledPropType) => {
     const [passcode, setPasscode] = useState<string>("");
+
     return (
       <div className="settings-disabled-root">
         <div className="dialog-box">
@@ -20,8 +25,11 @@ const SettingsScreen = () => {
             type="text"
             value={passcode}
             onChange={(event) => {
-              console.log("passcode - ", event.target.value);
-              setPasscode(event.target.value);
+              let passcode = event.target.value;
+              console.log("passcode - ", passcode);
+              setPasscode(passcode);
+              if (passcode === "0000") props.enableFunc(true);
+              // else if(passcode.length === 4){}
             }}
           ></input>
         </div>
@@ -179,7 +187,11 @@ const SettingsScreen = () => {
     );
   };
 
-  return <SettingsScreenDisabled />;
+  return enabled ? (
+    <SettingsScreenEnabled />
+  ) : (
+    <SettingsScreenDisabled enableFunc={setEnabled} />
+  );
 };
 
 export default SettingsScreen;
