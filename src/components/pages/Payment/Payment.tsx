@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Database, Done } from "../../../assets/icons";
 import { useGlobalContext } from "../../../GlobalContext";
 import { getDominantEmotion, getWeatherFromCode } from "../../../RecommendationSystem";
-import { TBeverages } from "../../../Types";
+import { getBeveragesForTag } from "../../../TaggingSystem";
+import { TBeverages, TTags } from "../../../Types";
 import { Button } from "../../Animated";
 import "./Payment.css";
 
@@ -16,6 +17,7 @@ const Payment = () => {
     emotions,
     weatherCode,
     temperature,
+    recommendations,
     setCart,
     setVisitedRecommendationsPage
   } = useGlobalContext();
@@ -38,6 +40,16 @@ const Payment = () => {
       return names;
     };
 
+    const getAllRecommendedBeverages = (tags: TTags): string[] => {
+      const beverages: string[] = [];
+      tags.forEach(tag => {
+        getBeveragesForTag(tag).forEach(beverage => {
+          beverages.push(beverage.name);
+        });
+      });
+      return beverages;
+    }
+
     const options = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -49,7 +61,8 @@ const Payment = () => {
           emotion: getDominantEmotion(emotions),
           weather: getWeatherFromCode(weatherCode),
           temperature: temperature,
-          beverages: getBeverageNamesFromCart(cart)
+          beverages: getBeverageNamesFromCart(cart),
+          recommended_beverages: getAllRecommendedBeverages(recommendations.emotions)
         }
       })
     };
