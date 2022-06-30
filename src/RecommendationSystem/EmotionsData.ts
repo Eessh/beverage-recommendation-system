@@ -5,7 +5,7 @@ import { TEmotionsData } from "../components/VideoComponent/data";
 import { TEmotionsWeights } from "../Types";
 
 const EmotionsData: TEmotionsData = {
-  happy: ["Healthy", "Juices", "Coffee", "Chocolate"],
+  happy: ["Healthy", "Juice", "Coffee", "Chocolate"],
   sad: ["Chocolate", "Tea", "Coffee"],
   neutral: ["Healthy", "Chocolate", "Juice"],
   angry: ["Tea", "Coffee"],

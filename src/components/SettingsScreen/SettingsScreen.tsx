@@ -178,6 +178,10 @@ const SettingsScreen = () => {
                       console.log("new prev = ", prev);
                       return { ...prev };
                     });
+                    localStorage.setItem(
+                      "emotionsData",
+                      JSON.stringify(emotionsData)
+                    );
                   }}
                   checked={getSwitchStatus(tag)}
                   onColor="#ffd65c"
