@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SettingsScreen.css";
 import { AiFillPropertySafety, AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../GlobalContext";
 import { TEmotionsData, TValidEmotions } from "../../Types";
 import Switch from "react-switch";
+import { EmotionsData } from "../../RecommendationSystem/EmotionsData";
 
 type settingsScreenDisabledPropType = {
   enableFunc: React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,6 +49,15 @@ const SettingsScreen = () => {
     const { emotionsData, setEmotionsData } = useGlobalContext();
     const [selectedEmotion, setSelectedEmotion] =
       useState<TValidEmotions>("neutral");
+
+    useEffect(() => {
+      const localData = localStorage.getItem("emotionsData");
+      console.log("from local storage - ", localData);
+      const localDataJS = localData ? JSON.parse(localData) : EmotionsData;
+
+      localData && setEmotionsData(JSON.parse(localData));
+    }, []);
+
     const tagList: Array<string> = [
       "Healthy",
       "Coffee",
