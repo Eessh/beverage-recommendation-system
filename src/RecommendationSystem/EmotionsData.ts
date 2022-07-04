@@ -5,13 +5,13 @@ import { TEmotionsData } from "../components/VideoComponent/data";
 import { TEmotionsWeights } from "../Types";
 
 const EmotionsData: TEmotionsData = {
-  happy: ["Healthy", "Juice", "Coffee", "Chocolate"],
+  happy: ["Healthy", "Juices", "Coffee", "Chocolate"],
   sad: ["Chocolate", "Tea", "Coffee"],
-  neutral: ["Healthy", "Chocolate", "Juice"],
+  neutral: ["Healthy", "Chocolate", "Juices"],
   angry: ["Tea", "Coffee"],
   fear: ["Water", "Tea", "Coffee"],
   disgusted: ["Water"],
-  surprise: ["Water", "Juice"],
+  surprise: ["Water", "Juices"],
 };
 
 const EmotionsWeights: TEmotionsWeights = {

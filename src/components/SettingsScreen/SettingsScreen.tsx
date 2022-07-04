@@ -64,7 +64,7 @@ const SettingsScreen = () => {
       "Tea",
       "Chocolate",
       "Water",
-      "Juice",
+      "Juices",
     ];
 
     const testButtonHandler = () => {
