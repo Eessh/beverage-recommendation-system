@@ -7,6 +7,35 @@
   background-color: #f8edeb;
 }
 
+.image,
+.payment,
+.tasks {
+  flex: 1;
+  display: flex;
+  justify-content: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.tasks--list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tasks--list--item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.tasks--list--item--name {
+  margin-right: 1rem;
+  font-size: 2rem;
+}
+
 .pay-float {
   background-color: #fae1dd;
   display: flex;

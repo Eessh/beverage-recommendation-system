@@ -25,8 +25,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Routes>
           {/* <Route path="/" element={<Home />}/> */}
           {/* <Route path="/beverages" element={<Beverages />}/> */}
-          {/* <Route path="/cart" element={<Cart />}/> */}
-          {/* <Route path="/payment" element={<Payment />}/> */}
+          <Route path="/cart" element={<Cart />}/>
+          <Route path="/payment" element={<Payment />}/>
           {/* <Route path="/app" element={<App />}/> */}
           {<Route path="/" element={<App />} />}
           <Route path="/detectionScreen" element={<VideoComponent />} />
