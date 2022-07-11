@@ -5,6 +5,8 @@ import {
 	CocaCola,
 	CoffeeShot,
 	Focus, GoldenOolong,
+	HersheysChocolateMilkshake,
+	HersheysChocolateSyrup,
 	Immunity, JasmineGreen,
 	Mango,
 	MatchaMilkTea,
@@ -50,7 +52,7 @@ const Beverages: TBeverages = [
 	},
 	{
 		name: "Apple Juice",
-		description: "Noice, so much noice.",
+		description: "Packed with benefits of vitamins, calcium, potassium and magnesium, the fruit and its juice give out adequate health punch. Full of pectin and fiber, Apple juice helps boost energy.",
 		price: 12.5,
 		quantityAvailable: 3,
 		tags: ["Juices", "Healthy", "Cool Drinks"],
@@ -59,9 +61,9 @@ const Beverages: TBeverages = [
 	},
 	{
 		name: "Mango Juice",
-		description: "Oh man, that tastes so good, mind blown.",
-		price: 100000,
-		quantityAvailable: 1000,
+		description: "Enriched in protein, fiber, vitamins, iron and other essential minerals, mangoes add immense value to anyone's diet, especially kids.",
+		price: 22.5,
+		quantityAvailable: 9,
 		tags: ["Juices", "Healthy", "Cool Drinks"],
 		imgSrc: Mango,
 		imgAlt: "",
@@ -119,7 +121,25 @@ const Beverages: TBeverages = [
 		tags: ["Water"],
 		imgSrc: Water,
 		imgAlt: "",
-	}
+	},
+	{
+		name: "Hershey's Milkshake",
+		description: "Creamy. Classic. Delicious. You can call HERSHEY'S Chocolate Milkshake recipe by quite a few names, and while you’re at it, you can add quick, easy and popular to the list. In just five minutes and with three simple ingredients — cold milk, HERSHEY’S syrup and vanilla or chocolate ice cream — you can make easy homemade milkshakes for two. You can even choose your favorite milkshake consistency by blending until it flows just right. The ingredients are in your kitchen calling your name right now. Just blend, pour, garnish if desired and enjoy with a loved one.",
+		price: 30.00,
+		quantityAvailable: 10,
+		tags: ["Chocolate", "Healthy", "Cool Drinks", "Milk"],
+		imgSrc: HersheysChocolateMilkshake,
+		imgAlt: "",
+	},
+	{
+		name: "Hershey's Syrup",
+		description: "Hershey's syrups have been the stronghold of the Hershey's brand for many years now. One dose of rich Hershey's syrup is all it takes to add that zing to every second glass of milk. Hershey's Strawberry Syrup is a great companion for your milkshakes, ice creams or desserts. Made using fresh strawberries, this ingredient adds an extra colour and flavour to your sweet course. Its sweetness and vibrant red colour is simply amazing. Versatile in taste and use, it is available in a pet jar with an easy to flip cap.",
+		price: 120.00,
+		quantityAvailable: 2,
+		tags: ["Chocolate"],
+		imgSrc: HersheysChocolateSyrup,
+		imgAlt: "",
+	},
 ];
 
 export default Beverages;

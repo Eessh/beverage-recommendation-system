@@ -14,6 +14,9 @@ import Water from "./Water/Water.jpg";
 import IBYLogo from "./Misc/IBYlogo.png";
 import BeverageLogo from "./Misc/BeverageLogo.png";
 import DrinkLogo from "./Misc/DrinkLogo.png";
+import HersheysChocolateMilkshake from "./Chocolate/Hersheys_Chocolate_Milkshake.jpg";
+import HersheysChocolateSyrup from "./Chocolate/Hersheys_Chocolate_Syrup.jpg";
+
 export {
   Logo,
   CocaCola,
@@ -31,4 +34,6 @@ export {
   BeverageLogo,
   IBYLogo,
   DrinkLogo,
+  HersheysChocolateMilkshake,
+  HersheysChocolateSyrup
 };
