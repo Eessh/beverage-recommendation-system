@@ -15,6 +15,21 @@ Recommends beverages based on age, gender, emotion, weather, and some other para
 
 > Data Collector: https://github.com/Eessh/beverage-recommendation-system-data-collector
 
+## User Flow
+
+```mermaid
+flowchart TD
+  A[Launch Screen] --> |Get Started| B[Detection Screen];
+  A[Launch Screen] --> |Settings| C[Settings Page];
+  C --> |After updation of settings| A;
+  B --> D[Analysis Results Page];
+  D --> |Retry| B;
+  D --> E[Recommendation Page];
+  E --> F[Cart Page];
+  F --> G[Payment Page];
+  G --> |State Refresh| A;
+```
+
 ## To run on local server
 ```bash
 git clone -b recommendation_using_only_emotion https://github.com/Eessh/beverage-recommendation-system.git
