@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../GlobalContext";
 import { getDominantEmotion } from "../../RecommendationSystem";
-import { IconContext } from "react-icons";
 import "./AnalysisResults.css";
 import {
   FaMale,
@@ -17,7 +16,6 @@ import {
   FaRegTired,
 } from "react-icons/fa";
 import { GiMale, GiFemale } from "react-icons/gi";
-import { Gender } from "face-api.js";
 import {
   Angry,
   Disgusted,

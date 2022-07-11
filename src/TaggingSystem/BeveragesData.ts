@@ -13,7 +13,7 @@ import {
 
 const Beverages: TBeverages = [
 	{
-		name: "Coca Cola",
+		name: "CocaCola",
 		description: "Such a good drink, should try it :)",
 		price: 1.35,
 		quantityAvailable: 21,
@@ -22,7 +22,7 @@ const Beverages: TBeverages = [
 		imgAlt: ""
 	},
 	{
-		name: "Pepsi",
+		name: "Sprite",
 		description: "Meh kinda drink, replacement when coke is available",
 		price: 1.05,
 		quantityAvailable: 17,

@@ -1,12 +1,8 @@
 import "./LaunchScreen.css";
-import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../../GlobalContext";
 import { IBYLogo, BeverageLogo, DrinkLogo } from "../../assets/images";
 
 import { GiSettingsKnobs } from "react-icons/gi";
-import { AiFillSetting, AiOutlineSetting } from "react-icons/ai";
-import SettingsScreen from "../SettingsScreen";
 
 const LaunchScreen = () => {
   const navigate = useNavigate();

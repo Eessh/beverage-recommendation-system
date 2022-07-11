@@ -6,7 +6,7 @@ import AnalysisResults from "./components/AnalysisResults";
 import Recommendations from "./components/Recommendations";
 import "./index.css";
 import { GlobalContextProvider } from "./GlobalContext";
-import { Home, Beverages, Cart, Payment } from './components/pages';
+import { Cart, Payment } from './components/pages';
 import VideoComponent from "./components/VideoComponent";
 import SettingsScreen from "./components/SettingsScreen";
 
@@ -23,16 +23,13 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <GlobalContextProvider>
         <Routes>
-          {/* <Route path="/" element={<Home />}/> */}
-          {/* <Route path="/beverages" element={<Beverages />}/> */}
-          <Route path="/cart" element={<Cart />}/>
-          <Route path="/payment" element={<Payment />}/>
-          {/* <Route path="/app" element={<App />}/> */}
-          {<Route path="/" element={<App />} />}
+          <Route path="/" element={<App />} />
+          <Route path="/settings" element={<SettingsScreen />} />
           <Route path="/detectionScreen" element={<VideoComponent />} />
           <Route path="/analysisResults" element={<AnalysisResults />}/>
           <Route path="/recommendations" element={<Recommendations />}/>
-          <Route path="/settings" element={<SettingsScreen />} />
+          <Route path="/cart" element={<Cart />}/>
+          <Route path="/payment" element={<Payment />}/>
         </Routes>
       </GlobalContextProvider>
     </BrowserRouter>

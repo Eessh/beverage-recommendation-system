@@ -2,7 +2,6 @@ import { useGlobalContext } from "../../GlobalContext";
 import { TTag } from "../../Types";
 import { Button } from "../Animated";
 import "./BeverageTagHandler.css";
-import {useEffect, useState} from "react";
 
 export type TTagHandlerProps = {
 	tags: TTag[]
@@ -14,9 +13,9 @@ const BeverageTagHandler: React.FC<TTagHandlerProps> = ({ tags }) => {
 		setActiveBeverageTag
 	} = useGlobalContext();
 
-	useEffect(() => {
-		console.log("Log: From BeverageTypeHandler, Tags: ", tags);
-	}, []);
+	// useEffect(() => {
+	// 	console.log("Log: From BeverageTypeHandler, Tags: ", tags);
+	// }, []);
 
 	return (
 		<div className={`BeverageTagHandler flex flex-col relative px-4 py-2 items-center rounded-xl`}>
@@ -34,7 +33,6 @@ const BeverageTagHandler: React.FC<TTagHandlerProps> = ({ tags }) => {
 								overrideDefaultStyles={true}
 								classes={`${boxclass} my-2 w-36 h-36 rounded-xl text-xl`}
 							>
-								{/* <img src={type.imgSrc} alt={type.imgAlt ? type.imgAlt : ""}></img> */}
 								{tag}
 							</Button>
 						})}
