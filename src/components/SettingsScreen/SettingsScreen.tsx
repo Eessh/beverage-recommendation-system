@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./SettingsScreen.css";
-import { AiFillPropertySafety, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../GlobalContext";
 import { TEmotionsData, TValidEmotions } from "../../Types";
 import Switch from "react-switch";
-import { EmotionsData } from "../../RecommendationSystem/EmotionsData";
+import { EmotionsData } from "../../RecommendationSystem";
 
 type settingsScreenDisabledPropType = {
   enableFunc: React.Dispatch<React.SetStateAction<boolean>>;

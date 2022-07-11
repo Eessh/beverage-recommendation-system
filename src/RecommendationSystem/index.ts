@@ -12,10 +12,8 @@ import {
 	MaleBeveragesData,
 	FemaleBeveragesData
 } from "./AgeGenderData";
-import {
-	EmotionsData,
-	EmotionsWeights
-} from "./EmotionsData";
+import EmotionsData from "./EmotionsData";
+import EmotionsWeights from "./EmotionsWeights";
 import WeatherData from "./WeatherData";
 import TemperatureData from "./TemperatureData";
 

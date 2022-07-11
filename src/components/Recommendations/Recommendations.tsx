@@ -2,7 +2,7 @@ import { useGlobalContext } from "../../GlobalContext";
 import "./Recommendations.css";
 import {useEffect, useState} from "react";
 import {TTags} from "../../Types";
-import BeveragesPage from "../BeveragesPage";
+import { BeveragesPage } from "../pages";
 import { AnimatePresence } from "framer-motion";
 import { Modal } from "../Animated";
 import ViewMorePopup from "../ViewMorePopup";

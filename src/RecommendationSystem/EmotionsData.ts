@@ -1,8 +1,7 @@
 // This data is based on this research paper:
 // https://ijarsct.co.in/Paper928.pdf
 
-import { TEmotionsData } from "../components/VideoComponent/data";
-import { TEmotionsWeights } from "../Types";
+import { TEmotionsData } from "../Types";
 
 const EmotionsData: TEmotionsData = {
   happy: ["Healthy", "Juices", "Coffee", "Chocolate"],
@@ -14,14 +13,4 @@ const EmotionsData: TEmotionsData = {
   surprise: ["Water", "Juices"],
 };
 
-const EmotionsWeights: TEmotionsWeights = {
-  happy: 5,
-  sad: 10,
-  neutral: 1,
-  angry: 10,
-  fearful: 15,
-  disgusted: 15,
-  surprised: 5,
-};
-
-export { EmotionsData, EmotionsWeights };
+export default EmotionsData;

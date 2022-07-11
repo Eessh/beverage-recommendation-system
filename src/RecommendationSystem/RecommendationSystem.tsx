@@ -4,11 +4,10 @@ import {
   MaleBeveragesData,
   FemaleBeveragesData,
 } from "./AgeGenderData";
-import { EmotionsData, EmotionsWeights } from "./EmotionsData";
+import EmotionsWeights from "./EmotionsWeights";
 import WeatherData from "./WeatherData";
 import TemperatureData from "./TemperatureData";
 import { TEmotions, TBeveragePercent, TTags, TEmotionsData } from "../Types";
-import { useGlobalContext } from "../GlobalContext";
 
 const applyWeights = (emotions: TEmotions): TEmotions => {
   return {
@@ -64,7 +63,6 @@ const ageGenderRecommendations = (
           return { tag: AgeGenderBeverageTags[index], percent: value };
         });
   data.sort((a, b) => {
-    // return a.percent - b.percent;
     return b.percent - a.percent;
   });
   data.forEach((value) => recommendations.push(value.tag));
@@ -75,7 +73,6 @@ const emotionRecommendations = (
   emotions: TEmotions,
   currentEmotionsData: TEmotionsData
 ): TTags => {
-  // const { emotionsData } = useGlobalContext();
   const dominantEmotion: string = getDominantEmotion(emotions);
   switch (dominantEmotion) {
     case "happy":

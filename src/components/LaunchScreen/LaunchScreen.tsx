@@ -1,6 +1,6 @@
 import "./LaunchScreen.css";
 import { useNavigate } from "react-router-dom";
-import { IBYLogo, BeverageLogo, DrinkLogo } from "../../assets/images";
+import { IBYLogo, BeverageLogo } from "../../assets/images";
 
 import { GiSettingsKnobs } from "react-icons/gi";
 
