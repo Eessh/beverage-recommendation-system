@@ -5,7 +5,7 @@ import {TTags} from "../../Types";
 import BeveragesPage from "../BeveragesPage";
 import { AnimatePresence } from "framer-motion";
 import { Modal } from "../Animated";
-import ViewMorePopup from "../ViewMorePopup/ViewMorePopup";
+import ViewMorePopup from "../ViewMorePopup";
 
 const Recommendations = () => {
   const {

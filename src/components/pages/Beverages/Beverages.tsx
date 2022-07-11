@@ -6,7 +6,7 @@ import { TTags } from "../../../Types";
 import { Tags } from "../../../TaggingSystem";
 import { AnimatePresence } from "framer-motion";
 import { Button, Modal } from "../../Animated";
-import ViewMorePopup from "../../ViewMorePopup/ViewMorePopup";
+import ViewMorePopup from "../../ViewMorePopup";
 import "./Beverages.css";
 import { Cart } from "../../../assets/icons";
 

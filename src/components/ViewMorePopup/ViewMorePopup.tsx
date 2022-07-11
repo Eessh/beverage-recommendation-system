@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Close } from "../../assets/icons";
 import { useGlobalContext } from "../../GlobalContext";
 import { Button } from "../Animated";
-import { QuantityHandler } from "../Beverage";
+import QuantityHandler from "../QuantityHandler";
 import "./ViewMorePopup.css";
 
 const ViewMorePopup = () => {
