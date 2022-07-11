@@ -28,6 +28,7 @@ flowchart TD
   E --> F[Cart Page];
   F --> G[Payment Page];
   G --> |State Refresh| A;
+  G --> |Transaction| H[Data Collector API]
 ```
 
 ## To run on local server
