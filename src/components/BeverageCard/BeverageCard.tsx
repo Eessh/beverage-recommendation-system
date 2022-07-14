@@ -25,7 +25,7 @@ const BeverageCard: React.FC<TBeverageCardProps> = ({ beverage }) => {
 				src={beverage.imgSrc}
 				alt={beverage.imgAlt ? beverage.imgAlt : ""}
 			/>
-			<p className="text-xl font-semibold text-black mb-1">{beverage.name}</p>
+			<p className="text-lg font-semibold text-black mb-1">{beverage.name}</p>
 			<div className="flex flex-row justify-between items-center mt-1">
 				<span className="text-xl font-medium text-black">${beverage.price}</span>
 				<Button

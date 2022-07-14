@@ -1,6 +1,7 @@
 .ViewMorePopup {
   color: rgb(102, 101, 101);
   background-color: #f8edeb;
+  /* background-color: #333; */
 }
 
 .bg-pink {
@@ -13,4 +14,17 @@
 
 .bg-light-green {
   background-color: #e8e8e4;
+}
+
+.bg-brown {
+  background-color: #333;
+}
+.bg-yellow {
+  background-color: #ffd65c;
+}
+.bg-yellow-translucent1 {
+  background-color: #ffd65c83;
+}
+.bg-yellow-translucent2 {
+  background-color: #ffd65cc7;
 }

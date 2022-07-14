@@ -75,7 +75,7 @@ const Payment = () => {
         }
       })
     };
-    fetch("http://localhost:5000/transactions", options)
+    fetch("https://beverage-recommendation-system.herokuapp.com/transactions", options)
     .then((res) => {
       setTransactionProcessCompleted(true);
       res.json().then((body) => {

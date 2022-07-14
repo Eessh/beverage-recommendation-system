@@ -2,16 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { useGlobalContext } from "../../GlobalContext";
 import "./VideoComponent.css";
 import * as faceapi from "face-api.js";
-import TextTransition, { presets } from "react-text-transition";
-import ClipLoader from "react-spinners/ClipLoader";
 import { RingLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import {
-  IAgeRange,
   IBeveragePercent,
-  TBeveragesTypes,
-  TAgeRanges,
-  TBeveragesData,
 } from ".";
 import {
   BeverageTypes,
@@ -20,21 +14,16 @@ import {
   FemaleBeveragesData,
 } from "./data";
 import { TEmotions } from "../../Types";
-import { number } from "prop-types";
 
 const VideoComponent = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  // const [age, setAge] = useState<number | undefined>(18);
-  // const [gender, setGender] = useState<string | undefined>("male");
-  const { modelsLoaded, age, setAge, gender, setGender, setEmotions } =
-    useGlobalContext();
-  const [textIndex, setTextIndex] = useState<number>(0);
+  const { modelsLoaded, setEmotions } = useGlobalContext();
+  // const [textIndex, setTextIndex] = useState<number>(0);
   let [spinnerActive, setSpinnerActive] = useState<boolean>(true);
   const [numberOfDetection, setNumberOfDetections] = useState<number>(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("modelsLoaded value - ", modelsLoaded);
     getVideoStream();
     setTimeout(() => {
       // setRecommendations(getRecommendations(gender, age));
@@ -44,13 +33,13 @@ const VideoComponent = () => {
       modelsLoaded && detectParams();
       setNumberOfDetections((prev) => prev + 1);
     }, 800);
-    const textInterval = setInterval(
-      () => setTextIndex((index) => index + 1),
-      3000 // every 3 seconds
-    );
+    // const textInterval = setInterval(
+    //   () => setTextIndex((index) => index + 1),
+    //   3000 // every 3 seconds
+    // );
 
     return () => {
-      clearInterval(textInterval);
+      // clearInterval(textInterval);
       clearInterval(interval);
     };
   }, [modelsLoaded]);
@@ -89,6 +78,7 @@ const VideoComponent = () => {
       .withFaceLandmarks()
       .withFaceExpressions();
     if (params !== undefined) {
+      // age, gender were not used to recommend beverages
       // setAge((prev: number) => {
       //   // console.log("Log: Age: ", prev);
       //   return params.age;
@@ -130,7 +120,6 @@ const VideoComponent = () => {
             return { type: BeverageTypes[index], percent: value };
           });
     data.sort((a, b) => {
-      // return a.percent - b.percent;
       return b.percent - a.percent;
     });
     data.forEach((value) => recommendations.push(value.type));
@@ -153,7 +142,7 @@ const VideoComponent = () => {
         playsInline
       ></video>
       <div className=" video-info-container">
-        <RingLoader color="#fec5bb" loading={spinnerActive} size={180} />
+        <RingLoader color="#ffd65c" loading={spinnerActive} size={180} />
         <h1 className="info-text">
           {/* <TextTransition
             text={infoTexts[textIndex % infoTexts.length]}

@@ -74,6 +74,7 @@ const AnalysisResults = () => {
     // setEmotionsRecommendation({
     //   emotions: emotionRecommendations(emotions),
     // });
+
     // navigates to recommendations page in 5 seconds
     const timeoutId = setTimeout(() => navigate("/recommendations"), 5000);
     setTimeoutId(timeoutId);
@@ -87,6 +88,7 @@ const AnalysisResults = () => {
     navigate("/");
   };
 
+  // this function is not used as weather is not considered for recommendation
   const fetchWeather = async () => {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
@@ -189,8 +191,9 @@ const AnalysisResults = () => {
   return (
     <div className="analysis-result-top">
       <div className="analysis-result-root">
-        <span className="predictions-title">Predictions</span>
+        <span className="predictions-title">Analysis Results</span>
         <div className="predictions">
+          {/* These are containers for age, gender, emotion results, still left them, maybe they can be used in future */}
           {/* <div className="age-container"> */}
           {/* <div className="age-float shadow-xl"> */}
           {/* <AgeIcon gender={gender} age={age} />
