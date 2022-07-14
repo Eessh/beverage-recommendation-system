@@ -9,13 +9,19 @@
 
 Recommends beverages based on age, gender, emotion, weather, and some other parameters.
 
+> Data Collector: https://github.com/Eessh/beverage-recommendation-system-data-collector
+
 Currently, this app was using only `emotions` for recommending beverages. We could also use `age, gender, weather, temperature` parameters for recommending beverages, we just need to enable them in the source code.
 
 ![Home Page](./screenshots/home.jpeg)
 
 ![Settings Page](./screenshots/settings.jpeg)
 
-> Data Collector: https://github.com/Eessh/beverage-recommendation-system-data-collector
+![Analysis Results Page](./screenshots/analysisResults.jpeg)
+
+![Recommendation Page](./screenshots/recommendations.jpeg)
+
+![Adding to Cart](./screenshots/addingToCart.jpeg)
 
 ## User Flow
 
